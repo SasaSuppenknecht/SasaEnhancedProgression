@@ -1,0 +1,17 @@
+{
+  "parent" : "techtree:agriculture/taming",
+  "display": {
+    "icon": {
+      "id": "minecraft:hay_block"
+    },
+    "title": "Animal Breeding",
+    "description": "Unlocks breeding of animals",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:agriculture/taming": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

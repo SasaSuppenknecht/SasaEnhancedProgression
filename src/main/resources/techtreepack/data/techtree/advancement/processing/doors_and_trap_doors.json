@@ -1,0 +1,25 @@
+{
+  "parent" : "techtree:processing/processing",
+  "display": {
+    "icon": {
+      "id": "minecraft:oak_door"
+    },
+    "title": "Doors",
+    "description": "Unlocks doors and trap doors",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:processing/processing": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:oak_door",
+      "minecraft:oak_trapdoor",
+      "minecraft:iron_door",
+      "minecraft:iron_trapdoor"
+    ]
+  }
+}

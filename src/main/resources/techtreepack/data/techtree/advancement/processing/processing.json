@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:raw_iron",
+      "count": 1
+    },
+    "title": "Processing",
+    "description": "Materials & Blocks",
+    "background": "minecraft:block/iron_block",
+    "frame": "challenge",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "join": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:oak_planks",
+      "minecraft:dark_oak_planks",
+      "minecraft:acaia_planks",
+      "minecraft:birch_planks",
+      "minecraft:cherry_planks",
+      "minecraft:jungle_planks",
+      "minecraft:mangrove_planks",
+      "minecraft:spruce_planks",
+      "minecraft:warped_planks",
+      "minecraft:crimson_planks",
+      "minecraft:pale_oak_planks",
+      "minecraft:bamboo_planks",
+      "minecraft:stick",
+      "minecraft:stick_from_bamboo_item"
+    ]
+  }
+}

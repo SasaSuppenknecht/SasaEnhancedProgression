@@ -1,0 +1,33 @@
+{
+  "parent" : "techtree:technology/technology",
+  "display": {
+    "icon": {
+      "id": "minecraft:oak_boat"
+    },
+    "title": "Boats",
+    "description": "",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:technology/technology": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:oak_boat",
+      "minecraft:birch_boat",
+      "minecraft:acacia_boat",
+      "minecraft:dark_oak_boat",
+      "minecraft:spruce_boat",
+      "minecraft:jungle_boat",
+      "minecraft:pale_oak_boat",
+      "minecraft:mangrove_boat",
+      "minecraft:cherry_boat",
+      "minecraft:bamboo_boat",
+      "minecraft:warped_boat",
+      "minecraft:crimson_boat"
+    ]
+  }
+}

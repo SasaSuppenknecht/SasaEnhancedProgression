@@ -1,0 +1,25 @@
+{
+  "parent" : "techtree:combat/combat",
+  "display": {
+    "icon": {
+      "id": "minecraft:leather_chestplate"
+    },
+    "title": "Leather Armor",
+    "description": "",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:combat/combat": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:leather_helmet",
+      "minecraft:leather_chestplate",
+      "minecraft:leather_leggings",
+      "minecraft:leather_boots"
+    ]
+  }
+}

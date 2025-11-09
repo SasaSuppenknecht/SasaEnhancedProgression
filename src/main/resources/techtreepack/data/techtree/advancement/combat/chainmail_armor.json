@@ -1,0 +1,26 @@
+{
+  "parent" : "techtree:combat/leather_armor",
+  "display": {
+    "icon": {
+      "id": "minecraft:chainmail_chestplate"
+    },
+    "title": "Chainmail Armor",
+    "description": "",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:combat/leather_armor": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "techtree:chainmail_helmet",
+      "techtree:chainmail_chestplate",
+      "techtree:chainmail_leggings",
+      "techtree:chainmail_boots",
+      "minecraft:chains"
+    ]
+  }
+}

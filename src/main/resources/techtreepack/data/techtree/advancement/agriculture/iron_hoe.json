@@ -1,0 +1,28 @@
+{
+  "parent" : "techtree:agriculture/stone_hoe",
+  "display": {
+    "icon": {
+      "id": "minecraft:iron_hoe"
+    },
+    "title": "Iron Hoe",
+    "description": "",
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "criteria": {
+    "techtree:agriculture/stone_hoe": {
+      "trigger": "minecraft:impossible"
+    },
+    "techtree:tools/iron_tools": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:iron_hoe"
+    ]
+  },
+  "dependencies": [
+    "techtree:iron_tools"
+  ]
+}

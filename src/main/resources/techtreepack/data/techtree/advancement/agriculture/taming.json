@@ -1,0 +1,17 @@
+{
+  "parent" : "techtree:agriculture/agriculture",
+  "display": {
+    "icon": {
+      "id": "minecraft:saddle"
+    },
+    "title": "Animal Taming",
+    "description": "Unlocks taming of animals",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:agriculture/agriculture": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:crafting_table",
+      "count": 1
+    },
+    "title": "Tools",
+    "description": "Tools & Crafting Stations",
+    "background": "minecraft:block/bricks",
+    "frame": "challenge",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "join": {
+      "trigger": "minecraft:tick"
+    }
+  },
+   "rewards": {
+    "recipes": [
+      "minecraft:crafting_table",
+      "minecraft:wooden_axe",
+      "minecraft:wooden_pickaxe",
+      "minecraft:wooden_shovel"
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "parent" : "techtree:agriculture/farming",
+  "display": {
+    "icon": {
+      "id": "minecraft:stone_hoe"
+    },
+    "title": "Stone Hoe",
+    "description": "",
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "criteria": {
+    "techtree:agriculture/agriculture": {
+      "trigger": "minecraft:impossible"
+    },
+    "techtree:tools/stone_tools": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:stone_hoe"
+    ]
+  }
+}

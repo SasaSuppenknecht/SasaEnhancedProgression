@@ -1,0 +1,25 @@
+{
+  "parent" : "techtree:combat/chainmail_armor",
+  "display": {
+    "icon": {
+      "id": "minecraft:iron_chestplate"
+    },
+    "title": "Iron Armor",
+    "description": "",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:combat/chainmail_armor": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:iron_helmet",
+      "minecraft:iron_chestplate",
+      "minecraft:iron_leggings",
+      "minecraft:iron_boots"
+    ]
+  }
+}

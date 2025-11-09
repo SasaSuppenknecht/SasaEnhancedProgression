@@ -1,0 +1,25 @@
+{
+  "display": {
+    "icon": {
+      "id": "minecraft:wheat_seeds",
+      "count": 1
+    },
+    "title": "Agriculture",
+    "description": "Farming, Husbandry & Cooking",
+    "background": "minecraft:block/farmland_moist",
+    "frame": "challenge",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "join": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:hay_block"
+    ]
+  }
+}

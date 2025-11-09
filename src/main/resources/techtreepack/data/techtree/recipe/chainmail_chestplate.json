@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "I I",
+        "CCC",
+        "III"
+    ],
+    "key": {
+        "I": "minecraft:iron_nugget",
+        "C": "minecraft:chain"
+    },
+    "result": {
+        "id": "minecraft:chainmail_chestplate",
+        "count": 1
+    }
+}
