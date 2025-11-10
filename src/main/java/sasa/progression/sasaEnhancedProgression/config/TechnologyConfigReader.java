@@ -2,12 +2,15 @@ package sasa.progression.sasaEnhancedProgression.config;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.jetbrains.annotations.NotNull;
 import sasa.progression.sasaEnhancedProgression.SasaEnhancedProgression;
 import sasa.progression.sasaEnhancedProgression.DatapackSetup;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 
 public class TechnologyConfigReader {
@@ -17,7 +20,13 @@ public class TechnologyConfigReader {
 
     public TechnologyConfigReader() {
         File file = new File(SasaEnhancedProgression.plugin.getDataFolder(), CONFIG_NAME);
-        config = YamlConfiguration.loadConfiguration(file);
+        config = new YamlConfiguration();
+        try {
+            config.load(file);
+        } catch (IOException | InvalidConfigurationException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 
@@ -27,10 +36,12 @@ public class TechnologyConfigReader {
 
         String yamlPath = key.replace("/", ".");
         ConfigurationSection section = config.getConfigurationSection(yamlPath);
+        System.out.println(section);
         if (section == null)
             return null;
         HashMap<String, Integer> technologyRequirementsMap = new HashMap<>();
         for (String sectionKey : section.getKeys(false)) {
+            System.out.println(sectionKey);
             int value = section.getInt(sectionKey);
             technologyRequirementsMap.put(sectionKey, value);
         }
