@@ -1,0 +1,62 @@
+{
+  "parent" : "techtree:technology/technology",
+  "display": {
+    "icon": {
+      "id": "minecraft:redstone_torch"
+    },
+    "title": "Basic Redstone",
+    "description": "Unlocks redstone torches and blocks, repeaters, levers & more",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:technology/technology": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:redstone",
+      "minecraft:redstone_block",
+      "minecraft:redstone_from_blasting_deepslate_redstone_ore",
+      "minecraft:redstone_from_blasting_redstone_ore",
+      "minecraft:redstone_from_smelting_deepslate_redstone_ore",
+      "minecraft:redstone_from_smelting_redstone_ore",
+      "minecraft:redstone_torch",
+      "minecraft:lever",
+      "minecraft:repeater",
+      "minecraft:oak_button",
+      "minecraft:birch_button",
+      "minecraft:acacia_button",
+      "minecraft:dark_oak_button",
+      "minecraft:spruce_button",
+      "minecraft:jungle_button",
+      "minecraft:pale_oak_button",
+      "minecraft:mangrove_button",
+      "minecraft:cherry_button",
+      "minecraft:bamboo_button",
+      "minecraft:warped_button",
+      "minecraft:crimson_button",
+      "minecraft:bamboo_button",
+      "minecraft:stone_button",
+      "minecraft:polished_blackstone_button",
+      "minecraft:oak_pressure_plate",
+      "minecraft:birch_pressure_plate",
+      "minecraft:acacia_pressure_plate",
+      "minecraft:dark_oak_pressure_plate",
+      "minecraft:spruce_pressure_plate",
+      "minecraft:jungle_pressure_plate",
+      "minecraft:pale_oak_pressure_plate",
+      "minecraft:mangrove_pressure_plate",
+      "minecraft:cherry_pressure_plate",
+      "minecraft:bamboo_pressure_plate",
+      "minecraft:warped_pressure_plate",
+      "minecraft:crimson_pressure_plate",
+      "minecraft:bamboo_pressure_plate",
+      "minecraft:stone_pressure_plate",
+      "minecraft:polished_blackstone_pressure_plate",
+      "minecraft:light_weighted_pressure_plate",
+      "minecraft:heavy_weighted_pressure_plate"
+    ]
+  }
+}

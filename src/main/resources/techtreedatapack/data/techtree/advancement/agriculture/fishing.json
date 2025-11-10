@@ -2,10 +2,10 @@
   "parent" : "techtree:agriculture/agriculture",
   "display": {
     "icon": {
-      "id": "minecraft:saddle"
+      "id": "minecraft:fishing_rod"
     },
-    "title": "Animal Taming",
-    "description": "Unlocks taming of animals and saddles",
+    "title": "Fishing",
+    "description": "Unlocks fishing rod",
     "announce_to_chat": false,
     "hidden": false
   },
@@ -16,7 +16,7 @@
   },
   "rewards": {
     "recipes": [
-      "minecraft:saddle"
+      "minecraft:fishing_rod"
     ]
   }
 }

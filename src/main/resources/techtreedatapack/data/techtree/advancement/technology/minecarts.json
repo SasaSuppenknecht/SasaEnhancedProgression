@@ -1,0 +1,30 @@
+{
+  "parent" : "techtree:technology/technology",
+  "display": {
+    "icon": {
+      "id": "minecraft:minecart"
+    },
+    "title": "Minecarts",
+    "description": "Unlocks minecarts and rails",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:technology/technology": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:minecart",
+      "minecraft:rail",
+      "minecraft:powered_rail",
+      "minecraft:detector_rail",
+      "minecraft:activator_rail",
+      "minecraft:hopper_minecart",
+      "minecraft:chest_minecart",
+      "minecraft:furnace_minecart",
+      "minecraft:tnt_minecart"
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "parent" : "techtree:processing/processing",
+  "display": {
+    "icon": {
+      "id": "minecraft:red_dye"
+    },
+    "title": "Colors",
+    "description": "Unlocks dies",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:processing/processing": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:red_dye_from_beetroot",
+      "minecraft:red_dye_from_poppy",
+      "minecraft:red_dye_from_tulip",
+      "minecraft:red_dye_from_rose_bush"
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "parent" : "techtree:tools/tools",
+  "display": {
+    "icon": {
+      "id": "minecraft:furnace"
+    },
+    "title": "Furnace",
+    "description": "Unlocks Furnace BUT NO SMELTING RECIPE",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:tools/tools": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:furnace"
+    ]
+  }
+}

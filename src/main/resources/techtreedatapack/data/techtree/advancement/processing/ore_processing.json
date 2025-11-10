@@ -1,0 +1,23 @@
+{
+  "parent" : "techtree:processing/brick_smelting",
+  "display": {
+    "icon": {
+      "id": "minecraft:iron_ingot"
+    },
+    "title": "Ore Processing",
+    "description": "Unlocks processing of Copper, Iron & Gold into ingots",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:processing/brick_smelting": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:iron_ingot_from_smelting_iron_ore",
+      "minecraft:iron_ingot_from_smelting_raw_iron"
+    ]
+  }
+}

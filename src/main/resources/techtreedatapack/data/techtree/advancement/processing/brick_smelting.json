@@ -1,0 +1,24 @@
+{
+  "parent" : "techtree:processing/processing",
+  "display": {
+    "icon": {
+      "id": "minecraft:brick"
+    },
+    "title": "Brick Smelting",
+    "description": "Unlocks brick smelting and brick blocks",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:processing/processing": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:resin_brick",
+      "minecraft:brick",
+      "minecraft:stone"
+    ]
+  }
+}

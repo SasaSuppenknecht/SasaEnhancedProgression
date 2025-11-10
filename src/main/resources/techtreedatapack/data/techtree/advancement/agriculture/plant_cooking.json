@@ -1,0 +1,22 @@
+{
+  "parent" : "techtree:agriculture/farming",
+  "display": {
+    "icon": {
+      "id": "minecraft:cooked_potato"
+    },
+    "title": "Plant cooking",
+    "description": "Unlocks food recipes based on farming",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:agriculture/farming": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+
+    ]
+  }
+}

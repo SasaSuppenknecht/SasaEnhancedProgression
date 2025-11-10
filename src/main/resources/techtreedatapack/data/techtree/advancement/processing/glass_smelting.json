@@ -1,0 +1,23 @@
+{
+  "parent" : "techtree:processing/brick_smelting",
+  "display": {
+    "icon": {
+      "id": "minecraft:glass"
+    },
+    "title": "Glass Smelting",
+    "description": "Unlocks glass, glass panels and bottles",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:processing/brick_smelting": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:glass_bottle",
+      "minecraft:glass"
+    ]
+  }
+}

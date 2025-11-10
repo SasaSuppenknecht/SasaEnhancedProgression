@@ -1,0 +1,22 @@
+{
+  "parent" : "techtree:agriculture/breeding",
+  "display": {
+    "icon": {
+      "id": "minecraft:cooked_beef"
+    },
+    "title": "Meat Cooking",
+    "description": "Unlocks food recipes based on animals",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:agriculture/breeding": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+
+    ]
+  }
+}

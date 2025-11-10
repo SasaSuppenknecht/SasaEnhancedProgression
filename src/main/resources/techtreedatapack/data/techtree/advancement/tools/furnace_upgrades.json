@@ -1,0 +1,23 @@
+{
+  "parent" : "techtree:tools/furnace",
+  "display": {
+    "icon": {
+      "id": "minecraft:blast_furnace"
+    },
+    "title": "Furnace Upgrades",
+    "description": "Unlocks Blast Furnace and Smoker",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:tools/furnace": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:blast_furnace",
+      "minecraft:smoker"
+    ]
+  }
+}

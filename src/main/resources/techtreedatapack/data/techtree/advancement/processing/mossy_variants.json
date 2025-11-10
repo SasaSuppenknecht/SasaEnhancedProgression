@@ -1,0 +1,24 @@
+{
+  "parent" : "techtree:processing/block_variants",
+  "display": {
+    "icon": {
+      "id": "minecraft:mossy_cobblestone"
+    },
+    "title": "Mossy Variants",
+    "description": "Unlocks mossy blocks",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:processing/block_variants": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:mossy_cobblestone",
+      "minecraft:mossy_cobblestone_from_vine",
+      "minecraft:mossy_cobblestone_from_moss_block"
+    ]
+  }
+}
