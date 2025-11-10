@@ -13,24 +13,24 @@ import java.util.Map;
 
 public class Technology {
 
-    private final Advancement advancement;
-    private final Advancement primaryDependency;
-    private final Advancement secondaryDependency;
-    private final List<MaterialRequirement> requirements = new ArrayList();
+    private final NamespacedKey advancement;
+    private final NamespacedKey primaryDependency;
+    private final NamespacedKey secondaryDependency;
+    private final List<MaterialRequirement> requirements = new ArrayList<>();
 
-    public Technology(Advancement advancement, HashMap<String, Integer> requirementsMap) {
+    public Technology(NamespacedKey advancement, HashMap<String, Integer> requirementsMap) {
         this.advancement = advancement;
 
-        var criteriaIterator = advancement.getCriteria().iterator();
+        var criteriaIterator = Bukkit.getAdvancement(advancement).getCriteria().iterator();
         // criteria must have at least one element
-        primaryDependency = getAdvancementFromString(criteriaIterator.next());
+        primaryDependency = NamespacedKey.fromString(criteriaIterator.next());
         if (criteriaIterator.hasNext()) {
-            secondaryDependency = getAdvancementFromString(criteriaIterator.next());
+            secondaryDependency = NamespacedKey.fromString(criteriaIterator.next());
         } else {
             secondaryDependency = null;
         }
 
-        assert !criteriaIterator.hasNext() : "Advancement " + advancement.getKey() + " has more than 2 criteria";
+        assert !criteriaIterator.hasNext() : "Advancement " + advancement + " has more than 2 criteria";
 
         if (requirementsMap != null) {
             for (Map.Entry<String, Integer> requirement : requirementsMap.entrySet()) {
@@ -42,16 +42,19 @@ public class Technology {
         }
     }
 
-
-    public Advancement getConnectedAdvancement() {
+    public NamespacedKey getAdvancementKey() {
         return advancement;
     }
 
-    public Advancement getPrimaryDependency() {
+    public Advancement getConnectedAdvancement() {
+        return Bukkit.getAdvancement(advancement);
+    }
+
+    public NamespacedKey getPrimaryDependency() {
         return primaryDependency;
     }
 
-    public Advancement getSecondaryDependency() {
+    public NamespacedKey getSecondaryDependency() {
         return secondaryDependency;
     }
 
@@ -59,17 +62,23 @@ public class Technology {
         return !requirements.isEmpty();
     }
 
-    private Advancement getAdvancementFromString(String key) {
-        NamespacedKey advancementKey = NamespacedKey.fromString(key);
-        assert advancementKey != null : "Ill-formatted namespacedkey: " + key + " in advancement " + advancement.getKey();
-        Advancement advancementFromKey = Bukkit.getAdvancement(advancementKey);
-        assert advancementFromKey != null : "Cannot find " + advancementKey + " coming from " + advancement.getKey();
-
-        return advancementFromKey;
+    public List<MaterialRequirement> getRequirements() {
+        return List.copyOf(requirements);
     }
 
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Technology technology) {
+            return technology.advancement.equals(this.advancement);
+        }
+        return false;
+    }
 
+    @Override
+    public String toString() {
+        return "Technology(%s)".formatted(advancement.toString());
+    }
 
     public static class MaterialRequirement {
 
@@ -83,6 +92,25 @@ public class Technology {
             this.given = 0;
         }
 
+        public Material getMaterial() {
+            return material;
+        }
+
+        public int getGiven() {
+            return given;
+        }
+
+        public void setGiven(int given) {
+            this.given = given;
+        }
+
+        public int getNeeded() {
+            return needed;
+        }
+
+        public void setNeeded(int needed) {
+            this.needed = needed;
+        }
     }
 
 }

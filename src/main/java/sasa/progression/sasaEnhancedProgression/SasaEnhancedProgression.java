@@ -5,7 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.GameRule;
 import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
-import sasa.progression.sasaEnhancedProgression.techinterface.TechnologyCommand;
+import sasa.progression.sasaEnhancedProgression.techinterface.TechCommand;
 import sasa.progression.sasaEnhancedProgression.techtree.TechProgress;
 
 public final class SasaEnhancedProgression extends JavaPlugin {
@@ -19,7 +19,7 @@ public final class SasaEnhancedProgression extends JavaPlugin {
         this.saveConfig();
         TechProgress techProgress = new TechProgress();
         this.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands -> {
-            commands.registrar().register(TechnologyCommand.createCommand(techProgress), "Opens the tech tree progression interface");
+            commands.registrar().register(TechCommand.createCommand(techProgress), "Opens the tech tree progression interface");
         });
 
     }

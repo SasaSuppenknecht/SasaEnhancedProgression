@@ -1,19 +1,27 @@
 combat:
-    combat: null
-    leather_armor:
-        "minecraft:cobblestone": 64
-        "minecraft:leather": 32
-    chainmail_armor:
-        "minecraft:iron_ingot": 16
-    iron_armor:
-        "minecraft:iron_ingot": 64
+  combat: null
+  leather_armor:
+    requirements:
+      "minecraft:cobblestone": 64
+      "minecraft:leather": 32
+  chainmail_armor:
+    requirements:
+      "minecraft:iron_ingot": 16
+  iron_armor:
+    requirements:
+      "minecraft:iron_ingot": 64
 tools:
   tools: null
   torch:
-    "minecraft:coal": 32
-    "minecraft:stick": 128
+    count: 1
+    requirements:
+      "minecraft:coal": 32
+      "minecraft:stick": 128
   ladder:
-    "minecraft:stick": 256
+    requirements:
+      "minecraft:stick": 256
   stone_tools:
-    "minecraft:cobblestone": 1024
-    "minecraft:stick": 256
+    count: 4
+    requirements:
+      "minecraft:cobblestone": 1024
+      "minecraft:stick": 256

@@ -7,53 +7,50 @@ import sasa.progression.sasaEnhancedProgression.SasaEnhancedProgression;
 import sasa.progression.sasaEnhancedProgression.config.TechnologyConfigReader;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
 public class TechProgress {
 
-    private HashSet<NamespacedKey> completedTech = new HashSet<>();
-    private HashSet<NamespacedKey> openTech = new HashSet<>();
-    private HashSet<NamespacedKey> openTechWithoutRequirements = new HashSet<>();
-    private HashSet<NamespacedKey> remainingTech = new HashSet<>();
+    private final HashSet<Technology> completedTech = new HashSet<>();
+    private final HashSet<Technology> openTech = new HashSet<>();
+    private final HashSet<Technology> openTechWithoutRequirements = new HashSet<>();
+    private final HashSet<Technology> remainingTech = new HashSet<>();
+
+    private final HashMap<NamespacedKey, Technology> keyToTechnologyMap = new HashMap<>();
 
     public TechProgress() {
         TechnologyConfigReader technologyConfigReader = new TechnologyConfigReader();
-        ArrayList<Technology> technologies = new ArrayList<>();
         // iterate over all advancements and bundle necessary information (such as dependent technologies and material requirements)
         for (var it = Bukkit.advancementIterator(); it.hasNext();) {
             Advancement advancement = it.next();
             var requirements = technologyConfigReader.getTechnologyRequirements(advancement.getKey());
-            Technology technology = new Technology(advancement, requirements);
+            Technology technology = new Technology(advancement.getKey(), requirements);
 
             if (advancement.getCriteria().contains("join")) {
-                completedTech.add(advancement.getKey());
-            } else {
-                technologies.add(technology);
+                completedTech.add(technology);
             }
+            keyToTechnologyMap.put(advancement.getKey(), technology);
         }
 
         // For any given technology, if its dependencies are fulfilled, it can be added to open technologies
-        for (Technology tech : technologies) {
-            if (completedTech.contains(tech.getPrimaryDependency().getKey()) &&
-                    (tech.getSecondaryDependency() == null || completedTech.contains(tech.getSecondaryDependency().getKey()))) {
+        for (Technology tech : keyToTechnologyMap.values()) {
+            if (completedTech.contains(keyToTechnologyMap.get(tech.getPrimaryDependency())) &&
+                    (tech.getSecondaryDependency() == null || completedTech.contains(keyToTechnologyMap.get(tech.getSecondaryDependency())))) {
                 if (tech.hasRequirements()) {
-                    openTech.add(tech.getConnectedAdvancement().getKey());
+                    openTech.add(tech);
                 } else {
-                    openTechWithoutRequirements.add(tech.getConnectedAdvancement().getKey());
+                    openTechWithoutRequirements.add(tech);
                 }
             } else {
-                remainingTech.add(tech.getConnectedAdvancement().getKey());
+                remainingTech.add(tech);
             }
         }
     }
 
-    public Set<Advancement> getOpenTech() {
-        HashSet<Advancement> openTechAdvancements = new HashSet<>();
-        for (NamespacedKey key : openTech) {
-            openTechAdvancements.add(Bukkit.getAdvancement(key));
-        }
-        return openTechAdvancements;
+    public Set<Technology> getOpenTech() {
+        return Set.copyOf(openTech);
     }
 
 }

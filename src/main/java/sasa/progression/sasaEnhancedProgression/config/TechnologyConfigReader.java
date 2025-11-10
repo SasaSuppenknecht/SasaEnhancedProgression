@@ -34,14 +34,13 @@ public class TechnologyConfigReader {
         assert namespacedKey.getNamespace().equals(DatapackSetup.DATAPACK_NAMESPACE);
         String key = namespacedKey.getKey();
 
-        String yamlPath = key.replace("/", ".");
+        String yamlPath = key.replace("/", ".") + ".requirements";
         ConfigurationSection section = config.getConfigurationSection(yamlPath);
-        System.out.println(section);
-        if (section == null)
+        if (section == null) {
             return null;
+        }
         HashMap<String, Integer> technologyRequirementsMap = new HashMap<>();
         for (String sectionKey : section.getKeys(false)) {
-            System.out.println(sectionKey);
             int value = section.getInt(sectionKey);
             technologyRequirementsMap.put(sectionKey, value);
         }
