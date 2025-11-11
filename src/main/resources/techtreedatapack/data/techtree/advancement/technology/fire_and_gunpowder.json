@@ -1,0 +1,29 @@
+{
+  "parent" : "techtree:technology/technology",
+  "display": {
+    "icon": {
+      "id": "minecraft:gunpowder"
+    },
+    "title": "Fire & Gunpowder",
+    "description": "Unlocks fireworks, TNT & flint and steel",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:technology/technology": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:firework_rocket",
+      "minecraft:firework_rocket_simple",
+      "minecraft:firework_star",
+      "minecraft:firework_star_fade",
+      "minecraft:flint_and_steel",
+      "minecraft:fire_charge",
+      "minecraft:tnt",
+      "techtree:gunpowder"
+    ]
+  }
+}

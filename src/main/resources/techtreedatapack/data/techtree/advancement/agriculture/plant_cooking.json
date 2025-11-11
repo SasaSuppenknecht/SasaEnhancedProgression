@@ -2,7 +2,7 @@
   "parent" : "techtree:agriculture/farming",
   "display": {
     "icon": {
-      "id": "minecraft:cooked_potato"
+      "id": "minecraft:baked_potato"
     },
     "title": "Plant cooking",
     "description": "Unlocks food recipes based on farming",
@@ -16,7 +16,31 @@
   },
   "rewards": {
     "recipes": [
-
+      "minecraft:bread",
+      "minecraft:baked_potato",
+      "minecraft:baked_potato_from_campfire_cooking",
+      "minecraft:baked_potato_from_smoking",
+      "minecraft:cookie",
+      "minecraft:pumpkin_pie",
+      "minecraft:beetroot_soup",
+      "minecraft:mushroom_stew",
+      "minecraft:suspicious_stew_from_allium",
+      "minecraft:suspicious_stew_from_azure_bluet",
+      "minecraft:suspicious_stew_from_blue_orchid",
+      "minecraft:suspicious_stew_from_closed_eyeblossom",
+      "minecraft:suspicious_stew_from_cornflower",
+      "minecraft:suspicious_stew_from_dandelion",
+      "minecraft:suspicious_stew_from_lily_of_the_valley",
+      "minecraft:suspicious_stew_from_open_eyeblossom",
+      "minecraft:suspicious_stew_from_orange_tulip",
+      "minecraft:suspicious_stew_from_oxeye_daisy",
+      "minecraft:suspicious_stew_from_pink_tulip",
+      "minecraft:suspicious_stew_from_poppy",
+      "minecraft:suspicious_stew_from_red_tulip",
+      "minecraft:suspicious_stew_from_torchflower",
+      "minecraft:suspicious_stew_from_white_tulip",
+      "minecraft:suspicious_stew_from_wither_rose",
+      "minecraft:bowl"
     ]
   }
 }

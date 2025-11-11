@@ -1,0 +1,23 @@
+{
+  "parent" : "techtree:agriculture/plant_cooking",
+  "display": {
+    "icon": {
+      "id": "minecraft:golden_carrot"
+    },
+    "title": "Advanced Cooking",
+    "description": "Unlocks golden foods",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:agriculture/plant_cooking": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:golden_carrot",
+      "minecraft:golden_apple"
+    ]
+  }
+}

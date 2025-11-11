@@ -5,7 +5,7 @@
       "id": "minecraft:red_dye"
     },
     "title": "Colors",
-    "description": "Unlocks dies",
+    "description": "Unlocks dies and concrete",
     "announce_to_chat": false,
     "hidden": false
   },
@@ -22,7 +22,7 @@
       "minecraft:blue_dye_from_cornflower",
       "minecraft:brown_dye",
       "minecraft:cyan_dye",
-      "minecraft:cyan_dye_from pitcher_plant",
+      "minecraft:cyan_dye_from_pitcher_plant",
       "minecraft:gray_dye",
       "minecraft:gray_dye_from_closed_eyeblossom",
       "minecraft:green_dye",
@@ -57,7 +57,23 @@
       "minecraft:white_dye_from_lily_of_the_valley",
       "minecraft:yellow_dye_from_dandelion",
       "minecraft:yellow_dye_from_sunflower",
-      "minecraft:yellow_dye_from_wildflowers"
+      "minecraft:yellow_dye_from_wildflowers",
+      "minecraft:black_concrete_powder",
+      "minecraft:blue_concrete_powder",
+      "minecraft:brown_concrete_powder",
+      "minecraft:cyan_concrete_powder",
+      "minecraft:gray_concrete_powder",
+      "minecraft:green_concrete_powder",
+      "minecraft:light_blue_concrete_powder",
+      "minecraft:light_gray_concrete_powder",
+      "minecraft:lime_concrete_powder",
+      "minecraft:magenta_concrete_powder",
+      "minecraft:orange_concrete_powder",
+      "minecraft:pink_concrete_powder",
+      "minecraft:purple_concrete_powder",
+      "minecraft:red_concrete_powder",
+      "minecraft:white_concrete_powder",
+      "minecraft:yellow_concrete_powder"
     ]
   }
 }

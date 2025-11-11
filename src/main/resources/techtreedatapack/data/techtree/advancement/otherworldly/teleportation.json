@@ -1,0 +1,17 @@
+{
+  "parent" : "techtree:otherworldly/otherworldly",
+  "display": {
+    "icon": {
+      "id": "minecraft:ender_pearl"
+    },
+    "title": "Teleportation",
+    "description": "Allows the usage of ender pearls",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:otherworldly/otherworldly": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

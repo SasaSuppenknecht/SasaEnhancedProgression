@@ -1,16 +1,17 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "ICI",
-        "C C",
-        "I I"
-    ],
-    "key": {
-        "I": "minecraft:iron_nugget",
-        "C": "minecraft:chain"
-    },
-    "result": {
-        "id": "minecraft:chainmail_leggings",
-        "count": 1
-    }
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "ICI",
+    "C C",
+    "I I"
+  ],
+  "key": {
+    "I": "minecraft:iron_nugget",
+    "C": "minecraft:chain"
+  },
+  "result": {
+    "id": "minecraft:chainmail_leggings",
+    "count": 1
+  }
 }

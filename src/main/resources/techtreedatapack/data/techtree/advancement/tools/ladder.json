@@ -5,7 +5,7 @@
       "id": "minecraft:ladder"
     },
     "title": "Ladders",
-    "description": "",
+    "description": "Unlocks ladders and scaffolding",
     "announce_to_chat": false,
     "hidden": false
   },
@@ -16,7 +16,8 @@
   },
   "rewards": {
     "recipes": [
-      "minecraft:ladder"
+      "minecraft:ladder",
+      "minecraft:scaffolding"
     ]
   }
 }

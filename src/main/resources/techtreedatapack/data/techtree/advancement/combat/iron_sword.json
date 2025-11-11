@@ -1,5 +1,5 @@
 {
-  "parent" : "techtree:combat/iron_sword",
+  "parent" : "techtree:combat/stone_sword",
   "display": {
     "icon": {
       "id": "minecraft:iron_sword"
@@ -10,7 +10,7 @@
     "hidden": true
   },
   "criteria": {
-    "techtree:combat/iron_sword": {
+    "techtree:combat/stone_sword": {
       "trigger": "minecraft:impossible"
     },
     "techtree:tools/iron_tools": {

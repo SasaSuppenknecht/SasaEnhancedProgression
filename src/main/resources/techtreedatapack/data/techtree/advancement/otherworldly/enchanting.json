@@ -1,0 +1,22 @@
+{
+  "parent" : "techtree:otherworldly/otherworldly",
+  "display": {
+    "icon": {
+      "id": "minecraft:enchanting_table"
+    },
+    "title": "Enchanting",
+    "description": "",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:otherworldly/otherworldly": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:enchanting_table"
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "parent" : "techtree:combat/chainmail_armor",
+  "display": {
+    "icon": {
+      "id": "minecraft:shield"
+    },
+    "title": "Shield",
+    "description": "",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:combat/chainmail_armor": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:shield",
+      "minecraft:shield_decoration"
+    ]
+  }
+}

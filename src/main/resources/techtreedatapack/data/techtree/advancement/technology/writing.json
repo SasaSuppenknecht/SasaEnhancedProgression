@@ -1,0 +1,54 @@
+{
+  "parent" : "techtree:technology/technology",
+  "display": {
+    "icon": {
+      "id": "minecraft:book"
+    },
+    "title": "Writing",
+    "description": "Unlocks books, paper, item frames, signs & more",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:technology/technology": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:book",
+      "minecraft:book_cloning",
+      "minecraft:bookshelf",
+      "minecraft:chiseled_bookshelf",
+      "minecraft:writable_book",
+      "minecraft:paper",
+      "minecraft:lectern",
+      "minecraft:acacia_hanging_sign",
+      "minecraft:acacia_sign",
+      "minecraft:bamboo_hanging_sign",
+      "minecraft:bamboo_sign",
+      "minecraft:birch_hanging_sign",
+      "minecraft:birch_sign",
+      "minecraft:cherry_hanging_sign",
+      "minecraft:cherry_sign",
+      "minecraft:crimson_hanging_sign",
+      "minecraft:crimson_sign",
+      "minecraft:dark_oak_hanging_sign",
+      "minecraft:dark_oak_sign",
+      "minecraft:jungle_hanging_sign",
+      "minecraft:jungle_sign",
+      "minecraft:mangrove_hanging_sign",
+      "minecraft:mangrove_sign",
+      "minecraft:oak_hanging_sign",
+      "minecraft:oak_sign",
+      "minecraft:pale_oak_hanging_sign",
+      "minecraft:pale_oak_sign",
+      "minecraft:spruce_hanging_sign",
+      "minecraft:spruce_sign",
+      "minecraft:warped_hanging_sign",
+      "minecraft:warped_sign",
+      "minecraft:glow_item_frame",
+      "minecraft:item_frame"
+    ]
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "parent" : "techtree:tools/tools",
+  "parent" : "techtree:tools/shears",
   "display": {
     "icon": {
       "id": "minecraft:loom"
@@ -10,7 +10,7 @@
     "hidden": false
   },
   "criteria": {
-    "techtree:tools/tools": {
+    "techtree:tools/shears": {
       "trigger": "minecraft:impossible"
     }
   },

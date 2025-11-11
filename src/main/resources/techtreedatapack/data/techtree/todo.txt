@@ -1,2 +1,2 @@
 processing/copper_variants: copper slabs und stair (in allen Varianten) + cut copper + copper grate (aber eben nichts davon waxed)
-processing/block_variants: der stonecutter und relevante stonecutter rezepte
+processing/block_variants: der stonecutter und relevante stonecutter rezepte + dazu auch noch tuff Blöcke

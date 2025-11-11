@@ -1,0 +1,17 @@
+{
+  "parent" : "techtree:otherworldly/teleportation",
+  "display": {
+    "icon": {
+      "id": "minecraft:obsidian"
+    },
+    "title": "The Nether",
+    "description": "Unlocks access to the Nether",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:otherworldly/teleportation": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

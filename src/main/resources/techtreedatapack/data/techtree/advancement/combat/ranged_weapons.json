@@ -2,24 +2,24 @@
   "parent" : "techtree:combat/swords",
   "display": {
     "icon": {
-      "id": "minecraft:stone_sword"
+      "id": "minecraft:bow"
     },
-    "title": "Stone Sword",
-    "description": "",
+    "title": "Ranged Weapons",
+    "description": "Unlocks bows and crossbows",
     "announce_to_chat": false,
     "hidden": true
   },
   "criteria": {
     "techtree:combat/swords": {
       "trigger": "minecraft:impossible"
-    },
-    "techtree:tools/stone_tools": {
-      "trigger": "minecraft:impossible"
     }
   },
   "rewards": {
     "recipes": [
-      "minecraft:stone_sword"
+      "minecraft:bow",
+      "minecraft:crossbow",
+      "minecraft:arrow",
+      "techtree:cheap_arrows"
     ]
   }
 }

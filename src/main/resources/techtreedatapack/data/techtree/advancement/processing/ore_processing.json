@@ -53,7 +53,30 @@
       "minecraft:copper_ingot_from_smelting_raw_copper",
       "minecraft:copper_ingot_from_waxed_copper_block",
       "minecraft:raw_copper",
-      "minecraft:raw_copper_block"
+      "minecraft:raw_copper_block",
+      "minecraft:lightning_rod",
+      "minecraft:diamond",
+      "minecraft:diamond_block",
+      "minecraft:diamond_from_blasting_deepslate_diamond_ore",
+      "minecraft:diamond_from_blasting_diamond_ore",
+      "minecraft:diamond_from_smelting_deepslate_diamond_ore",
+      "minecraft:diamond_from_smelting_diamond_ore",
+      "minecraft:emerald",
+      "minecraft:emerald_block",
+      "minecraft:emerald_from_blasting_deepslate_emerald_ore",
+      "minecraft:emerald_from_blasting_emerald_ore",
+      "minecraft:emerald_from_smelting_deepslate_emerald_ore",
+      "minecraft:emerald_from_smelting_emerald_ore",
+      "minecraft:lapis_block",
+      "minecraft:lapis_lazuli",
+      "minecraft:lapis_lazuli_from_blasting_deepslate_lapis_ore",
+      "minecraft:lapis_lazuli_from_blasting_lapis_ore",
+      "minecraft:lapis_lazuli_from_smelting_deepslate_lapis_ore",
+      "minecraft:lapis_lazuli_from_smelting_lapis_ore",
+      "minecraft:redstone_from_blasting_deepslate_redstone_ore",
+      "minecraft:redstone_from_blasting_redstone_ore",
+      "minecraft:redstone_from_smelting_deepslate_redstone_ore",
+      "minecraft:redstone_from_smelting_redstone_ore"
     ]
   }
 }

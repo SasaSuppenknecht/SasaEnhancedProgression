@@ -36,7 +36,10 @@
       "minecraft:cooked_rabbit_from_smoking",
       "minecraft:cooked_salmon",
       "minecraft:cooked_salmon_from_campfire_cooking",
-      "minecraft:cooked_salmon_from_smoking"
+      "minecraft:cooked_salmon_from_smoking",
+      "minecraft:rabbit_stew_from_brown_mushroom",
+      "minecraft:rabbit_stew_from_red_mushroom",
+      "minecraft:bowl"
     ]
   }
 }

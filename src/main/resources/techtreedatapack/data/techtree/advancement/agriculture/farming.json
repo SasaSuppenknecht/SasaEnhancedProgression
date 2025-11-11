@@ -16,7 +16,10 @@
   },
   "rewards": {
     "recipes": [
-      "minecraft:wooden_hoe"
+      "minecraft:wooden_hoe",
+      "minecraft:sugar_from_sugar_cane",
+      "minecraft:hay_block",
+      "minecraft:wheat"
     ]
   }
 }
