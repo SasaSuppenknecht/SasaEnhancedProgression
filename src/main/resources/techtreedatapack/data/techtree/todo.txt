@@ -1,5 +1,0 @@
-processing/colors: Alle Rezepte für das Craften von Farben hinzufügen (aber nicht gefärbte Blöcke, die kommen extra)
-processing/mossy_variants: Alle Rezepte für mossy blocks hinzufügen
-processing/brick_smelting: clay zu Bricks und brick blöcken (gleiches für Resin), schmelzen von Cobble zu Stein und die Brick Varianten (aber ohne Slabs und Stairs), dazu noch Terracotta und Glazed terracotta
-processing/glass_smelting: Alle Farbvarianten von Glassblöcken und Glass panels
-processing/ore_processing: Alle Varianten um Gold, Iron und Copper ingots bzw. nuggets zu bekommen (aus Schmelzen und aus Craften, z.B. von Blöcken und Nuggets), dazu die ganzen raw blocks (z.b. raw copper block)
