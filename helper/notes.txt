@@ -1,0 +1,7 @@
+Code TODO:
+- Faster smelting recipes
+- Faster minecarts
+- configurable compasses
+- timber
+- glass breaking
+- lock smelting/smoking/blasting recipes behind advancements

@@ -1,0 +1,22 @@
+{
+  "parent" : "techtree:tools/tools",
+  "display": {
+    "icon": {
+      "id": "minecraft:shears"
+    },
+    "title": "Shears",
+    "description": "",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:tools/tools": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:shears"
+    ]
+  }
+}

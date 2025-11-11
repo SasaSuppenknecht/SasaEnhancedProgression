@@ -1,16 +1,16 @@
 {
-  "parent" : "techtree:agriculture/farming",
+  "parent" : "techtree:combat/combat",
   "display": {
     "icon": {
       "id": "minecraft:stone_sword"
     },
-    "title": "Stone Hoe",
+    "title": "Stone Sword",
     "description": "",
     "announce_to_chat": false,
     "hidden": true
   },
   "criteria": {
-    "techtree:agriculture/combat": {
+    "techtree:combat/combat": {
       "trigger": "minecraft:impossible"
     },
     "techtree:tools/stone_tools": {

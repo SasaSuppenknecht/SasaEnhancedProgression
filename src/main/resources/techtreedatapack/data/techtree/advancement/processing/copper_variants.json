@@ -1,0 +1,28 @@
+{
+  "parent" : "techtree:processing/block_variants",
+  "display": {
+    "icon": {
+      "id": "minecraft:copper_stairs"
+    },
+    "title": "Mossy Variants",
+    "description": "Unlocks mossy blocks",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:processing/block_variants": {
+      "trigger": "minecraft:impossible"
+    },
+    "techtree:processing/ore_processing": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:copper_grate",
+      "minecraft:cut_copper",
+      "minecraft:cut_copper_slab",
+      "minecraft:cut_copper_stairs"
+    ]
+  }
+}

@@ -16,7 +16,27 @@
   },
   "rewards": {
     "recipes": [
-
+      "minecraft:cooked_beef",
+      "minecraft:cooked_beef_from_campfire_cooking",
+      "minecraft:cooked_beef_from_smoking",
+      "minecraft:cooked_chicken",
+      "minecraft:cooked_chicken_from_campfire_cooking",
+      "minecraft:cooked_chicken_from_smoking",
+      "minecraft:cooked_cod",
+      "minecraft:cooked_cod_from_campfire_cooking",
+      "minecraft:cooked_cod_from_smoking",
+      "minecraft:cooked_mutton",
+      "minecraft:cooked_mutton_from_campfire_cooking",
+      "minecraft:cooked_mutton_from_smoking",
+      "minecraft:cooked_porkchop",
+      "minecraft:cooked_porkchop_from_campfire_cooking",
+      "minecraft:cooked_porkchop_from_smoking",
+      "minecraft:cooked_rabbit",
+      "minecraft:cooked_rabbit_from_campfire_cooking",
+      "minecraft:cooked_rabbit_from_smoking",
+      "minecraft:cooked_salmon",
+      "minecraft:cooked_salmon_from_campfire_cooking",
+      "minecraft:cooked_salmon_from_smoking"
     ]
   }
 }

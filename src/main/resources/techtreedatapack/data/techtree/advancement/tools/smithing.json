@@ -1,0 +1,60 @@
+{
+  "parent" : "techtree:tools/furnace",
+  "display": {
+    "icon": {
+      "id": "minecraft:anvil"
+    },
+    "title": "Smithing",
+    "description": "Unlocks anvils, grindstones, smithing tables & armor trims",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:tools/tools": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:anvil",
+      "minecraft:grindstone",
+      "minecraft:smithing_table",
+      "minecraft:bolt_armor_trim_smithing_template",
+      "minecraft:bolt_armor_trim_smithing_template_smithing_trim",
+      "minecraft:coast_armor_trim_smithing_template",
+      "minecraft:coast_armor_trim_smithing_template_smithing_trim",
+      "minecraft:dune_armor_trim_smithing_template",
+      "minecraft:dune_armor_trim_smithing_template_smithing_trim",
+      "minecraft:eye_armor_trim_smithing_template",
+      "minecraft:eye_armor_trim_smithing_template_smithing_trim",
+      "minecraft:flow_armor_trim_smithing_template",
+      "minecraft:flow_armor_trim_smithing_template_smithing_trim",
+      "minecraft:host_armor_trim_smithing_template",
+      "minecraft:host_armor_trim_smithing_template_smithing_trim",
+      "minecraft:raiser_armor_trim_smithing_template",
+      "minecraft:raiser_armor_trim_smithing_template_smithing_trim",
+      "minecraft:rib_armor_trim_smithing_template",
+      "minecraft:rib_armor_trim_smithing_template_smithing_trim",
+      "minecraft:sentry_armor_trim_smithing_template",
+      "minecraft:sentry_armor_trim_smithing_template_smithing_trim",
+      "minecraft:shaper_armor_trim_smithing_template",
+      "minecraft:shaper_armor_trim_smithing_template_smithing_trim",
+      "minecraft:silence_armor_trim_smithing_template",
+      "minecraft:silence_armor_trim_smithing_template_smithing_trim",
+      "minecraft:snout_armor_trim_smithing_template",
+      "minecraft:snout_armor_trim_smithing_template_smithing_trim",
+      "minecraft:spire_armor_trim_smithing_template",
+      "minecraft:spire_armor_trim_smithing_template_smithing_trim",
+      "minecraft:tide_armor_trim_smithing_template",
+      "minecraft:tide_armor_trim_smithing_template_smithing_trim",
+      "minecraft:vex_armor_trim_smithing_template",
+      "minecraft:vex_armor_trim_smithing_template_smithing_trim",
+      "minecraft:ward_armor_trim_smithing_template",
+      "minecraft:ward_armor_trim_smithing_template_smithing_trim",
+      "minecraft:wayfinder_armor_trim_smithing_template",
+      "minecraft:wayfinder_armor_trim_smithing_template_smithing_trim",
+      "minecraft:wild_armor_trim_smithing_template",
+      "minecraft:wild_armor_trim_smithing_template_smithing_trim"
+    ]
+  }
+}

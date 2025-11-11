@@ -1,0 +1,26 @@
+{
+  "parent" : "techtree:combat/iron_armor",
+  "display": {
+    "icon": {
+      "id": "minecraft:diamond_chestplate"
+    },
+    "title": "Diamond Armor",
+    "description": "",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:combat/iron_armor": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:diamond_helmet",
+      "minecraft:diamond_chestplate",
+      "minecraft:diamond_leggings",
+      "minecraft:diamond_boots",
+      "techtree:diamond_horse_armor"
+    ]
+  }
+}

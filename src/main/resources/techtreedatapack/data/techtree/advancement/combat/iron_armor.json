@@ -19,7 +19,9 @@
       "minecraft:iron_helmet",
       "minecraft:iron_chestplate",
       "minecraft:iron_leggings",
-      "minecraft:iron_boots"
+      "minecraft:iron_boots",
+      "techtree:iron_horse_armor",
+      "techtree:gold_horse_armor"
     ]
   }
 }

@@ -1,16 +1,16 @@
 {
-  "parent" : "techtree:agriculture/farming",
+  "parent" : "techtree:combat/iron_sword",
   "display": {
     "icon": {
       "id": "minecraft:iron_sword"
     },
-    "title": "Stone Hoe",
+    "title": "Iron Sword",
     "description": "",
     "announce_to_chat": false,
     "hidden": true
   },
   "criteria": {
-    "techtree:agriculture/combat": {
+    "techtree:combat/iron_sword": {
       "trigger": "minecraft:impossible"
     },
     "techtree:tools/iron_tools": {
