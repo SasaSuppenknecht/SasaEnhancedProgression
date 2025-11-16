@@ -18,7 +18,8 @@
     "recipes": [
       "minecraft:furnace",
       "minecraft:sponge",
-      "minecraft:charcoal"
+      "minecraft:charcoal",
+      "minecraft:leaf_litter"
     ]
   }
 }

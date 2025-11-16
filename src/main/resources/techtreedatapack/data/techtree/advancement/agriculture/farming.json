@@ -19,7 +19,11 @@
       "minecraft:wooden_hoe",
       "minecraft:sugar_from_sugar_cane",
       "minecraft:hay_block",
-      "minecraft:wheat"
+      "minecraft:wheat",
+      "minecraft:melon",
+      "minecraft:melon_seeds",
+      "minecraft:jack_o_lantern",
+      "minecraft:pumpkin_seeds"
     ]
   }
 }

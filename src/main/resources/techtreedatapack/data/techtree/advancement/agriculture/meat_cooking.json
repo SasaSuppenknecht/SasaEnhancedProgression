@@ -39,7 +39,8 @@
       "minecraft:cooked_salmon_from_smoking",
       "minecraft:rabbit_stew_from_brown_mushroom",
       "minecraft:rabbit_stew_from_red_mushroom",
-      "minecraft:bowl"
+      "minecraft:bowl",
+      "minecraft:leather"
     ]
   }
 }

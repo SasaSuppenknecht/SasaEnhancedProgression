@@ -1,8 +1,8 @@
 import re
 import os
 
-TARGET_DIR = r"H:\Sascha\Programmierstuff\IntelliJ IDEA\Minecraft Plugins\1.21\SasaEnhancedProgression\src\main\resources\techtreedatapack\data\techtree\advancement"
-RECIPES = r"H:\Sascha\Allgemeine Ordner\Desktop\1.21.8\data\minecraft\recipe"
+TARGET_DIR = r"C:\Users\pramb\Documents\GitHub\SasaEnhancedProgression\src\main\resources\techtreedatapack\data\techtree\advancement"
+RECIPES = r"C:\Users\pramb\Documents\GitHub\SasaEnhancedProgression\data\minecraft\recipe"
 
 def search_file(file_name, pattern):
     pass

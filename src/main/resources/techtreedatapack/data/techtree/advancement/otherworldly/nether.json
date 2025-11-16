@@ -13,5 +13,12 @@
     "techtree:otherworldly/teleportation": {
       "trigger": "minecraft:impossible"
     }
+  },
+  "rewards": {
+    "recipes": [
+        "minecraft:quartz_block",
+        "minecraft:glowstone",
+        "minecraft:nether_wart_block"
+    ]
   }
 }

@@ -5,7 +5,7 @@
       "id": "minecraft:iron_pickaxe"
     },
     "title": "Iron Tools",
-    "description": "",
+    "description": "Unlocks iron and golden tools",
     "announce_to_chat": false,
     "hidden": false
   },
@@ -18,7 +18,10 @@
     "recipes": [
       "minecraft:iron_pickaxe",
       "minecraft:iron_shovel",
-      "minecraft:iron_axe"
+      "minecraft:iron_axe",
+      "minecraft:golden_pickaxe",
+      "minecraft:golden_shovel",
+      "minecraft:golden_axe"
     ]
   }
 }

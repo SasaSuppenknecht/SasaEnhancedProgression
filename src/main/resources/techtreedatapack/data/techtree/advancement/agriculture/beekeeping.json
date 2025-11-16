@@ -42,7 +42,7 @@
       "minecraft:waxed_chiseled_copper",
       "minecraft:waxed_chiseled_copper_from_honeycomb",
       "minecraft:waxed_chiseled_copper_from_waxed_copper_block_stonecutting",
-      "minecraft:waxed_chiseled_copper_from_waxed_cut_coppper_stonecutting",
+      "minecraft:waxed_chiseled_copper_from_waxed_cut_copper_stonecutting",
       "minecraft:waxed_copper_block_from_honeycomb",
       "minecraft:waxed_copper_bulb",
       "minecraft:waxed_copper_bulb_from_honeycomb",
@@ -130,7 +130,15 @@
       "minecraft:waxed_weathered_cut_copper_stairs",
       "minecraft:waxed_weathered_cut_copper_stairs_from_honeycomb",
       "minecraft:waxed_weathered_cut_copper_stairs_from_waxed_weathered_copper_stonecutting",
-      "minecraft:waxed_weathered_cut_copper_stairs_from_waxed_weathered_cut_copper_stonecutting"
+      "minecraft:waxed_weathered_cut_copper_stairs_from_waxed_weathered_cut_copper_stonecutting",
+      "minecraft:waxed_copper_bulb",
+      "minecraft:waxed_copper_bulb_from_honeycomb",
+      "minecraft:waxed_exposed_copper_bulb",
+      "minecraft:waxed_exposed_copper_bulb_from_honeycomb",
+      "minecraft:waxed_oxidized_copper_bulb",
+      "minecraft:waxed_oxidized_copper_bulb_from_honeycomb",
+      "minecraft:waxed_weathered_copper_bulb",
+      "minecraft:waxed_weathered_copper_bulb_from_honeycomb"
     ]
   }
 }

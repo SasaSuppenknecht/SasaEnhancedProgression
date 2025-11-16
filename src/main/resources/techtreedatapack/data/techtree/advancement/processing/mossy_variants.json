@@ -1,5 +1,5 @@
 {
-  "parent" : "techtree:processing/block_variants",
+  "parent" : "techtree:processing/stone_working",
   "display": {
     "icon": {
       "id": "minecraft:mossy_cobblestone"
@@ -16,24 +16,7 @@
   },
   "rewards": {
     "recipes": [
-      "minecraft:moss_carpet",
-      "minecraft:mossy_cobblestone_from_moss_block",
-      "minecraft:mossy_cobblestone_from_vine",
-      "minecraft:mossy_cobblestone_slab",
-      "minecraft:mossy_cobblestone_slab_from_mossy_cobblestone_stonecutting",
-      "minecraft:mossy_cobblestone_stairs",
-      "minecraft:mossy_cobblestone_stairs_from_mossy_cobblestone_stonecutting",
-      "minecraft:mossy_cobblestone_wall",
-      "minecraft:mossy_cobblestone_wall_from_mossy_cobblestone_stonecutting",
-      "minecraft:mossy_stone_brick_slab",
-      "minecraft:mossy_stone_brick_slab_from_mossy_stone_brick_stonecutting",
-      "minecraft:mossy_stone_brick_stairs",
-      "minecraft:mossy_stone_brick_stairs_from_mossy_stone_brick_stonecutting",
-      "minecraft:mossy_stone_brick_wall",
-      "minecraft:mossy_stone_brick_wall_from_mossy_stone_brick_stonecutting",
-      "minecraft:mossy_stone_bricks_from_mossy_block",
-      "minecraft:mossy_stone_bricks_from_vine",
-      "minecraft:pale_moss_carpet"
+      
     ]
   }
 }

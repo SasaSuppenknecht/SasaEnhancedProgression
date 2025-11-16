@@ -5,7 +5,7 @@
       "id": "minecraft:iron_hoe"
     },
     "title": "Iron Hoe",
-    "description": "",
+    "description": "Unlocks iron and golden hoes",
     "announce_to_chat": false,
     "hidden": true
   },
@@ -19,7 +19,8 @@
   },
   "rewards": {
     "recipes": [
-      "minecraft:iron_hoe"
+      "minecraft:iron_hoe",
+      "minecraft:golden_hoe"
     ]
   },
   "dependencies": [

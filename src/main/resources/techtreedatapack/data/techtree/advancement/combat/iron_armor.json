@@ -5,7 +5,7 @@
       "id": "minecraft:iron_chestplate"
     },
     "title": "Iron Armor",
-    "description": "",
+    "description": "Unlocks iron and golden armor",
     "announce_to_chat": false,
     "hidden": false
   },
@@ -21,7 +21,11 @@
       "minecraft:iron_leggings",
       "minecraft:iron_boots",
       "techtree:iron_horse_armor",
-      "techtree:gold_horse_armor"
+      "techtree:gold_horse_armor",
+      "minecraft:golden_helmet",
+      "minecraft:golden_chestplate",
+      "minecraft:golden_leggings",
+      "minecraft:golden_boots"
     ]
   }
 }

@@ -18,7 +18,8 @@
     "recipes": [
       "minecraft:saddle",
       "minecraft:carrot_on_a_stick",
-      "minecraft:warped_fungus_on_a_stick"
+      "minecraft:warped_fungus_on_a_stick",
+      "minecraft:lead"
     ]
   }
 }

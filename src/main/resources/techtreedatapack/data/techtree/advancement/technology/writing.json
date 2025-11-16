@@ -48,7 +48,8 @@
       "minecraft:warped_hanging_sign",
       "minecraft:warped_sign",
       "minecraft:glow_item_frame",
-      "minecraft:item_frame"
+      "minecraft:item_frame",
+      "minecraft:painting"
     ]
   }
 }
