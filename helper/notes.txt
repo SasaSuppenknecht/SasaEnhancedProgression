@@ -5,3 +5,7 @@ Code TODO:
 - timber
 - glass breaking
 - lock smelting/smoking/blasting recipes behind advancements
+
+Weitere Ideen:
+- Ein Research Block (eventuell eine Variante des Crafting Tables?)
+- Sollte ein Spieler zu mehr als einer Research am Tag einen Part beitragen können?

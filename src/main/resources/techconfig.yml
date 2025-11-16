@@ -1,9 +1,14 @@
 combat:
   combat: null
   leather_armor:
+    parts: 2
     requirements:
-      "minecraft:cobblestone": 64
-      "minecraft:leather": 32
+      "minecraft:cobblestone":
+        amount: [32, 64, 128]
+        scaling: true
+      "minecraft:leather":
+        amount: [16, 32, 64]
+        scaling: true
   chainmail_armor:
     requirements:
       "minecraft:iron_ingot": 16
