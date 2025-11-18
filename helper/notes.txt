@@ -9,3 +9,8 @@ Code TODO:
 Weitere Ideen:
 - Ein Research Block (eventuell eine Variante des Crafting Tables?)
 - Sollte ein Spieler zu mehr als einer Research am Tag einen Part beitragen können?
+
+Scaling:
+- 5 Minuten cooldown
+- Parts: Spielerzahl / 2
+- Amounts: Spielerzahl / 2

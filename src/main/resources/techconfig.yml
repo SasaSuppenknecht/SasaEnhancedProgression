@@ -1,17 +1,117 @@
+agriculture:
+  agriculture: null
+  farming:
+    parts: 2
+    requirements:
+      "minecraft:wheat_seeds":
+        amount: [8, 16, 32]
+      "minecraft:dirt":
+        amount: [64, 128, 256]
+      "minecraft:carrot":
+        amount: [0, 4, 32]
+        scaling: false
+      "minecraft:potato":
+        amount: [0, 4, 32]
+        scaling: false
+      "minecraft:beetroot_seeds":
+        amount: [0, 0, 16]
+        scaling: false
+  plant_cooking:
+    parts: 2
+    requirements:
+      "minecraft:wheat":
+        amount: [4, 8, 16]
+      "minecraft:carrot":
+        amount: [8, 16, 32]
+      "minecraft:potato":
+        amount: [8, 16, 32]
+      "minecraft:beetroot":
+        amount: [0, 8, 16]
+      "minecraft:pumpkin":
+        amount: [0, 4, 8]
+      "minecraft:melon":
+        amount: [0, 0, 2]
+  advanced_cooking:
+    parts: 1
+    requirements:
+      "minecraft:bread": 
+        amount: [8, 16, 32]
+      "minecraft:backed_potato": 
+        amount: [16, 32, 64]
+      "minecraft:gold_ingot": 
+        amount: [8, 16, 32]
+      "minecraft:pumpkin_pie": 
+        amount: [0, 2, 4]
+      "minecraft:golden_apple": 
+        amount: [0, 0, 1]
+        scaling: false
+  tamning:
+    parts: 1
+    requirements:
+      "minecraft:wheat":
+        amount: [4, 8, 16]
+      "minecraft:carrot":
+        amount: [8, 12, 16]
+      "minecraft:potato":
+        amount: [8, 12, 16]
+      "minecraft:saddle":
+        amount: [0, 0, 1]
+        scaling: false
+  breeding:
+    parts: 2
+    requirements: 
+      "minecraft:wheat_seeds":
+        amount: [4, 16, 32]
+      "minecraft:wheat":
+        amount: [4, 16, 32]
+      "minecraft:potato":
+        amount: [4, 16, 32]
+      "minecraft:carrot":
+        amount: [4, 16, 32]
+  meet_cooking:
+    parts: 2
+    "minecraft:raw_beef":
+      amount: [4, 8, 16]
+    "minecraft:raw_chicken":
+      amount: [4, 8, 16]
+    "minecraft:raw_porkchop":
+      amount: [4, 8, 16]
+    "minecraft:coal":
+      amount: [8, 16, 32]
+    "minecraft:raw_rabbit": #check item ids
+      amount: [0, 0, 2]
+      scaling: false
+  beekeeping:
+    parts: 1
+    requirements:
+      "minecraft:yellow_flower": # check item ids
+        amount: [1, 2, 4]
+      "minecraft:red_flower":
+        amount: [1, 2, 4]
+  fishing:
+    parts: 1
+    requirements:
+      "minecraft:string":
+        amount: [0, 2, 4]
+      "minecraft:raw_salmon":
+        amount: [1, 2, 8]
+      "minecraft:raw_cod":
+        amount: [1, 2, 8]
+      "minecraft:stick":
+        amount: [16, 32, 64]
+
 combat:
   combat: null
   leather_armor:
-    parts: 2
+    parts: 1
     requirements:
-      "minecraft:cobblestone":
-        amount: [32, 64, 128]
-        scaling: true
       "minecraft:leather":
-        amount: [16, 32, 64]
-        scaling: true
+        amount: [2, 4, 8]
+        
   chainmail_armor:
     requirements:
-      "minecraft:iron_ingot": 16
+      "minecraft:iron_ingot": 
+        amount: []
   iron_armor:
     requirements:
       "minecraft:iron_ingot": 64
