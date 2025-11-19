@@ -10,6 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import sasa.progression.sasaEnhancedProgression.SasaEnhancedProgression;
+import sasa.progression.sasaEnhancedProgression.features.AdvancementUnlockEvent;
 import sasa.progression.sasaEnhancedProgression.io.TechnologyConfigReader;
 
 import java.util.*;
@@ -40,9 +41,6 @@ public class TechProgress implements Listener {
             if (completedTech.contains(keyToTechnologyMap.get(tech.getPrimaryDependency())) &&
                     (tech.getSecondaryDependency() == null || completedTech.contains(keyToTechnologyMap.get(tech.getSecondaryDependency())))) {
                 openTech.add(tech);
-//                if (tech.hasNoRequirements()) {
-//                    unlockTechnology(tech);
-//                }
             } else {
                 remainingTech.add(tech);
             }
@@ -56,8 +54,6 @@ public class TechProgress implements Listener {
     }
 
     public void progressTechnology(Technology technology, ItemStack itemStack) {
-        System.out.println(itemStack.getType().name());
-        System.out.println(technology.getRequirements());
         MaterialRequirement requirement = technology.getRequirements().stream().filter(
                 materialRequirement -> materialRequirement.getMaterial() == itemStack.getType()
         ).findFirst().orElseThrow();
@@ -92,7 +88,7 @@ public class TechProgress implements Listener {
             openTech.add(tech);
             if (tech.hasNoRequirements()) {
                 // unlock technology on next server tick
-                Bukkit.getScheduler().runTaskLater(SasaEnhancedProgression.plugin, () -> unlockTechnology(tech), 1);
+                Bukkit.getScheduler().runTaskLater(SasaEnhancedProgression.plugin, () -> unlockTechnology(tech), 2);
             }
         }
 
@@ -103,7 +99,9 @@ public class TechProgress implements Listener {
 
 
     private void awardAdvancement(Player player, NamespacedKey key) {
-        AdvancementProgress advancementProgress = player.getAdvancementProgress(Bukkit.getAdvancement(key));
+        Advancement advancement = Bukkit.getAdvancement(key);
+        assert advancement != null;
+        AdvancementProgress advancementProgress = player.getAdvancementProgress(advancement);
         for (String criteria : advancementProgress.getRemainingCriteria()) {
             advancementProgress.awardCriteria(criteria);
         }
@@ -112,7 +110,6 @@ public class TechProgress implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        System.out.println(completedTech);
         for (Technology technology : completedTech) {
             awardAdvancement(event.getPlayer(), technology.getAdvancementKey());
         }

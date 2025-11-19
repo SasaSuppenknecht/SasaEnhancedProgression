@@ -5,7 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.GameRule;
 import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
-import sasa.progression.sasaEnhancedProgression.features.RecipeSorter;
+import sasa.progression.sasaEnhancedProgression.features.recipehandling.RecipeHandler;
 import sasa.progression.sasaEnhancedProgression.io.TechnologyConfigReader;
 import sasa.progression.sasaEnhancedProgression.techinterface.TechCommand;
 import sasa.progression.sasaEnhancedProgression.techtree.TechProgress;
@@ -20,6 +20,7 @@ public final class SasaEnhancedProgression extends JavaPlugin {
         TechnologyConfigReader technologyConfigReader = new TechnologyConfigReader();
 
         init_world_settings();
+        RecipeHandler.initializeRecipeHandlers();
         this.saveConfig();
 
         TechProgress techProgress = new TechProgress(technologyConfigReader);
