@@ -55,39 +55,41 @@ processResources {
     }
 }
 
+import java.nio.file.Files
+import java.nio.file.Paths
 
-//def PACK_NAME = "techtreepack"
-//
-//tasks.register('zipDatapack', Zip) {
-//    archiveFileName = PACK_NAME + ".zip"
-//    destinationDirectory = layout.buildDirectory.dir("generated/datapacks")
-//    from("src/main/resources/datapacks/TechTreeDatapack")
-//}
-//
-//tasks.named("processResources") {
-//    dependsOn("zipDatapack")
-//    from(tasks.named("zipDatapack").flatMap { it.destinationDirectory }) {
-//        include(PACK_NAME + ".zip")
-//    }
-//}
+import java.nio.file.Path
 
-def serverDir = "H:\\Sascha\\Minecraft Server\\Minecraft Paper Server 1.21.8\\plugins"
+def datapackDir = file("src/main/resources/techtreedatapack")
+def outputFile = file("src/main/generated/advancement_index.txt")
 
-tasks.register("copyJar") {
-    dependsOn("build")
+tasks.register('generateAdvancementIndex') {
+    inputs.dir datapackDir
+    outputs.file outputFile
 
     doLast {
-        copy {
-            from(layout.buildDirectory.dir("libs"))
-            into(serverDir)
-            include("*.jar")
+        outputFile.parentFile.mkdirs()
+        outputFile.text = ""
+
+        def tree = fileTree(datapackDir).matching {
+            include "data/**/advancement/**/*.json"
         }
+
+        def basePath = datapackDir.toPath()
+
+        tree.files.each { f ->
+            Path rel = basePath.relativize(f.toPath())
+            String relUnix = rel.toString().replace("\\", "/")
+            outputFile << "${datapackDir.name}/${relUnix}\n"
+        }
+
+        println "Generated advancement index with ${tree.files.size()} entries"
     }
 }
 
-tasks.named("build") {
-    finalizedBy("copyJar")
-}
+processResources.dependsOn generateAdvancementIndex
+sourceSets.main.resources.srcDir "src/main/generated"
+
 
 tasks.named("jar", Jar) {
     exclude("datapacks/**")

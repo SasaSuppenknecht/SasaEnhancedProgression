@@ -16,6 +16,8 @@ public class Technology {
     private final NamespacedKey advancement;
     private final NamespacedKey primaryDependency;
     private final NamespacedKey secondaryDependency;
+
+    private final int parts = 1; // TODO
     private final List<MaterialRequirement> requirements = new ArrayList<>();
 
     public Technology(NamespacedKey advancement, HashMap<String, Integer> requirementsMap) {
@@ -58,8 +60,12 @@ public class Technology {
         return secondaryDependency;
     }
 
-    public boolean hasRequirements() {
-        return !requirements.isEmpty();
+    public int getParts() {
+        return parts;
+    }
+
+    public boolean hasNoRequirements() {
+        return requirements.isEmpty();
     }
 
     public List<MaterialRequirement> getRequirements() {
@@ -78,39 +84,6 @@ public class Technology {
     @Override
     public String toString() {
         return "Technology(%s)".formatted(advancement.toString());
-    }
-
-    public static class MaterialRequirement {
-
-        private final Material material;
-        private int needed;
-        private int given;
-
-        public MaterialRequirement(Material material, int needed) {
-            this.material = material;
-            this.needed = needed;
-            this.given = 0;
-        }
-
-        public Material getMaterial() {
-            return material;
-        }
-
-        public int getGiven() {
-            return given;
-        }
-
-        public void setGiven(int given) {
-            this.given = given;
-        }
-
-        public int getNeeded() {
-            return needed;
-        }
-
-        public void setNeeded(int needed) {
-            this.needed = needed;
-        }
     }
 
 }

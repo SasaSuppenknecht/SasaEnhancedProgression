@@ -1,4 +1,4 @@
-package sasa.progression.sasaEnhancedProgression.config;
+package sasa.progression.sasaEnhancedProgression.io;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
@@ -9,24 +9,30 @@ import sasa.progression.sasaEnhancedProgression.SasaEnhancedProgression;
 import sasa.progression.sasaEnhancedProgression.DatapackSetup;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.concurrent.CompletableFuture;
 
 public class TechnologyConfigReader {
 
     private final String CONFIG_NAME = "techconfig.yml";
-    private final YamlConfiguration config;
+    private final CompletableFuture<YamlConfiguration> config;
 
     public TechnologyConfigReader() {
-        File file = new File(SasaEnhancedProgression.plugin.getDataFolder(), CONFIG_NAME);
-        config = new YamlConfiguration();
-        try {
-            config.load(file);
-        } catch (IOException | InvalidConfigurationException e) {
-            throw new RuntimeException(e);
-        }
+        config = loadConfigAsync();
+    }
 
+    private CompletableFuture<YamlConfiguration> loadConfigAsync() {
+        return CompletableFuture.supplyAsync(() -> {
+            File file = new File(SasaEnhancedProgression.plugin.getDataFolder(), CONFIG_NAME);
+            YamlConfiguration config = new YamlConfiguration();
+            try {
+                config.load(file);
+            } catch (IOException | InvalidConfigurationException e) {
+                throw new RuntimeException(e);
+            }
+            return config;
+        });
     }
 
 
@@ -34,8 +40,11 @@ public class TechnologyConfigReader {
         assert namespacedKey.getNamespace().equals(DatapackSetup.DATAPACK_NAMESPACE);
         String key = namespacedKey.getKey();
 
+        // todo read in parts
+        // todo read in scaling
+
         String yamlPath = key.replace("/", ".") + ".requirements";
-        ConfigurationSection section = config.getConfigurationSection(yamlPath);
+        ConfigurationSection section = config.join().getConfigurationSection(yamlPath);
         if (section == null) {
             return null;
         }

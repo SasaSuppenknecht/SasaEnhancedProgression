@@ -14,13 +14,14 @@ import java.util.Objects;
 public class DatapackSetup implements PluginBootstrap {
 
     public static final String DATAPACK_NAMESPACE = "techtree";
+    public static final String DATAPACK_FOLDER = "/techtreedatapack";
 
     @Override
     public void bootstrap(BootstrapContext context) {
         context.getLifecycleManager().registerEventHandler(LifecycleEvents.DATAPACK_DISCOVERY.newHandler(
                 event -> {
                     try {
-                        URI uri = Objects.requireNonNull(getClass().getResource("/techtreedatapack")).toURI();
+                        URI uri = Objects.requireNonNull(getClass().getResource(DATAPACK_FOLDER)).toURI();
                         event.registrar().discoverPack(uri, DATAPACK_NAMESPACE);
                     } catch (URISyntaxException | IOException e) {
                         throw new RuntimeException(e);
