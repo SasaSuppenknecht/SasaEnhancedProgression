@@ -19,6 +19,7 @@
       "minecraft:bow",
       "minecraft:crossbow",
       "minecraft:arrow",
+      "minecraft:tripwire_hook",
       "techtree:cheap_arrows"
     ]
   }

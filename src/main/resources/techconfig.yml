@@ -1,5 +1,4 @@
 agriculture:
-  agriculture: null
   farming:
     parts: 2
     requirements:
@@ -100,21 +99,129 @@ agriculture:
       "minecraft:stick":
         amount: [16, 32, 64]
 
-combat:
-  combat: null
-  leather_armor:
+combat: 
+  leather_armor: # armor & shields: bones, gunpowder, slimeballs; weapons: rotten flesh, spider eyes, string, arrows 
     parts: 1
     requirements:
       "minecraft:leather":
-        amount: [2, 4, 8]
-        
+        amount: [2, 4, 8]       
   chainmail_armor:
+    parts: 2
+    requirements:
+      "minecraft:bone": 
+        amount: [2, 4, 8]
+      "minecraft:iron_nugget":
+        amount: [16, 32, 64]
+  iron_armor:
+    parts: 2
     requirements:
       "minecraft:iron_ingot": 
-        amount: []
-  iron_armor:
+        amount: [4, 16, 32]
+      "minecraft:bone": 
+        amount: [2, 4, 8]
+      "minecraft:gunpowder":
+        amount: [0, 0, 2]
+  diamond_armor:
+    parts: 3
     requirements:
-      "minecraft:iron_ingot": 64
+      "minecraft:diamond": 
+        amount: [3, 4, 8]
+      "minecraft:gunpowder":
+        amount: [0, 2, 4]
+      "minecraft:slime_ball":
+        amount: [0, 0, 4]
+  shields:
+    parts: 3
+    requirements:
+      "minecraft:iron_ingot":
+        amount: [4, 8, 16]
+      "minecraft:#planks": 
+        amount: [32, 64, 128]
+      "minecraft:bone":
+        amount: [0, 2, 4]
+      "minecraft:gunpowder":
+        amount: [0, 0, 2]
+  swords:
+    parts: 2
+    requirements:
+      "minecraft:#planks": 
+        amount: [16, 32, 64]
+      "minecraft:rotten_flesh":
+        amount: [0, 2, 8]
+      "minecraft:spider_eye":
+        amount: [0, 0, 2]
+  ranged_weapons:
+    parts: 2
+    requirements:
+      "minecraft:flint":
+        amount: [8, 16, 32]
+      "minecraft:stick":
+        amount: [16, 32, 64]
+      "minecraft:arrow":
+        amount: [0, 2, 8]
+      "minecraft:bow":
+        amount: [0, 0, 1]
+        scaling: false
+  
+processing:
+  brick_smelting:
+    parts: 1
+    requirements:
+      "minecraft:cobblestone":
+        amount: [32, 64, 128]
+      "minecraft:clay_ball":
+        amount: [8, 16, 32]
+      "minecraft:#coals": 
+        amount: [16, 32, 64]
+  glass_smelting:
+    parts: 1
+    requirements:
+      "minecraft:#coals": 
+        amount: [8, 16, 32]
+      "minecraft:sand":
+        amount: [64, 128, 256]
+  ore_processing:
+    parts: 3
+    requirements:
+      "minecraft:#coals":
+        amount: [16, 32, 64]
+      "minecraft:raw_iron":
+        amount: [8, 16, 32]
+      "minecraft:raw_copper":
+        amount: [16, 32, 64]
+  colors:
+    parts: 1
+    requirements:
+      "minecraft:dandelion":
+        amount: [1, 2, 4]
+      "minecraft:poppy":
+        amount: [1, 2, 4]
+      "minecraft:lapis_lazuli":
+        amount: [0, 4, 8]
+  stone_working:
+    parts: 1
+    requirements:
+      "minecraft:cobblestone":
+        amount: [128, 256, 512]
+      "minecraft:andesite":
+        amount: [16, 32, 64]
+      "minecraft:diorite":
+        amount: [16, 32, 64]
+      "minecraft:granite":
+        amount: [16, 32, 64]
+      "minecraft:deepslate":
+        amount: [16, 32, 64]
+  wood_working:
+    parts: 1
+    requirements:
+      "minecraft:#logs":
+        amount: [32, 64, 128]
+      "minecraft:wooden_axe":
+        amount: [1, 2, 4]
+  
+  
+ 
+
 tools:
   tools: null
   torch:
