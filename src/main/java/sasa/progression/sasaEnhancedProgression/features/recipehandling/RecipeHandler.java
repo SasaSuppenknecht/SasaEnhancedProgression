@@ -19,8 +19,8 @@ public class RecipeHandler implements Listener {
     private final RecipeSorter recipeSorter;
 
 
-    public RecipeHandler(RecipeSorter recipeSorter) {
-        this.recipeSorter = recipeSorter;
+    public RecipeHandler() {
+        this.recipeSorter = new RecipeSorter();
     }
 
 
@@ -38,13 +38,5 @@ public class RecipeHandler implements Listener {
                 player.discoverRecipe(((Keyed) recipe).getKey());
             }
         }
-    }
-
-
-    public static void initializeRecipeHandlers() {
-        RecipeSorter recipeSorter = new RecipeSorter();
-        PluginManager pluginManager = Bukkit.getServer().getPluginManager();
-
-        pluginManager.registerEvents(new RecipeHandler(recipeSorter), SasaEnhancedProgression.plugin);
     }
 }

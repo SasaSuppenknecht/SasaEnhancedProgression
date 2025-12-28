@@ -1,5 +1,7 @@
 package sasa.progression.sasaEnhancedProgression.techtree;
 
+import io.papermc.paper.registry.RegistryKey;
+import io.papermc.paper.registry.TypedKey;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.advancement.Advancement;
@@ -12,6 +14,9 @@ import org.bukkit.inventory.ItemStack;
 import sasa.progression.sasaEnhancedProgression.SasaEnhancedProgression;
 import sasa.progression.sasaEnhancedProgression.features.AdvancementUnlockEvent;
 import sasa.progression.sasaEnhancedProgression.io.TechnologyConfigReader;
+import sasa.progression.sasaEnhancedProgression.techtree.requirements.AbstractMaterialRequirement;
+import sasa.progression.sasaEnhancedProgression.techtree.requirements.MaterialRequirement;
+import sasa.progression.sasaEnhancedProgression.techtree.requirements.MaterialTagRequirement;
 
 import java.util.*;
 
@@ -54,12 +59,19 @@ public class TechProgress implements Listener {
     }
 
     public void progressTechnology(Technology technology, ItemStack itemStack) {
-        MaterialRequirement requirement = technology.getRequirements().stream().filter(
-                materialRequirement -> materialRequirement.getMaterial() == itemStack.getType()
+        // note: does not check whether there is another requirement needing the same item or an element of the same tag group
+        AbstractMaterialRequirement requirement = technology.getRequirements().stream().filter(
+            abstractMaterialRequirement -> {
+                return switch (abstractMaterialRequirement) {
+                    case MaterialRequirement mr -> mr.getItemType() == itemStack.getType().asItemType();
+                    case MaterialTagRequirement tr -> tr.getTag().contains(TypedKey.create(RegistryKey.ITEM, itemStack.getType().asItemType().getKey()));
+                    default -> throw new IllegalStateException();
+                };
+            }
         ).findFirst().orElseThrow();
         requirement.increaseGiven(itemStack.getAmount());
 
-        boolean allRequirementsCompleted = technology.getRequirements().stream().allMatch(MaterialRequirement::isFulfilled);
+        boolean allRequirementsCompleted = technology.getRequirements().stream().allMatch(AbstractMaterialRequirement::isFulfilled);
         if (allRequirementsCompleted) {
             unlockTechnology(technology);
         }
@@ -88,10 +100,11 @@ public class TechProgress implements Listener {
             openTech.add(tech);
             if (tech.hasNoRequirements()) {
                 // unlock technology on next server tick
-                Bukkit.getScheduler().runTaskLater(SasaEnhancedProgression.plugin, () -> unlockTechnology(tech), 2);
+                Bukkit.getScheduler().runTaskLater(SasaEnhancedProgression.plugin, () -> unlockTechnology(tech), 1);
             }
         }
 
+        new AdvancementUnlockEvent(technology.getAdvancementKey()).callEvent();
         for (Player player : Bukkit.getOnlinePlayers()) {
             awardAdvancement(player, technology.getAdvancementKey());
         }

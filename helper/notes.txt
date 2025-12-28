@@ -6,6 +6,14 @@ Code TODO:
 - glass breaking
 - lock smelting/smoking/blasting recipes behind advancements
 
+- change tag names
+- nur ein Spieler gleichzeitig sollte eine bestimme Forschung öffnen können
+- falls ein anderes Spieler schon ressourcen investiert, werden einem trotzdem alle genommen...
+- Trades nehmen nur items mit dem korrekten Namen entgegen!
+- Kosten etwas reduzieren (insbesondere stone tools)
+
+
+
 Weitere Ideen:
 - Ein Research Block (eventuell eine Variante des Crafting Tables?) -> beacon like multiblock structure
 - Sollte ein Spieler zu mehr als einer Research am Tag einen Part beitragen können?

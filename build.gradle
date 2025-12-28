@@ -55,8 +55,9 @@ processResources {
     }
 }
 
-import java.nio.file.Files
-import java.nio.file.Paths
+tasks.runServer {
+    jvmArgs("-ea")
+}
 
 import java.nio.file.Path
 

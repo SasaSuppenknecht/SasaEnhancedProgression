@@ -1,10 +1,16 @@
 package sasa.progression.sasaEnhancedProgression.techtree;
 
 
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
+import io.papermc.paper.registry.RegistryKey;
+import io.papermc.paper.registry.tag.Tag;
+import io.papermc.paper.registry.tag.TagKey;
+import net.kyori.adventure.key.Key;
+import org.bukkit.*;
 import org.bukkit.advancement.Advancement;
+import org.bukkit.inventory.ItemType;
+import sasa.progression.sasaEnhancedProgression.techtree.requirements.AbstractMaterialRequirement;
+import sasa.progression.sasaEnhancedProgression.techtree.requirements.MaterialRequirement;
+import sasa.progression.sasaEnhancedProgression.techtree.requirements.MaterialTagRequirement;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,8 +23,8 @@ public class Technology {
     private final NamespacedKey primaryDependency;
     private final NamespacedKey secondaryDependency;
 
-    private final int parts = 1; // TODO
-    private final List<MaterialRequirement> requirements = new ArrayList<>();
+    private final int parts = 2; // TODO
+    private final List<AbstractMaterialRequirement> requirements = new ArrayList<>();
 
     public Technology(NamespacedKey advancement, HashMap<String, Integer> requirementsMap) {
         this.advancement = advancement;
@@ -37,9 +43,15 @@ public class Technology {
         if (requirementsMap != null) {
             for (Map.Entry<String, Integer> requirement : requirementsMap.entrySet()) {
                 String key = requirement.getKey();
-                Material material = Material.matchMaterial(key);
-                assert material != null : "Key " + key + " does not correspond to any material";
-                requirements.add(new MaterialRequirement(material, requirement.getValue()));
+                if (!key.startsWith("#")) {
+                    ItemType itemType = Registry.ITEM.get(Key.key(key));
+                    assert itemType != null : "Key " + key + " does not correspond to any itemtype";
+                    requirements.add(new MaterialRequirement(itemType, requirement.getValue()));
+                } else {
+                    key = key.substring(1);
+                    Tag<ItemType> tag = Registry.ITEM.getTag(TagKey.create(RegistryKey.ITEM, key));
+                    requirements.add(new MaterialTagRequirement(tag, requirement.getValue()));
+                }
             }
         }
     }
@@ -68,7 +80,7 @@ public class Technology {
         return requirements.isEmpty();
     }
 
-    public List<MaterialRequirement> getRequirements() {
+    public List<AbstractMaterialRequirement> getRequirements() {
         return List.copyOf(requirements);
     }
 

@@ -35,7 +35,7 @@ agriculture:
     requirements:
       "minecraft:bread": 
         amount: [8, 16, 32]
-      "minecraft:backed_potato": 
+      "minecraft:baked_potato":
         amount: [16, 32, 64]
       "minecraft:gold_ingot": 
         amount: [8, 16, 32]
@@ -69,32 +69,32 @@ agriculture:
         amount: [4, 16, 32]
   meet_cooking:
     parts: 2
-    "minecraft:raw_beef":
+    "minecraft:beef":
       amount: [4, 8, 16]
-    "minecraft:raw_chicken":
+    "minecraft:chicken":
       amount: [4, 8, 16]
-    "minecraft:raw_porkchop":
+    "minecraft:porkchop":
       amount: [4, 8, 16]
-    "minecraft:coal":
+    "#minecraft:coals":
       amount: [8, 16, 32]
-    "minecraft:raw_rabbit": #check item ids
+    "minecraft:rabbit":
       amount: [0, 0, 2]
       scaling: false
   beekeeping:
     parts: 1
     requirements:
-      "minecraft:yellow_flower": # check item ids
+      "minecraft:dandelion":
         amount: [1, 2, 4]
-      "minecraft:red_flower":
+      "minecraft:poppy":
         amount: [1, 2, 4]
   fishing:
     parts: 1
     requirements:
       "minecraft:string":
         amount: [0, 2, 4]
-      "minecraft:raw_salmon":
+      "minecraft:salmon":
         amount: [1, 2, 8]
-      "minecraft:raw_cod":
+      "minecraft:cod":
         amount: [1, 2, 8]
       "minecraft:stick":
         amount: [16, 32, 64]
@@ -135,7 +135,7 @@ combat:
     requirements:
       "minecraft:iron_ingot":
         amount: [4, 8, 16]
-      "minecraft:#planks": 
+      "#minecraft:planks":
         amount: [32, 64, 128]
       "minecraft:bone":
         amount: [0, 2, 4]
@@ -144,7 +144,7 @@ combat:
   swords:
     parts: 2
     requirements:
-      "minecraft:#planks": 
+      "#minecraft:planks":
         amount: [16, 32, 64]
       "minecraft:rotten_flesh":
         amount: [0, 2, 8]
@@ -171,19 +171,19 @@ processing:
         amount: [32, 64, 128]
       "minecraft:clay_ball":
         amount: [8, 16, 32]
-      "minecraft:#coals": 
+      "#minecraft:coals":
         amount: [16, 32, 64]
   glass_smelting:
     parts: 1
     requirements:
-      "minecraft:#coals": 
+      "#minecraft:coals":
         amount: [8, 16, 32]
       "minecraft:sand":
         amount: [64, 128, 256]
   ore_processing:
     parts: 3
     requirements:
-      "minecraft:#coals":
+      "#minecraft:coals":
         amount: [16, 32, 64]
       "minecraft:raw_iron":
         amount: [8, 16, 32]
@@ -214,26 +214,34 @@ processing:
   wood_working:
     parts: 1
     requirements:
-      "minecraft:#logs":
+      "#minecraft:logs":
         amount: [32, 64, 128]
       "minecraft:wooden_axe":
         amount: [1, 2, 4]
-  
-  
- 
+
 
 tools:
-  tools: null
   torch:
-    count: 1
+    parts: 1
     requirements:
-      "minecraft:coal": 32
-      "minecraft:stick": 128
+      "#minecraft:coals":
+        amount: [16, 32, 64]
+      "minecraft:stick":
+        amount: [32, 64, 128]
   ladder:
+    parts: 1
     requirements:
-      "minecraft:stick": 256
+      "minecraft:stick":
+        amount: [64, 128, 256]
   stone_tools:
-    count: 4
+    parts: 4
     requirements:
-      "minecraft:cobblestone": 1024
-      "minecraft:stick": 256
+      "minecraft:cobblestone":
+        amount: [256, 512, 1024]
+      "minecraft:stick":
+        amount: [128, 256, 512]
+  furnace:
+    parts: 1
+    requirements:
+      "minecraft:cobblestone":
+        amount: [32, 64, 128]
