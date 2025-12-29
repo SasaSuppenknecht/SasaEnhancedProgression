@@ -219,15 +219,97 @@ processing:
       "minecraft:wooden_axe":
         amount: [1, 2, 4]
 
+technology:
+  basic_redstone:
+    parts: 2
+    requirements:
+      "minecraft:redstone":
+        amount: [16, 32, 64]
+      "minecraft:iron_ingot":
+        amount: [8, 16, 32]
+      "#minecraft:planks":
+        amount: [16, 32, 64]
+      "minecraft:slime_ball":
+        amount: [0, 0, 2]
+  boat:
+    parts: 1
+    requirements:
+      "#minecraft:planks":
+        amount: [32, 64, 128]
+      "#minecraft:fishes":
+        amount: [0, 0, 2]
+  boat_with_chest:
+    parts: 2
+    requirements:
+      "#minecraft:planks":
+        amount: [32, 64, 128]
+      "minecraft:chest":
+        amount: [1, 2, 4]
+      "#minecraft:boats":
+        amount: [1, 2, 4]
+  fire_and_gunpowder:
+    parts: 1
+    requirements:
+      "#minecraft:coals":
+        amount: [8, 16, 32]
+      "minecraft:flint":
+        amount: [8, 16, 32]
+      "minecraft:gunpowder":
+        amount: [0, 4, 8]
+      "minecraft:paper":
+        amount: [16, 32, 64]
+  minecarts:
+    parts: 2
+    requirements:
+      "minecraft:iron_ingot":
+        amount: [16, 32, 64]
+      "minecraft:redstone":
+        amount: [16, 32, 64]
+      "minecraft:stick":
+        amount: [32, 64, 128]
+  minecarts_increased_speed_1:
+    parts: 1
+    requirements:
+      "minecraft:gold_ingot":
+        amount: [8, 16, 32]
+      "minecraft:redstone":
+        amount: [16, 32, 64]
+      "minecraft:rail":
+        amount: [16, 32, 64]
+      "minecraft:minecart":
+        amount: [1, 2, 4]
+  minecarts_increased_speed_2:
+    parts: 2
+    requirements:
+      "minecraft:diamond":
+        amount: [4, 8, 16]
+      "minecraft:redstone":
+        amount: [32, 64, 128]
+      "minecraft:rail":
+        amount: [32, 64, 128]
+      "minecraft:minecart":
+        amount: [1, 2, 4]
+  writing:
+    parts: 1
+    requirements:
+      "#minecraft:planks":
+        amount: [16, 32, 64]
+      "minecraft:sugar_cane":
+        amount: [16, 32, 64]
+      "minecraft:ink_sac":
+        amount: [0, 4, 8]
+      "minecraft:lectern":
+        amount: [0, 0, 1]
+        scaling: false
 
 tools:
   torch:
     parts: 1
     requirements:
       "#minecraft:coals":
-        amount: [16, 32, 64]
+        amount: [8, 16, 32]
       "minecraft:stick":
-        amount: [32, 64, 128]
+        amount: [16, 32, 64]
   ladder:
     parts: 1
     requirements:
@@ -237,11 +319,122 @@ tools:
     parts: 4
     requirements:
       "minecraft:cobblestone":
-        amount: [256, 512, 1024]
-      "minecraft:stick":
         amount: [128, 256, 512]
+      "minecraft:stick":
+        amount: [64, 128, 256]
+  iron_tools:
+    parts: 4
+    requirements:
+      "minecraft:iron":
+        amount: [32, 64, 128]
+      "minecraft:stick":
+        amount: [64, 128, 256]
+  diamond_tools:
+    parts: 4
+    requirements:
+      "minecraft:diamond":
+        amount: [4, 8, 16]
+      "minecraft:stick":
+        amount: [64, 128, 256]
   furnace:
     parts: 1
     requirements:
       "minecraft:cobblestone":
         amount: [32, 64, 128]
+  furnace_upgrades:
+    parts: 2
+    requirements:
+      "minecraft:iron_ingot":
+        amount: [16, 32, 64]
+      "minecraft:smooth_stone":
+        amount: [32, 64, 128]
+      "minecraft:furnace":
+        amount: [1, 2, 4]
+      "minecraft:copper_ingot":
+        amount: [16, 32, 64]
+  furnace_speed_upgrades:
+    parts: 2
+    requirements:
+      "minecraft:gold_ingot":
+        amount: [16, 32, 64]
+      "minecraft:dried_kelp":
+        amount: [8, 16, 32]
+      "minecraft:smooth_stone":
+        amount: [64, 128, 256]
+      "minecraft:steak":
+        amount: [0, 4, 8]
+      "minecraft:glass":
+        amount: [16, 32, 64]
+  smithing:
+    parts: 4
+    requirements:
+      "minecraft:iron_ingot":
+        amount: [32, 64, 128]
+      "#minecraft:coals":
+        amount: [16, 32, 64]
+      "minecraft:smithing_table":
+        amount: [0, 0, 1]
+        scaling: false
+  compass:
+    parts: 1
+    requirements:
+      "minecraft:iron_ingot":
+        amount: [4, 8, 16]
+      "minecraft:redstone":
+        amount: [8, 16, 32]
+      "minecraft:compass":
+        amount: [0, 0, 1]
+        scaling: false
+  configurable_compass:
+    parts: 1
+    requirements:
+      "minecraft:iron_ingot":
+        amount: [4, 8, 16]
+      "minecraft:chiseled_stone_bricks":
+        amount: [32, 64, 128]
+      "minecraft:echo_shard":
+        amount: [0, 0, 1]
+  map:
+    parts: 1
+    requirements:
+      "minecraft:paper":
+        amount: [16, 32, 64]
+      "minecraft:compass":
+        amount: [1, 2, 4]
+      "minecraft:map":
+        amount: [0, 0, 1]
+        scaling: false
+  shears:
+    parts: 1
+    requirements:
+      "minecraft:iron_ingot":
+        amount: [4, 8, 16]
+      "minecraft:wool":
+        amount: [0, 4, 8]
+  loom:
+    parts: 1
+    requirements:
+      "minecraft:wooden_planks":
+        amount: [16, 32, 64]
+      "minecraft:wool":
+        amount: [8, 16, 32]
+      "minecraft:string":
+        amount: [0, 4, 8]
+  storage:
+    parts: 2
+    requirements:
+      "minecraft:chest":
+        amount: [1, 2, 4]
+      "#minecraft:planks":
+        amount: [16, 32, 64]
+      "#minecraft:slabs":
+        amount: [8, 16, 32]
+  bundle:
+    parts: 1
+    requirements:
+      "minecraft:leather":
+        amount: [4, 8, 16]
+      "minecraft:string":
+        amount: [4, 8, 16]
+      
+  
