@@ -142,10 +142,6 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:diamond_horse_armor"
-        },
-        {
-          "type": "minecraft:item",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",

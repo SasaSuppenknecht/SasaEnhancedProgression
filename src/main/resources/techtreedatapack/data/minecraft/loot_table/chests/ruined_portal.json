@@ -89,6 +89,15 @@
             {
               "function": "minecraft:enchant_randomly",
               "options": "#minecraft:on_random_loot"
+            }, 
+            {
+              "add": false,
+              "damage": {
+                "type": "minecraft:uniform",
+                "max": 0.75,
+                "min": 0.5
+              },
+              "function": "minecraft:set_damage"
             }
           ],
           "name": "minecraft:golden_sword",
@@ -100,6 +109,15 @@
             {
               "function": "minecraft:enchant_randomly",
               "options": "#minecraft:on_random_loot"
+            }, 
+            {
+              "add": false,
+              "damage": {
+                "type": "minecraft:uniform",
+                "max": 0.75,
+                "min": 0.5
+              },
+              "function": "minecraft:set_damage"
             }
           ],
           "name": "minecraft:golden_axe",
@@ -111,6 +129,15 @@
             {
               "function": "minecraft:enchant_randomly",
               "options": "#minecraft:on_random_loot"
+            }, 
+            {
+              "add": false,
+              "damage": {
+                "type": "minecraft:uniform",
+                "max": 0.75,
+                "min": 0.5
+              },
+              "function": "minecraft:set_damage"
             }
           ],
           "name": "minecraft:golden_hoe",
@@ -122,6 +149,15 @@
             {
               "function": "minecraft:enchant_randomly",
               "options": "#minecraft:on_random_loot"
+            }, 
+            {
+              "add": false,
+              "damage": {
+                "type": "minecraft:uniform",
+                "max": 0.75,
+                "min": 0.5
+              },
+              "function": "minecraft:set_damage"
             }
           ],
           "name": "minecraft:golden_shovel",
@@ -133,6 +169,15 @@
             {
               "function": "minecraft:enchant_randomly",
               "options": "#minecraft:on_random_loot"
+            }, 
+            {
+              "add": false,
+              "damage": {
+                "type": "minecraft:uniform",
+                "max": 0.75,
+                "min": 0.5
+              },
+              "function": "minecraft:set_damage"
             }
           ],
           "name": "minecraft:golden_pickaxe",
@@ -144,6 +189,15 @@
             {
               "function": "minecraft:enchant_randomly",
               "options": "#minecraft:on_random_loot"
+            }, 
+            {
+              "add": false,
+              "damage": {
+                "type": "minecraft:uniform",
+                "max": 0.75,
+                "min": 0.5
+              },
+              "function": "minecraft:set_damage"
             }
           ],
           "name": "minecraft:golden_boots",
@@ -155,6 +209,15 @@
             {
               "function": "minecraft:enchant_randomly",
               "options": "#minecraft:on_random_loot"
+            }, 
+            {
+              "add": false,
+              "damage": {
+                "type": "minecraft:uniform",
+                "max": 0.75,
+                "min": 0.5
+              },
+              "function": "minecraft:set_damage"
             }
           ],
           "name": "minecraft:golden_chestplate",
@@ -166,6 +229,15 @@
             {
               "function": "minecraft:enchant_randomly",
               "options": "#minecraft:on_random_loot"
+            }, 
+            {
+              "add": false,
+              "damage": {
+                "type": "minecraft:uniform",
+                "max": 0.75,
+                "min": 0.5
+              },
+              "function": "minecraft:set_damage"
             }
           ],
           "name": "minecraft:golden_helmet",
@@ -177,6 +249,15 @@
             {
               "function": "minecraft:enchant_randomly",
               "options": "#minecraft:on_random_loot"
+            }, 
+            {
+              "add": false,
+              "damage": {
+                "type": "minecraft:uniform",
+                "max": 0.75,
+                "min": 0.5
+              },
+              "function": "minecraft:set_damage"
             }
           ],
           "name": "minecraft:golden_leggings",
@@ -215,8 +296,8 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 12.0,
-                "min": 4.0
+                "max": 6.0,
+                "min": 2.0
               },
               "function": "minecraft:set_count"
             }

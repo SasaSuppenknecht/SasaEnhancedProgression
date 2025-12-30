@@ -132,7 +132,8 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:leather_chestplate"
+          "name": "minecraft:leather_chestplate",
+          "weight": 5
         },
         {
           "type": "minecraft:item",
@@ -155,7 +156,7 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 4.0,
+                "max": 3.0,
                 "min": 2.0
               },
               "function": "minecraft:set_count"
@@ -170,7 +171,7 @@
               "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 4.0,
+                "max": 3.0,
                 "min": 2.0
               },
               "function": "minecraft:set_count"
