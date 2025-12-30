@@ -1,3 +1,26 @@
 otherwordly: copper_bulb (braucht blaze rods)
 achivement (basis copper Variants) für quartz Variants, blackstone Variants
 prismarine
+loot: gameplay->piglin_bartering
+
+loot tables:
+    positive:
+        - compass (check)
+        - golden apple (check)
+        - saddle (check)
+        - bow (mob loot -> check)
+        - map (check)
+        - 
+    negative: (in villages gar nicht, sonst n. A.)
+        - iron/dia tools
+        - chainmail/iron armor
+        - midi: keine enchantments
+
+    häufig: -> Essen runter
+        villages, ruined portals, ship wrecks
+    weniger häufig/ mit wertvolleren Dingen: 
+        buried treasure, pillager outpost, underwater ruin, desert pyramid, igloo chest, jungle temple, abandoned mineshaft, simple dungeon
+    selten/schwierig: 
+        woodland mansion, ancient city, stronghold
+    archaeology:
+        gibt es zu krasse Dinge? -> nein
