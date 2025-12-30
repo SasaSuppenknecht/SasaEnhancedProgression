@@ -28,8 +28,10 @@ public class TechProgress implements Listener {
 
     private final HashMap<NamespacedKey, Technology> keyToTechnologyMap = new HashMap<>();
 
-    public TechProgress(TechnologyConfigReader technologyConfigReader) {
+    public TechProgress() {
         // iterate over all advancements and bundle necessary information (such as dependent technologies and material requirements)
+        TechnologyConfigReader technologyConfigReader = new TechnologyConfigReader();
+
         for (var it = Bukkit.advancementIterator(); it.hasNext();) {
             Advancement advancement = it.next();
             var requirements = technologyConfigReader.getTechnologyRequirements(advancement.getKey());
@@ -58,15 +60,27 @@ public class TechProgress implements Listener {
         return Set.copyOf(openTech);
     }
 
+    public Set<Technology> getCompletedTech() {
+        return Set.copyOf(completedTech);
+    }
+
+    public Set<Technology> getRemainingTech() {
+        return Set.copyOf(remainingTech);
+    }
+
+
+    public Technology getTechnologyFromKey(NamespacedKey key) {
+        return keyToTechnologyMap.get(key);
+    }
+
+
     public void progressTechnology(Technology technology, ItemStack itemStack) {
         // note: does not check whether there is another requirement needing the same item or an element of the same tag group
         AbstractMaterialRequirement requirement = technology.getRequirements().stream().filter(
-            abstractMaterialRequirement -> {
-                return switch (abstractMaterialRequirement) {
-                    case MaterialRequirement mr -> mr.getItemType() == itemStack.getType().asItemType();
-                    case MaterialTagRequirement tr -> tr.getTag().contains(TypedKey.create(RegistryKey.ITEM, itemStack.getType().asItemType().getKey()));
-                    default -> throw new IllegalStateException();
-                };
+            abstractMaterialRequirement -> switch (abstractMaterialRequirement) {
+                case MaterialRequirement mr -> mr.getItemType() == itemStack.getType().asItemType();
+                case MaterialTagRequirement tr -> tr.getTag().contains(TypedKey.create(RegistryKey.ITEM, itemStack.getType().asItemType().getKey()));
+                default -> throw new IllegalStateException();
             }
         ).findFirst().orElseThrow();
         requirement.increaseGiven(itemStack.getAmount());
@@ -78,6 +92,9 @@ public class TechProgress implements Listener {
     }
 
     public void unlockTechnology(Technology technology) {
+        if (completedTech.contains(technology)) {
+            return;
+        }
         assert openTech.contains(technology);
         openTech.remove(technology);
         completedTech.add(technology);

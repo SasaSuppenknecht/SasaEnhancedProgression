@@ -8,6 +8,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import sasa.progression.sasaEnhancedProgression.features.AnimalInteractionHandler;
 import sasa.progression.sasaEnhancedProgression.features.recipehandling.RecipeHandler;
+import sasa.progression.sasaEnhancedProgression.io.ProgressFileManager;
 import sasa.progression.sasaEnhancedProgression.io.TechnologyConfigReader;
 import sasa.progression.sasaEnhancedProgression.techinterface.TechCommand;
 import sasa.progression.sasaEnhancedProgression.techtree.TechProgress;
@@ -16,16 +17,21 @@ public final class SasaEnhancedProgression extends JavaPlugin {
 
     public static JavaPlugin plugin;
 
+    private TechProgress techProgress;
+
     @Override
     public void onEnable() {
         plugin = this;
-        TechnologyConfigReader technologyConfigReader = new TechnologyConfigReader();
 
         this.saveConfig();
         initWorldSettings();
         initFeatures();
 
-        TechProgress techProgress = new TechProgress(technologyConfigReader);
+        if (ProgressFileManager.hasSavedProgress()) {
+            techProgress = ProgressFileManager.loadProgress();
+        } else {
+            techProgress = new TechProgress();
+        }
         this.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands -> {
             commands.registrar().register(TechCommand.createCommand(techProgress), "Opens the tech tree progression interface");
         });
@@ -33,7 +39,7 @@ public final class SasaEnhancedProgression extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        ProgressFileManager.saveProgress(techProgress);
     }
 
 

@@ -7,6 +7,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.jetbrains.annotations.NotNull;
 import sasa.progression.sasaEnhancedProgression.SasaEnhancedProgression;
 import sasa.progression.sasaEnhancedProgression.DatapackSetup;
+import sasa.progression.sasaEnhancedProgression.techtree.TechnologyRequirementBundle;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,29 +36,32 @@ public class TechnologyConfigReader {
     }
 
 
-    public HashMap<String, Integer> getTechnologyRequirements(@NotNull NamespacedKey namespacedKey) {
+    public TechnologyRequirementBundle getTechnologyRequirements(@NotNull NamespacedKey namespacedKey) {
         assert namespacedKey.getNamespace().equals(DatapackSetup.DATAPACK_NAMESPACE);
-        String key = namespacedKey.getKey();
+        String key = namespacedKey.getKey().replace("/", ".");
 
-        // todo read in parts
-        // todo read in scaling
         // todo process difficulty
-        int difficulty = 1;
+        int difficulty = 2;
 
-        String yamlPath = key.replace("/", ".") + ".requirements";
+        String yamlPath = key + ".requirements";
         ConfigurationSection section = config.getConfigurationSection(yamlPath);
         if (section == null) {
             return null;
         }
-        HashMap<String, Integer> technologyRequirementsMap = new HashMap<>();
+
+        int parts = config.getInt(key + ".parts");
+        TechnologyRequirementBundle technologyRequirement = new TechnologyRequirementBundle(parts);
         for (String sectionKey : section.getKeys(false)) {
             List<Integer> values = (List<Integer>) section.getConfigurationSection(sectionKey).getList("amount");
             assert values != null;
             int value = values.get(difficulty);
             if (value == 0) continue;
-            technologyRequirementsMap.put(sectionKey, value);
+
+            boolean scaling = section.getBoolean("scaling", true);
+            technologyRequirement.requirements.put(sectionKey, new TechnologyRequirementBundle.RequirementInformationBundle(value, scaling));
         }
-        return technologyRequirementsMap;
+        return technologyRequirement;
     }
+
 
 }

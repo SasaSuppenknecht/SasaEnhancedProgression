@@ -8,6 +8,7 @@ import net.kyori.adventure.key.Key;
 import org.bukkit.*;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.inventory.ItemType;
+import sasa.progression.sasaEnhancedProgression.io.TechnologyConfigReader;
 import sasa.progression.sasaEnhancedProgression.techtree.requirements.AbstractMaterialRequirement;
 import sasa.progression.sasaEnhancedProgression.techtree.requirements.MaterialRequirement;
 import sasa.progression.sasaEnhancedProgression.techtree.requirements.MaterialTagRequirement;
@@ -23,10 +24,10 @@ public class Technology {
     private final NamespacedKey primaryDependency;
     private final NamespacedKey secondaryDependency;
 
-    private final int parts = 2; // TODO
+    private final int parts; // TODO
     private final List<AbstractMaterialRequirement> requirements = new ArrayList<>();
 
-    public Technology(NamespacedKey advancement, HashMap<String, Integer> requirementsMap) {
+    public Technology(NamespacedKey advancement, TechnologyRequirementBundle requirementsData) {
         this.advancement = advancement;
 
         var criteriaIterator = Bukkit.getAdvancement(advancement).getCriteria().iterator();
@@ -40,19 +41,24 @@ public class Technology {
 
         assert !criteriaIterator.hasNext() : "Advancement " + advancement + " has more than 2 criteria";
 
-        if (requirementsMap != null) {
-            for (Map.Entry<String, Integer> requirement : requirementsMap.entrySet()) {
+        if (requirementsData != null) {
+            this.parts = requirementsData.parts;
+
+            for (Map.Entry<String, TechnologyRequirementBundle.RequirementInformationBundle> requirement : requirementsData.requirements.entrySet()) {
+                // todo use scaling flag
                 String key = requirement.getKey();
                 if (!key.startsWith("#")) {
                     ItemType itemType = Registry.ITEM.get(Key.key(key));
                     assert itemType != null : "Key " + key + " does not correspond to any itemtype";
-                    requirements.add(new MaterialRequirement(itemType, requirement.getValue()));
+                    requirements.add(new MaterialRequirement(itemType, requirement.getValue().amount()));
                 } else {
                     key = key.substring(1);
                     Tag<ItemType> tag = Registry.ITEM.getTag(TagKey.create(RegistryKey.ITEM, key));
-                    requirements.add(new MaterialTagRequirement(tag, requirement.getValue()));
+                    requirements.add(new MaterialTagRequirement(tag, requirement.getValue().amount()));
                 }
             }
+        } else {
+            parts = 1;
         }
     }
 
