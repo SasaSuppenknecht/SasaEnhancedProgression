@@ -3,4 +3,4 @@ version: '0.1'
 main: sasa.progression.sasaEnhancedProgression.SasaEnhancedProgression
 api-version: '1.21'
 author: SasaSuppenknecht
-bootstrapper: sasa.progression.sasaEnhancedProgression.DatapackSetup
+bootstrapper: sasa.progression.sasaEnhancedProgression.misc.DatapackSetup

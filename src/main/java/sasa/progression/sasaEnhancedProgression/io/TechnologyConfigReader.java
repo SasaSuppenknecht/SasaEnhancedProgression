@@ -6,12 +6,11 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.jetbrains.annotations.NotNull;
 import sasa.progression.sasaEnhancedProgression.SasaEnhancedProgression;
-import sasa.progression.sasaEnhancedProgression.DatapackSetup;
+import sasa.progression.sasaEnhancedProgression.misc.DatapackSetup;
 import sasa.progression.sasaEnhancedProgression.techtree.TechnologyRequirementBundle;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 
 public class TechnologyConfigReader {

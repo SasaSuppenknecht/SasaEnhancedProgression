@@ -1,4 +1,4 @@
-package sasa.progression.sasaEnhancedProgression;
+package sasa.progression.sasaEnhancedProgression.misc;
 
 import io.papermc.paper.plugin.bootstrap.BootstrapContext;
 import io.papermc.paper.plugin.bootstrap.PluginBootstrap;

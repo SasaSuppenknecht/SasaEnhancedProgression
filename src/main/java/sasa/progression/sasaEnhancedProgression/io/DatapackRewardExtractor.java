@@ -7,7 +7,7 @@ import com.google.gson.JsonParser;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.Plugin;
-import sasa.progression.sasaEnhancedProgression.DatapackSetup;
+import sasa.progression.sasaEnhancedProgression.misc.DatapackSetup;
 import sasa.progression.sasaEnhancedProgression.SasaEnhancedProgression;
 
 import java.io.*;

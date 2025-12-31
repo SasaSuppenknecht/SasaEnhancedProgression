@@ -325,7 +325,7 @@ tools:
   iron_tools:
     parts: 4
     requirements:
-      "minecraft:iron":
+      "minecraft:iron_ingot":
         amount: [32, 64, 128]
       "minecraft:stick":
         amount: [64, 128, 256]
@@ -361,7 +361,7 @@ tools:
         amount: [8, 16, 32]
       "minecraft:smooth_stone":
         amount: [64, 128, 256]
-      "minecraft:steak":
+      "minecraft:cooked_beef":
         amount: [0, 4, 8]
       "minecraft:glass":
         amount: [16, 32, 64]
@@ -409,14 +409,14 @@ tools:
     requirements:
       "minecraft:iron_ingot":
         amount: [4, 8, 16]
-      "minecraft:wool":
+      "#minecraft:wool":
         amount: [0, 4, 8]
   loom:
     parts: 1
     requirements:
-      "minecraft:wooden_planks":
+      "#minecraft:planks":
         amount: [16, 32, 64]
-      "minecraft:wool":
+      "#minecraft:wool":
         amount: [8, 16, 32]
       "minecraft:string":
         amount: [0, 4, 8]
@@ -427,7 +427,7 @@ tools:
         amount: [1, 2, 4]
       "#minecraft:planks":
         amount: [16, 32, 64]
-      "#minecraft:slabs":
+      "#minecraft:wooden_slabs":
         amount: [8, 16, 32]
   bundle:
     parts: 1
