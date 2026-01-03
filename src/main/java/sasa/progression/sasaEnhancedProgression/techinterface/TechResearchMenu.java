@@ -30,14 +30,21 @@ class TechResearchMenu implements InventoryHolder {
         technologyName = technologyName.substring(1, technologyName.length() - 1); // remove [ and ]
         inventory = Bukkit.createInventory(this, 9 * 6, Component.text(technologyName));
 
+        ItemStack acceptButton = createNamedItemStack(Material.LIME_STAINED_GLASS_PANE, "Research!");
+        inventory.setItem(53, acceptButton);
 
+        updateGUI();
+    }
+
+    public void updateInventory(HashMap<ItemType, Integer> usedItems) {
+
+    }
+
+    public void updateGUI() {
         ItemStack gray = createNamedItemStack(Material.GRAY_STAINED_GLASS_PANE, "");
         for (int i = 9; i < 18; i++) {
             inventory.setItem(i, gray);
         }
-
-        ItemStack acceptButton = createNamedItemStack(Material.LIME_STAINED_GLASS_PANE, "Research!");
-        inventory.setItem(53, acceptButton);
 
         int parts = technology.getParts();
         List<AbstractMaterialRequirement> requirements = technology.getRequirements();
@@ -70,6 +77,8 @@ class TechResearchMenu implements InventoryHolder {
 
             inventory.setItem(index, item);
             index++;
+
+            // todo different visualization for finished requirements
         }
         ItemStack light_gray = createNamedItemStack(Material.LIGHT_GRAY_STAINED_GLASS_PANE, "");
         for (; index < 9; index++) {
@@ -85,15 +94,7 @@ class TechResearchMenu implements InventoryHolder {
         return item;
     }
 
-    public void updateInventory(HashMap<ItemType, Integer> usedItems) {
-
-    }
-
-    public void updateButtons() {
-
-    }
-
-    Technology getTechnology() {
+    public Technology getTechnology() {
         return technology;
     }
 

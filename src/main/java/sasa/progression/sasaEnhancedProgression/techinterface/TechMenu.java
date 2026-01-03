@@ -4,11 +4,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.*;
 import sasa.progression.sasaEnhancedProgression.SasaEnhancedProgression;
 import sasa.progression.sasaEnhancedProgression.techtree.TechProgress;
 import sasa.progression.sasaEnhancedProgression.techtree.Technology;
-import sasa.progression.sasaEnhancedProgression.techtree.requirements.AbstractMaterialRequirement;
 
 import java.util.*;
 
@@ -92,51 +92,28 @@ public class TechMenu implements Listener {
                 if (slotsOfItemType.isEmpty()) return;
 
                 HashMap<ItemType, Integer> amountOfUsedItemTypes = techProgress.progressTechnology(technology, amountPerItemType);
-                // todo update research and gui
+
+                techResearchMenu.updateInventory(amountOfUsedItemTypes);
+                techResearchMenu.updateGUI();
             }
         }
-//        } else if (inventory instanceof MerchantInventory merchantInventory
-//                && playerWithCurrentlyOpenedReserachMenu.containsKey(event.getWhoClicked())
-//                && event.getSlotType() == InventoryType.SlotType.RESULT) {
-//            event.setCancelled(true);
-//            MerchantRecipe selectedRecipe = merchantInventory.getSelectedRecipe();
-//            if (selectedRecipe != null) {
-//                List<ItemStack> ingredients = selectedRecipe.getIngredients();
-//                assert ingredients.size() == 1 : "Technology does not have exactly one ingredient";
-//                ItemStack ingredient = ingredients.getFirst();
-//                int index = 0;
-//                ItemStack relevantSlot = merchantInventory.getItem(index);
-//                if (relevantSlot == null) { // first slot is empty -> use second one
-//                    index = 1;
-//                    relevantSlot = merchantInventory.getItem(index);
-//                }
-//                assert relevantSlot != null;
-//
-//                if (ingredient.getType() == relevantSlot.getType() &&
-//                        selectedRecipe.getUses() != selectedRecipe.getMaxUses()) {
-//
-//                    int toSubtract = 1;
-//                    if (event.isShiftClick()) {
-//                        toSubtract = Math.min(selectedRecipe.getMaxUses() - selectedRecipe.getUses(), relevantSlot.getAmount());
-//                    }
-//                    relevantSlot.subtract(toSubtract);
-//                    merchantInventory.setItem(index, relevantSlot);
-//                    selectedRecipe.setUses(selectedRecipe.getUses() + toSubtract);
-//
-//                    // todo interface does not update properly
-//                    Player player = (Player) event.getWhoClicked();
-//                    player.updateInventory();
-//                    // .get implicitly check through initial if
-//
-//                    assert inventory.getViewers().size() == 1;
-//                    Player viewingPlayer = (Player) inventory.getViewers().getFirst();
-//
-//                    TechResearchMenu techResearchMenu = playerWithCurrentlyOpenedReserachMenu.get(viewingPlayer);
-//                    techTimeout.setActiveResearchOfPlayer(player, techResearchMenu);
-//                    techProgress.progressTechnology(techResearchMenu.getTechnology(), ItemStack.of(ingredient.getType(), toSubtract));
-//                    //player.sendMessage("Technology progressed");
-//                }
-//            }
-//        }
+    }
+
+    @EventHandler
+    public void onInventoryCloseEvent(InventoryCloseEvent event) {
+        Inventory inventory = event.getInventory();
+        if (inventory.getHolder() instanceof TechResearchMenu) {
+            Player player = (Player) event.getPlayer();
+
+            ArrayList<ItemStack> itemList = new ArrayList<>();
+            for (int i = 19; i < 53; i++) {
+                ItemStack itemStack = inventory.getItem(i);
+                if (itemStack != null) {
+                    itemList.add(itemStack);
+                }
+            }
+
+            player.give(itemList, true);
+        }
     }
 }
