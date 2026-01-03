@@ -3,6 +3,7 @@ package sasa.progression.sasaEnhancedProgression.techtree;
 import io.papermc.paper.registry.RegistryKey;
 import io.papermc.paper.registry.TypedKey;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.advancement.AdvancementProgress;
@@ -11,6 +12,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ItemType;
 import sasa.progression.sasaEnhancedProgression.SasaEnhancedProgression;
 import sasa.progression.sasaEnhancedProgression.features.AdvancementUnlockEvent;
 import sasa.progression.sasaEnhancedProgression.io.TechnologyConfigReader;
@@ -74,21 +76,45 @@ public class TechProgress implements Listener {
     }
 
 
-    public void progressTechnology(Technology technology, ItemStack itemStack) {
+    public HashMap<ItemType, Integer> progressTechnology(Technology technology, HashMap<ItemType, Integer> availableAmountPerItemType) {
+        for (Map.Entry<ItemType, Integer> item : availableAmountPerItemType.entrySet()) {
+            ItemType itemType = item.getKey();
+            int amount = item.getValue();
+            int used = progressTechnology(technology, itemType, amount);
+            availableAmountPerItemType.computeIfPresent(itemType, (_, value) -> value - used);
+        }
+        return availableAmountPerItemType;
+    }
+
+
+    private int progressTechnology(Technology technology, ItemType itemType, int amount) {
         // note: does not check whether there is another requirement needing the same item or an element of the same tag group
         AbstractMaterialRequirement requirement = technology.getRequirements().stream().filter(
             abstractMaterialRequirement -> switch (abstractMaterialRequirement) {
-                case MaterialRequirement mr -> mr.getItemType() == itemStack.getType().asItemType();
-                case MaterialTagRequirement tr -> tr.getTag().contains(TypedKey.create(RegistryKey.ITEM, itemStack.getType().asItemType().getKey()));
+                case MaterialRequirement mr -> mr.getItemType() == itemType;
+                case MaterialTagRequirement tr -> tr.getTag().contains(TypedKey.create(RegistryKey.ITEM, itemType.getKey()));
                 default -> throw new IllegalStateException();
             }
         ).findFirst().orElseThrow();
-        requirement.increaseGiven(itemStack.getAmount());
+
+        if (requirement.isFulfilled()) return 0;
+
+        int remaining = requirement.getNeeded() - requirement.getGiven();
+        int actualAmountUsed = amount - remaining;
+        int used;
+        if (actualAmountUsed >= 0) {
+            requirement.increaseGiven(remaining);
+            used = remaining;
+        } else {
+            requirement.increaseGiven(amount);
+            used = amount;
+        }
 
         boolean allRequirementsCompleted = technology.getRequirements().stream().allMatch(AbstractMaterialRequirement::isFulfilled);
         if (allRequirementsCompleted) {
             unlockTechnology(technology);
         }
+        return used;
     }
 
     public void unlockTechnology(Technology technology) {

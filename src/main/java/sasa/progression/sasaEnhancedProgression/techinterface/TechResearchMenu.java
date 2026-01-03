@@ -7,77 +7,98 @@ import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.view.MerchantView;
 import org.jetbrains.annotations.NotNull;
+import sasa.progression.sasaEnhancedProgression.misc.ItemTagHandler;
 import sasa.progression.sasaEnhancedProgression.techtree.requirements.AbstractMaterialRequirement;
 import sasa.progression.sasaEnhancedProgression.techtree.requirements.MaterialRequirement;
 import sasa.progression.sasaEnhancedProgression.techtree.Technology;
 import sasa.progression.sasaEnhancedProgression.techtree.requirements.MaterialTagRequirement;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @SuppressWarnings("UnstableApiUsage")
-class TechResearchMenu {
+class TechResearchMenu implements InventoryHolder {
 
     private final Technology technology;
-    private final MerchantView researchView;
+    private final Inventory inventory;
 
     TechResearchMenu(Technology technology, Player player) {
         this.technology = technology;
 
-        Merchant merchant = Bukkit.createMerchant();
+        String technologyName = PlainTextComponentSerializer.plainText().serialize(technology.getConnectedAdvancement().displayName());
+        technologyName = technologyName.substring(1, technologyName.length() - 1); // remove [ and ]
+        inventory = Bukkit.createInventory(this, 9 * 6, Component.text(technologyName));
+
+
+        ItemStack gray = createNamedItemStack(Material.GRAY_STAINED_GLASS_PANE, "");
+        for (int i = 9; i < 18; i++) {
+            inventory.setItem(i, gray);
+        }
+
+        ItemStack acceptButton = createNamedItemStack(Material.LIME_STAINED_GLASS_PANE, "Research!");
+        inventory.setItem(53, acceptButton);
+
         int parts = technology.getParts();
         List<AbstractMaterialRequirement> requirements = technology.getRequirements();
-        List<MerchantRecipe> merchantRecipeList = new ArrayList<>();
+
+        int index = 0;
+        assert requirements.size() <= 9;
         for (AbstractMaterialRequirement requirement : requirements) {
             int partSize = Math.ceilDiv(requirement.getNeeded(), parts);
-            MerchantRecipe merchantRecipe;
+            ItemType itemType;
             switch (requirement) {
                 case MaterialRequirement mr -> {
-                    ItemType itemType = mr.getItemType();
-                    merchantRecipe = new MerchantRecipe(itemType.createItemStack(mr.getNeeded()), partSize);
-                    merchantRecipe.addIngredient(itemType.createItemStack());
+                    itemType = mr.getItemType();
                 }
                 case MaterialTagRequirement tr -> {
                     Tag<ItemType> tag = tr.getTag();
                     // Pick one random material from the materials behind tag
-                    ItemType itemType = Registry.ITEM.get(tag.values().stream().findFirst().orElseThrow().key());
+                    itemType = ItemTagHandler.getRandomItemFromItemTag(tag);
                     assert itemType != null;
-                    ItemStack output = itemType.createItemStack(tr.getNeeded());
-                    String tagName = tag.tagKey().key().value();
-                    setItemStackName(output, tagName);
-                    ItemStack input = itemType.createItemStack();
-                    setItemStackName(input, tagName);
-
-                    merchantRecipe = new MerchantRecipe(output, partSize);
-                    merchantRecipe.addIngredient(input);
                 }
                 default -> throw new IllegalStateException("Unexpected value: " + requirement);
             }
-            merchantRecipeList.add(merchantRecipe);
-        }
-        merchant.setRecipes(merchantRecipeList);
 
-        String technologyName = PlainTextComponentSerializer.plainText().serialize(technology.getConnectedAdvancement().displayName());
-        technologyName = technologyName.substring(1, technologyName.length() - 1); // remove [ and ]
-        researchView = MenuType.MERCHANT.builder()
-                .title(Component.text(technologyName))
-                .merchant(merchant)
-                .build(player);
+            ItemStack item = itemType.createItemStack();
+            ItemMeta meta = item.getItemMeta();
+            meta.lore(List.of(
+                    Component.text("Part: %d / %d".formatted(requirement.getGiven(), partSize)), // todo track part progress
+                    Component.text("Total: %d / %d".formatted(requirement.getGiven(), requirement.getNeeded()))
+            ));
+            item.setItemMeta(meta);
+
+            inventory.setItem(index, item);
+            index++;
+        }
+        ItemStack light_gray = createNamedItemStack(Material.LIGHT_GRAY_STAINED_GLASS_PANE, "");
+        for (; index < 9; index++) {
+            inventory.setItem(index, light_gray);
+        }
     }
 
-    MerchantView getView() {
-        return researchView;
+    private ItemStack createNamedItemStack(Material material, String name) {
+        ItemStack item = ItemStack.of(material);
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.displayName(Component.text(name));
+        item.setItemMeta(itemMeta);
+        return item;
+    }
+
+    public void updateInventory(HashMap<ItemType, Integer> usedItems) {
+
+    }
+
+    public void updateButtons() {
+
     }
 
     Technology getTechnology() {
         return technology;
     }
 
-    private void setItemStackName(ItemStack item, String name) {
-        ItemMeta itemMeta = item.getItemMeta();
-        itemMeta.displayName(Component.text("ANY " + name));
-        item.setItemMeta(itemMeta);
+    @Override
+    public @NotNull Inventory getInventory() {
+        return inventory;
     }
 }

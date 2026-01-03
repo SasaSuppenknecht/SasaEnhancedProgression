@@ -22,6 +22,7 @@ import sasa.progression.sasaEnhancedProgression.techtree.requirements.MaterialTa
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 public class ProgressFileManager {
@@ -101,6 +102,8 @@ public class ProgressFileManager {
             ConfigurationSection research = open.getConfigurationSection(openResearchKey);
             Technology technology = techProgress.getTechnologyFromKey(NamespacedKey.fromString(openResearchKey));
             assert research != null;
+
+            HashMap<ItemType, Integer> amountPerItemType = new HashMap<>();
             for (String requirementKey : research.getKeys(false)) {
                 int value = research.getInt(requirementKey);
                 ItemType itemType;
@@ -113,9 +116,9 @@ public class ProgressFileManager {
                     itemType = Registry.ITEM.get(tag.values().stream().findFirst().orElseThrow().key());
                     assert itemType != null;
                 }
-                ItemStack itemStack = itemType.createItemStack(value);
-                techProgress.progressTechnology(technology, itemStack);
+                amountPerItemType.put(itemType, value);
             }
+            techProgress.progressTechnology(technology, amountPerItemType);
         }
 
         return techProgress;

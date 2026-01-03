@@ -8,15 +8,12 @@ import net.kyori.adventure.key.Key;
 import org.bukkit.*;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.inventory.ItemType;
-import sasa.progression.sasaEnhancedProgression.io.TechnologyConfigReader;
+import sasa.progression.sasaEnhancedProgression.misc.ItemTagHandler;
 import sasa.progression.sasaEnhancedProgression.techtree.requirements.AbstractMaterialRequirement;
 import sasa.progression.sasaEnhancedProgression.techtree.requirements.MaterialRequirement;
 import sasa.progression.sasaEnhancedProgression.techtree.requirements.MaterialTagRequirement;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Technology {
 
@@ -90,6 +87,20 @@ public class Technology {
         return List.copyOf(requirements);
     }
 
+    public Set<ItemType> getRemainingRequirementsItemTypes() {
+        Set<ItemType> requirementsItemTypes = new HashSet<>();
+        for (AbstractMaterialRequirement requirement : requirements) {
+            if (!requirement.isFulfilled()) {
+                switch (requirement) {
+                    case MaterialRequirement mr -> requirementsItemTypes.add(mr.getItemType());
+                    case MaterialTagRequirement tr ->
+                            requirementsItemTypes.addAll(ItemTagHandler.getItemTypesInItemTag(tr.getTag()));
+                    default -> throw new RuntimeException();
+                }
+            }
+        }
+        return requirementsItemTypes;
+    }
 
     @Override
     public boolean equals(Object obj) {
