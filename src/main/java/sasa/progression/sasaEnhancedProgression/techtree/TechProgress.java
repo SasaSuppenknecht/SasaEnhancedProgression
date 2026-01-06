@@ -3,24 +3,26 @@ package sasa.progression.sasaEnhancedProgression.techtree;
 import io.papermc.paper.registry.RegistryKey;
 import io.papermc.paper.registry.TypedKey;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.advancement.AdvancementProgress;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ItemType;
 import sasa.progression.sasaEnhancedProgression.SasaEnhancedProgression;
-import sasa.progression.sasaEnhancedProgression.features.AdvancementUnlockEvent;
+import sasa.progression.sasaEnhancedProgression.events.TechnologyProgressEvent;
+import sasa.progression.sasaEnhancedProgression.events.TechnologyTimeoutEvent;
+import sasa.progression.sasaEnhancedProgression.events.TechnologyUnlockEvent;
 import sasa.progression.sasaEnhancedProgression.io.TechnologyConfigReader;
 import sasa.progression.sasaEnhancedProgression.techtree.requirements.AbstractMaterialRequirement;
 import sasa.progression.sasaEnhancedProgression.techtree.requirements.MaterialRequirement;
 import sasa.progression.sasaEnhancedProgression.techtree.requirements.MaterialTagRequirement;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public class TechProgress implements Listener {
 
@@ -70,52 +72,59 @@ public class TechProgress implements Listener {
         return Set.copyOf(remainingTech);
     }
 
-
     public Technology getTechnologyFromKey(NamespacedKey key) {
         return keyToTechnologyMap.get(key);
     }
 
+    public boolean progressTechnology(Player player, Technology technology, HashMap<ItemType, Integer> availableAmountPerItemType) {
+        boolean progressed = false;
+        int[] partProgressAmounts = technology.getPartProgress(player);
 
-    public HashMap<ItemType, Integer> progressTechnology(Technology technology, HashMap<ItemType, Integer> availableAmountPerItemType) {
         for (Map.Entry<ItemType, Integer> item : availableAmountPerItemType.entrySet()) {
             ItemType itemType = item.getKey();
             int amount = item.getValue();
-            int used = progressTechnology(technology, itemType, amount);
-            availableAmountPerItemType.computeIfPresent(itemType, (_, value) -> value - used);
-        }
-        return availableAmountPerItemType;
-    }
+            Optional<AbstractMaterialRequirement> optionalRequirement = technology.getRequirements().stream().filter(
+                    abstractMaterialRequirement -> switch (abstractMaterialRequirement) {
+                        case MaterialRequirement mr -> mr.getItemType() == itemType;
+                        case MaterialTagRequirement tr -> tr.getTag().contains(TypedKey.create(RegistryKey.ITEM, itemType.getKey()));
+                        default -> throw new IllegalStateException();
+                    }
+            ).findFirst();
+            if (optionalRequirement.isEmpty()) continue;
 
+            AbstractMaterialRequirement requirement = optionalRequirement.get();
 
-    private int progressTechnology(Technology technology, ItemType itemType, int amount) {
-        // note: does not check whether there is another requirement needing the same item or an element of the same tag group
-        AbstractMaterialRequirement requirement = technology.getRequirements().stream().filter(
-            abstractMaterialRequirement -> switch (abstractMaterialRequirement) {
-                case MaterialRequirement mr -> mr.getItemType() == itemType;
-                case MaterialTagRequirement tr -> tr.getTag().contains(TypedKey.create(RegistryKey.ITEM, itemType.getKey()));
-                default -> throw new IllegalStateException();
+            if (requirement.isFulfilled()) continue;
+
+            int requirementIndex = technology.getRequirements().indexOf(requirement);
+            int partMaxSize = Math.ceilDiv(requirement.getNeeded(), technology.getParts());
+
+            int remaining = Math.min(requirement.getNeeded() - requirement.getGiven(), partMaxSize - partProgressAmounts[requirementIndex]);
+            int actualAmountUsed = amount - remaining;
+            int used;
+            if (actualAmountUsed >= 0) {
+                requirement.increaseGiven(remaining);
+                used = remaining;
+            } else {
+                requirement.increaseGiven(amount);
+                used = amount;
             }
-        ).findFirst().orElseThrow();
 
-        if (requirement.isFulfilled()) return 0;
+            if (used >= 0) {
+                progressed = true;
+                technology.updatePartProgress(player, requirementIndex, partProgressAmounts[requirementIndex] + used);
+                new TechnologyProgressEvent(player, technology, requirement, itemType, used).callEvent();
 
-        int remaining = requirement.getNeeded() - requirement.getGiven();
-        int actualAmountUsed = amount - remaining;
-        int used;
-        if (actualAmountUsed >= 0) {
-            requirement.increaseGiven(remaining);
-            used = remaining;
-        } else {
-            requirement.increaseGiven(amount);
-            used = amount;
+                boolean allRequirementsCompleted = technology.getRequirements().stream().allMatch(AbstractMaterialRequirement::isFulfilled);
+                if (allRequirementsCompleted) {
+                    unlockTechnology(technology);
+                }
+            }
         }
 
-        boolean allRequirementsCompleted = technology.getRequirements().stream().allMatch(AbstractMaterialRequirement::isFulfilled);
-        if (allRequirementsCompleted) {
-            unlockTechnology(technology);
-        }
-        return used;
+        return progressed;
     }
+
 
     public void unlockTechnology(Technology technology) {
         if (completedTech.contains(technology)) {
@@ -147,7 +156,7 @@ public class TechProgress implements Listener {
             }
         }
 
-        new AdvancementUnlockEvent(technology.getAdvancementKey()).callEvent();
+        new TechnologyUnlockEvent(technology.getAdvancementKey()).callEvent();
         for (Player player : Bukkit.getOnlinePlayers()) {
             awardAdvancement(player, technology.getAdvancementKey());
         }
@@ -171,4 +180,9 @@ public class TechProgress implements Listener {
         }
     }
 
+    @EventHandler
+    public void onTechnologyTimeout(TechnologyTimeoutEvent event) {
+        Player player = event.getPlayer();
+        event.getTechnology().resetPartProgress(player);
+    }
 }

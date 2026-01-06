@@ -2,6 +2,7 @@ package sasa.progression.sasaEnhancedProgression.techinterface;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -73,28 +74,22 @@ public class TechMenu implements Listener {
                 Technology technology = techResearchMenu.getTechnology();
                 Set<ItemType> requirementsItemTypes = technology.getRemainingRequirementsItemTypes();
 
-                HashMap<ItemType, List<Integer>> slotsOfItemType = new HashMap<>();
                 HashMap<ItemType, Integer> amountPerItemType = new HashMap<>();
-                for (int i = 19; i < 53; i++) {
+                for (int i = 18; i < 53; i++) {
                     ItemStack itemStack = inventory.getItem(i);
                     if (itemStack == null) continue;
                     ItemType itemType = itemStack.getType().asItemType();
                     if (!requirementsItemTypes.contains(itemType)) continue;
 
-                    if (!slotsOfItemType.containsKey(itemType)) {
-                        slotsOfItemType.put(itemType, new ArrayList<>());
-                    }
-                    slotsOfItemType.get(itemType).add(i);
-
                     amountPerItemType.merge(itemType, itemStack.getAmount(), Integer::sum);
                 }
 
-                if (slotsOfItemType.isEmpty()) return;
+                if (amountPerItemType.isEmpty()) return;
 
-                HashMap<ItemType, Integer> amountOfUsedItemTypes = techProgress.progressTechnology(technology, amountPerItemType);
-
-                techResearchMenu.updateInventory(amountOfUsedItemTypes);
-                techResearchMenu.updateGUI();
+                boolean progressed = techProgress.progressTechnology((Player) event.getWhoClicked(), technology, amountPerItemType);
+                if (progressed) {
+                    techTimeout.setActiveResearchOfPlayer((Player) event.getWhoClicked(), techResearchMenu);
+                }
             }
         }
     }
@@ -102,11 +97,11 @@ public class TechMenu implements Listener {
     @EventHandler
     public void onInventoryCloseEvent(InventoryCloseEvent event) {
         Inventory inventory = event.getInventory();
-        if (inventory.getHolder() instanceof TechResearchMenu) {
+        if (inventory.getHolder() instanceof TechResearchMenu techResearchMenu) {
             Player player = (Player) event.getPlayer();
 
             ArrayList<ItemStack> itemList = new ArrayList<>();
-            for (int i = 19; i < 53; i++) {
+            for (int i = 18; i < 53; i++) {
                 ItemStack itemStack = inventory.getItem(i);
                 if (itemStack != null) {
                     itemList.add(itemStack);
@@ -114,6 +109,7 @@ public class TechMenu implements Listener {
             }
 
             player.give(itemList, true);
+            HandlerList.unregisterAll(techResearchMenu);
         }
     }
 }

@@ -1,13 +1,12 @@
 package sasa.progression.sasaEnhancedProgression.features;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Animals;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.ItemStack;
-import sasa.progression.sasaEnhancedProgression.SasaEnhancedProgression;
+import sasa.progression.sasaEnhancedProgression.events.TechnologyUnlockEvent;
 
 public class AnimalInteractionHandler implements Listener {
 
@@ -27,7 +26,7 @@ public class AnimalInteractionHandler implements Listener {
     }
 
     @EventHandler
-    public void onAdvancementUnlockEvent(AdvancementUnlockEvent event) {
+    public void onAdvancementUnlockEvent(TechnologyUnlockEvent event) {
         String key = event.getAdvancementKey().getKey();
         if (key.endsWith("taming")) {
             tamingEnabled = true;

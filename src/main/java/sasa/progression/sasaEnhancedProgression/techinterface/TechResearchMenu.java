@@ -5,9 +5,12 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
+import sasa.progression.sasaEnhancedProgression.events.TechnologyProgressEvent;
 import sasa.progression.sasaEnhancedProgression.misc.ItemTagHandler;
 import sasa.progression.sasaEnhancedProgression.techtree.requirements.AbstractMaterialRequirement;
 import sasa.progression.sasaEnhancedProgression.techtree.requirements.MaterialRequirement;
@@ -18,13 +21,15 @@ import java.util.HashMap;
 import java.util.List;
 
 @SuppressWarnings("UnstableApiUsage")
-class TechResearchMenu implements InventoryHolder {
+class TechResearchMenu implements InventoryHolder, Listener {
 
     private final Technology technology;
     private final Inventory inventory;
+    private final Player player;
 
     TechResearchMenu(Technology technology, Player player) {
         this.technology = technology;
+        this.player = player;
 
         String technologyName = PlainTextComponentSerializer.plainText().serialize(technology.getConnectedAdvancement().displayName());
         technologyName = technologyName.substring(1, technologyName.length() - 1); // remove [ and ]
@@ -33,21 +38,20 @@ class TechResearchMenu implements InventoryHolder {
         ItemStack acceptButton = createNamedItemStack(Material.LIME_STAINED_GLASS_PANE, "Research!");
         inventory.setItem(53, acceptButton);
 
-        updateGUI();
-    }
-
-    public void updateInventory(HashMap<ItemType, Integer> usedItems) {
-
-    }
-
-    public void updateGUI() {
         ItemStack gray = createNamedItemStack(Material.GRAY_STAINED_GLASS_PANE, "");
         for (int i = 9; i < 18; i++) {
             inventory.setItem(i, gray);
         }
 
+        updateGUI();
+    }
+
+
+    private void updateGUI() {
         int parts = technology.getParts();
         List<AbstractMaterialRequirement> requirements = technology.getRequirements();
+
+        int[] partProgress = technology.getPartProgress(player);
 
         int index = 0;
         assert requirements.size() <= 9;
@@ -70,7 +74,7 @@ class TechResearchMenu implements InventoryHolder {
             ItemStack item = itemType.createItemStack();
             ItemMeta meta = item.getItemMeta();
             meta.lore(List.of(
-                    Component.text("Part: %d / %d".formatted(requirement.getGiven(), partSize)), // todo track part progress
+                    Component.text("Part: %d / %d".formatted(partProgress[index], partSize)),
                     Component.text("Total: %d / %d".formatted(requirement.getGiven(), requirement.getNeeded()))
             ));
             item.setItemMeta(meta);
@@ -92,6 +96,29 @@ class TechResearchMenu implements InventoryHolder {
         itemMeta.displayName(Component.text(name));
         item.setItemMeta(itemMeta);
         return item;
+    }
+
+    @EventHandler
+    public void onTechnologyProgressEvent(TechnologyProgressEvent event) {
+        if (event.getTechnology() == technology && inventory.getViewers().contains(event.getPlayer())) {
+            ItemType itemType = event.getItemType();
+            int amount = event.getAmount();
+
+            int index = 18;
+            while (amount > 0 && index < 53) {
+                ItemStack itemStack = inventory.getItem(index);
+                if (itemStack == null || itemStack.getType().asItemType() != itemType) continue;
+                int itemStackAmount = itemStack.getAmount();
+                int toSubtract = Math.min(amount, itemStackAmount);
+                itemStack.subtract(toSubtract);
+                amount -= toSubtract;
+
+                index++;
+            }
+            assert amount <= 0;
+
+            updateGUI();
+        }
     }
 
     public Technology getTechnology() {

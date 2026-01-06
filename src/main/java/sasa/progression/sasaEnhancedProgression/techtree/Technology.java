@@ -7,6 +7,7 @@ import io.papermc.paper.registry.tag.TagKey;
 import net.kyori.adventure.key.Key;
 import org.bukkit.*;
 import org.bukkit.advancement.Advancement;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemType;
 import sasa.progression.sasaEnhancedProgression.misc.ItemTagHandler;
 import sasa.progression.sasaEnhancedProgression.techtree.requirements.AbstractMaterialRequirement;
@@ -21,8 +22,9 @@ public class Technology {
     private final NamespacedKey primaryDependency;
     private final NamespacedKey secondaryDependency;
 
-    private final int parts; // TODO
+    private final int parts;
     private final List<AbstractMaterialRequirement> requirements = new ArrayList<>();
+    private final HashMap<Player, int[]> partProgressMap = new HashMap<>();
 
     public Technology(NamespacedKey advancement, TechnologyRequirementBundle requirementsData) {
         this.advancement = advancement;
@@ -100,6 +102,25 @@ public class Technology {
             }
         }
         return requirementsItemTypes;
+    }
+
+    public int[] getPartProgress(Player player) {
+        if (!partProgressMap.containsKey(player)) {
+            return new int[requirements.size()];
+        } else {
+            return partProgressMap.get(player).clone();
+        }
+    }
+
+    public void updatePartProgress(Player player, int index, int value) {
+        if (!partProgressMap.containsKey(player)) {
+            partProgressMap.put(player, new int[requirements.size()]);
+        }
+        partProgressMap.get(player)[index] = value;
+    }
+
+    public void resetPartProgress(Player player) {
+        partProgressMap.remove(player);
     }
 
     @Override

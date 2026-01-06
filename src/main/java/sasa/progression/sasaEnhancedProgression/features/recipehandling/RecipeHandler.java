@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Recipe;
-import sasa.progression.sasaEnhancedProgression.features.AdvancementUnlockEvent;
+import sasa.progression.sasaEnhancedProgression.events.TechnologyUnlockEvent;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class RecipeHandler implements Listener {
 
 
     @EventHandler
-    public void onAdvancementUnlock(AdvancementUnlockEvent event) {
+    public void onAdvancementUnlock(TechnologyUnlockEvent event) {
         NamespacedKey advancementKey = event.getAdvancementKey();
         List<Recipe> recipes = recipeSorter.getRecipesForAdvancement(advancementKey);
         if (recipes.isEmpty())

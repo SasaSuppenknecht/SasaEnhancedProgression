@@ -62,7 +62,6 @@ class TechSelectionMenu implements InventoryHolder {
         return inventory;
     }
 
-
     /**
      * @param pressedButton The pressed ItemStack
      * @return The associated {@link Technology} with this ItemStack button

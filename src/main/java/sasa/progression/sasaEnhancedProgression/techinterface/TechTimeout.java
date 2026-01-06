@@ -3,6 +3,7 @@ package sasa.progression.sasaEnhancedProgression.techinterface;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import sasa.progression.sasaEnhancedProgression.SasaEnhancedProgression;
+import sasa.progression.sasaEnhancedProgression.events.TechnologyTimeoutEvent;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -23,7 +24,8 @@ class TechTimeout {
 
         activeResearch.put(player.getUniqueId(), research);
         Bukkit.getScheduler().runTaskLater(SasaEnhancedProgression.plugin, () -> {
-            activeResearch.remove(player.getUniqueId());
+            TechResearchMenu techResearchMenu = activeResearch.remove(player.getUniqueId());
+            new TechnologyTimeoutEvent(player, techResearchMenu.getTechnology()).callEvent();
             player.sendMessage("You may contribute to a different research again.");
         }, TIMEOUT);
     }
