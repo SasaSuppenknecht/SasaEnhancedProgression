@@ -113,6 +113,7 @@ public class Technology {
     }
 
     public void updatePartProgress(Player player, int index, int value) {
+        if (player == null) return;
         if (!partProgressMap.containsKey(player)) {
             partProgressMap.put(player, new int[requirements.size()]);
         }

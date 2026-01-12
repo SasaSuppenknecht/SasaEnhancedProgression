@@ -6,18 +6,19 @@ import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 import sasa.progression.sasaEnhancedProgression.events.TechnologyProgressEvent;
+import sasa.progression.sasaEnhancedProgression.events.TechnologyTimeoutEvent;
 import sasa.progression.sasaEnhancedProgression.misc.ItemTagHandler;
 import sasa.progression.sasaEnhancedProgression.techtree.requirements.AbstractMaterialRequirement;
 import sasa.progression.sasaEnhancedProgression.techtree.requirements.MaterialRequirement;
 import sasa.progression.sasaEnhancedProgression.techtree.Technology;
 import sasa.progression.sasaEnhancedProgression.techtree.requirements.MaterialTagRequirement;
 
-import java.util.HashMap;
 import java.util.List;
 
 @SuppressWarnings("UnstableApiUsage")
@@ -68,9 +69,10 @@ class TechResearchMenu implements InventoryHolder, Listener {
                     itemType = ItemTagHandler.getRandomItemFromItemTag(tag);
                     assert itemType != null;
                 }
-                default -> throw new IllegalStateException("Unexpected value: " + requirement);
+                default -> throw new RuntimeException("Unexpected value: " + requirement);
             }
 
+            // todo properly name item when tag is involved
             ItemStack item = itemType.createItemStack();
             ItemMeta meta = item.getItemMeta();
             meta.lore(List.of(
@@ -107,16 +109,22 @@ class TechResearchMenu implements InventoryHolder, Listener {
             int index = 18;
             while (amount > 0 && index < 53) {
                 ItemStack itemStack = inventory.getItem(index);
+                index++;
                 if (itemStack == null || itemStack.getType().asItemType() != itemType) continue;
                 int itemStackAmount = itemStack.getAmount();
                 int toSubtract = Math.min(amount, itemStackAmount);
                 itemStack.subtract(toSubtract);
                 amount -= toSubtract;
-
-                index++;
             }
             assert amount <= 0;
 
+            updateGUI();
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    void onTechnologyTimeoutEvent(TechnologyTimeoutEvent event) {
+        if (event.getPlayer() == player) {
             updateGUI();
         }
     }

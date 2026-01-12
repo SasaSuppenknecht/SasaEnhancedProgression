@@ -4,15 +4,20 @@ Code TODO:
 - configurable compasses
 - timber
 - glass breaking
+- scaling
+- difficulty setting
 
-- change tag names
-- nur ein Spieler gleichzeitig sollte eine bestimme Forschung öffnen können
-- falls ein anderes Spieler schon ressourcen investiert, werden einem trotzdem alle genommen...
-- Trades nehmen nur items mit dem korrekten Namen entgegen!
-- Kosten etwas reduzieren (insbesondere stone tools)
-- command sollte auch für nicht Operator nutzbar sein
-
-
+Fixes:
+- TechResearchMenu: Tag Names + Any
+- Wie wird animal taming erforscht? [check]
+- andere cobbled stone arten zulassen [check]
+- Besserer Chest loot?
+- Stone Hoe wird schon freigeschalten durch Stone Tools? [check]
+- Disable farming vor Forschung
+- Disable Fishing vor Forschung
+- Nether Portal lässt sich schon anzünden vor Forschung (vermutlich)
+- Tag Names in anderen Sprachen funktionieren nicht
+- return to main menu
 
 Weitere Ideen:
 - Ein Research Block (eventuell eine Variante des Crafting Tables?) -> beacon like multiblock structure

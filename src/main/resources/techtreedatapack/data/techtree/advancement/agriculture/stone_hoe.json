@@ -10,7 +10,7 @@
     "hidden": true
   },
   "criteria": {
-    "techtree:agriculture/agriculture": {
+    "techtree:agriculture/farming": {
       "trigger": "minecraft:impossible"
     },
     "techtree:tools/stone_tools": {

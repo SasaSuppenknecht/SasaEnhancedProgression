@@ -1,5 +1,5 @@
 {
-  "parent" : "techtree:processing/block_variants",
+  "parent" : "techtree:processing/stone_working",
   "display": {
     "icon": {
       "id": "minecraft:cut_copper_stairs"
@@ -23,17 +23,17 @@
       "minecraft:chiseled_copper_from_copper_block_stonecutting",
       "minecraft:chiseled_copper_from_cut_copper_stonecutting",
       "minecraft:copper_grate",
-      "minecraft:copper_grate_from_copper_block_stonecutting", 
+      "minecraft:copper_grate_from_copper_block_stonecutting",
       "minecraft:cut_copper",
       "minecraft:cut_copper_from_copper_block_stonecutting",
       "minecraft:cut_copper_slab",
-      "minecraft:cut_copper_slab_from_copper_block_stonecutting",  
-      "minecraft:cut_copper_slab_from_cut_copper_stonecutting",  
+      "minecraft:cut_copper_slab_from_copper_block_stonecutting",
+      "minecraft:cut_copper_slab_from_cut_copper_stonecutting",
       "minecraft:cut_copper_stairs",
       "minecraft:cut_copper_stairs_from_copper_block_stonecutting",
-      "minecraft:cut_copper_stairs_from_cut_copper_stonecutting", 
+      "minecraft:cut_copper_stairs_from_cut_copper_stonecutting",
       "minecraft:exposed_chiseled_copper",
-      "minecraft:exposed_chiseled_copper_from_exposed_copper_stonecutting",    
+      "minecraft:exposed_chiseled_copper_from_exposed_copper_stonecutting",
       "minecraft:exposed_chiseled_copper_from_exposed_cut_copper_stonecutting",
       "minecraft:exposed_copper_grate",
       "minecraft:exposed_copper_grate_from_exposed_copper_stonecutting",

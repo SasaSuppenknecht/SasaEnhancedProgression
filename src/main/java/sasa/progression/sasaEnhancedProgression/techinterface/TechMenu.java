@@ -1,11 +1,13 @@
 package sasa.progression.sasaEnhancedProgression.techinterface;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.*;
 import sasa.progression.sasaEnhancedProgression.SasaEnhancedProgression;
 import sasa.progression.sasaEnhancedProgression.techtree.TechProgress;
@@ -63,6 +65,7 @@ public class TechMenu implements Listener {
                 event.setCancelled(true);
                 ItemStack getClickedItem = event.getCurrentItem();
                 Technology selectedTechnology = techSelectionMenu.buttonPress(getClickedItem);
+                if (selectedTechnology == null) return;
                 openResearchMenuForPlayer(selectedTechnology, (Player) event.getWhoClicked());
             }
         } else if (inventoryHolder instanceof TechResearchMenu techResearchMenu) {
@@ -107,9 +110,19 @@ public class TechMenu implements Listener {
                     itemList.add(itemStack);
                 }
             }
+            inventory.removeItem(itemList.toArray(ItemStack[]::new));
 
             player.give(itemList, true);
+            Bukkit.getScheduler().runTaskLater(SasaEnhancedProgression.plugin, player::updateInventory, 1);
+
             HandlerList.unregisterAll(techResearchMenu);
+        }
+    }
+
+    @EventHandler
+    public void onInventoryOpenEvent(InventoryOpenEvent event) {
+        if (event.getInventory().getHolder() instanceof TechResearchMenu techResearchMenu) {
+            Bukkit.getPluginManager().registerEvents(techResearchMenu, SasaEnhancedProgression.plugin);
         }
     }
 }

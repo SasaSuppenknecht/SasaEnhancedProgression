@@ -1,14 +1,11 @@
 package sasa.progression.sasaEnhancedProgression.techtree;
 
-import io.papermc.paper.registry.RegistryKey;
-import io.papermc.paper.registry.TypedKey;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.advancement.AdvancementProgress;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemType;
@@ -17,12 +14,12 @@ import sasa.progression.sasaEnhancedProgression.events.TechnologyProgressEvent;
 import sasa.progression.sasaEnhancedProgression.events.TechnologyTimeoutEvent;
 import sasa.progression.sasaEnhancedProgression.events.TechnologyUnlockEvent;
 import sasa.progression.sasaEnhancedProgression.io.TechnologyConfigReader;
+import sasa.progression.sasaEnhancedProgression.misc.ItemTagHandler;
 import sasa.progression.sasaEnhancedProgression.techtree.requirements.AbstractMaterialRequirement;
 import sasa.progression.sasaEnhancedProgression.techtree.requirements.MaterialRequirement;
 import sasa.progression.sasaEnhancedProgression.techtree.requirements.MaterialTagRequirement;
 
 import java.util.*;
-import java.util.stream.Stream;
 
 public class TechProgress implements Listener {
 
@@ -86,7 +83,7 @@ public class TechProgress implements Listener {
             Optional<AbstractMaterialRequirement> optionalRequirement = technology.getRequirements().stream().filter(
                     abstractMaterialRequirement -> switch (abstractMaterialRequirement) {
                         case MaterialRequirement mr -> mr.getItemType() == itemType;
-                        case MaterialTagRequirement tr -> tr.getTag().contains(TypedKey.create(RegistryKey.ITEM, itemType.getKey()));
+                        case MaterialTagRequirement tr -> ItemTagHandler.isItemTypeInItemTag(tr.getTag(), itemType);
                         default -> throw new IllegalStateException();
                     }
             ).findFirst();
@@ -113,6 +110,7 @@ public class TechProgress implements Listener {
             if (used >= 0) {
                 progressed = true;
                 technology.updatePartProgress(player, requirementIndex, partProgressAmounts[requirementIndex] + used);
+                partProgressAmounts = technology.getPartProgress(player);
                 new TechnologyProgressEvent(player, technology, requirement, itemType, used).callEvent();
 
                 boolean allRequirementsCompleted = technology.getRequirements().stream().allMatch(AbstractMaterialRequirement::isFulfilled);
@@ -130,7 +128,7 @@ public class TechProgress implements Listener {
         if (completedTech.contains(technology)) {
             return;
         }
-        assert openTech.contains(technology);
+        //assert openTech.contains(technology) : technology.toString();
         openTech.remove(technology);
         completedTech.add(technology);
 

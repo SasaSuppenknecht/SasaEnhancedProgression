@@ -44,7 +44,7 @@ agriculture:
       "minecraft:golden_apple": 
         amount: [0, 0, 1]
         scaling: false
-  tamning:
+  taming:
     parts: 1
     requirements:
       "minecraft:wheat":
@@ -92,10 +92,8 @@ agriculture:
     requirements:
       "minecraft:string":
         amount: [0, 2, 4]
-      "minecraft:salmon":
-        amount: [1, 2, 8]
-      "minecraft:cod":
-        amount: [1, 2, 8]
+      "#minecraft:fishes":
+        amount: [2, 8, 16]
       "minecraft:stick":
         amount: [16, 32, 64]
 
@@ -167,7 +165,7 @@ processing:
   brick_smelting:
     parts: 1
     requirements:
-      "minecraft:cobblestone":
+      "#minecraft:stone_crafting_materials":
         amount: [32, 64, 128]
       "minecraft:clay_ball":
         amount: [8, 16, 32]
@@ -202,14 +200,14 @@ processing:
     parts: 1
     requirements:
       "minecraft:cobblestone":
-        amount: [128, 256, 512]
+        amount: [64, 128, 256]
       "minecraft:andesite":
         amount: [16, 32, 64]
       "minecraft:diorite":
         amount: [16, 32, 64]
       "minecraft:granite":
         amount: [16, 32, 64]
-      "minecraft:deepslate":
+      "minecraft:cobbled_deepslate":
         amount: [16, 32, 64]
   wood_working:
     parts: 1
@@ -298,7 +296,7 @@ technology:
         amount: [16, 32, 64]
       "minecraft:ink_sac":
         amount: [0, 4, 8]
-      "minecraft:lectern":
+      "minecraft:book":
         amount: [0, 0, 1]
         scaling: false
 
@@ -318,8 +316,8 @@ tools:
   stone_tools:
     parts: 4
     requirements:
-      "minecraft:cobblestone":
-        amount: [128, 256, 512]
+      "#minecraft:stone_tool_materials":
+        amount: [64, 128, 256]
       "minecraft:stick":
         amount: [64, 128, 256]
   iron_tools:
@@ -339,7 +337,7 @@ tools:
   furnace:
     parts: 1
     requirements:
-      "minecraft:cobblestone":
+      "#minecraft:stone_crafting_materials":
         amount: [32, 64, 128]
   furnace_upgrades:
     parts: 2

@@ -57,13 +57,13 @@ public class ProgressFileManager {
             if (!startedRequirements.isEmpty()) {
                 ConfigurationSection techSection = section.createSection(technology.getAdvancementKey().asString());
                 for (AbstractMaterialRequirement requirement : startedRequirements) {
-                    Key key = switch (requirement) {
-                        case MaterialRequirement mr -> mr.getItemType().getKey();
-                        case MaterialTagRequirement tr -> tr.getTag().tagKey().key();
+                    String keyString = switch (requirement) {
+                        case MaterialRequirement mr -> mr.getItemType().getKey().toString();
+                        case MaterialTagRequirement tr -> "#" + tr.getTag().tagKey().key();
                         default -> throw new IllegalStateException("Unexpected value: " + requirement);
                     };
 
-                    techSection.set(key.asString(), requirement.getGiven());
+                    techSection.set(keyString, requirement.getGiven());
                 }
             }
         }
@@ -118,15 +118,13 @@ public class ProgressFileManager {
                 }
                 amountPerItemType.put(itemType, value);
             }
-            techProgress.progressTechnology(technology, amountPerItemType);
+            techProgress.progressTechnology(null, technology, amountPerItemType);
         }
 
         return techProgress;
     }
 
     public static boolean hasSavedProgress() {
-        System.out.println(new File(PROGRESS).getPath());
-
         return new File(SasaEnhancedProgression.plugin.getDataFolder(), PROGRESS).exists();
     }
 }
