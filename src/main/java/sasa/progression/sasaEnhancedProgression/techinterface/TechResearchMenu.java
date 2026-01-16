@@ -4,6 +4,7 @@ import io.papermc.paper.registry.tag.Tag;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.*;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -11,6 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
+import sasa.progression.sasaEnhancedProgression.SasaEnhancedProgression;
 import sasa.progression.sasaEnhancedProgression.events.TechnologyProgressEvent;
 import sasa.progression.sasaEnhancedProgression.events.TechnologyTimeoutEvent;
 import sasa.progression.sasaEnhancedProgression.misc.ItemTagHandler;
@@ -19,6 +21,7 @@ import sasa.progression.sasaEnhancedProgression.techtree.requirements.MaterialRe
 import sasa.progression.sasaEnhancedProgression.techtree.Technology;
 import sasa.progression.sasaEnhancedProgression.techtree.requirements.MaterialTagRequirement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("UnstableApiUsage")
@@ -27,6 +30,10 @@ class TechResearchMenu implements InventoryHolder, Listener {
     private final Technology technology;
     private final Inventory inventory;
     private final Player player;
+
+    private final List<ItemTagAnimation> animations = new ArrayList<>();
+    private int requirementSize = 0;
+
 
     TechResearchMenu(Technology technology, Player player) {
         this.technology = technology;
@@ -44,51 +51,67 @@ class TechResearchMenu implements InventoryHolder, Listener {
             inventory.setItem(i, gray);
         }
 
+        List<AbstractMaterialRequirement> requirements = technology.getRequirements();
+
+        assert requirements.size() <= 9;
+        for (AbstractMaterialRequirement requirement : requirements) {
+
+            ItemType itemType = switch (requirement) {
+                case MaterialRequirement mr -> mr.getItemType();
+                // Pick one random material from the materials behind tag
+                case MaterialTagRequirement tr -> {
+                    Tag<@NotNull ItemType> tag = tr.getTag();
+                    yield ItemTagHandler.getRandomItemFromItemTag(tag);
+                }
+                default -> throw new RuntimeException("Unexpected value: " + requirement);
+            };
+
+            assert itemType != null;
+
+            ItemStack item = itemType.createItemStack();
+
+            if (requirement instanceof MaterialTagRequirement tr) {
+                ItemMeta meta = item.getItemMeta();
+                meta.displayName(Component.text("Any " + ItemTagHandler.getTagName(tr.getTag())));
+                item.setItemMeta(meta);
+
+                animations.add(new ItemTagAnimation(requirementSize, tr.getTag()));
+            }
+
+            inventory.setItem(requirementSize, item);
+            requirementSize++;
+        }
+        ItemStack light_gray = createNamedItemStack(Material.LIGHT_GRAY_STAINED_GLASS_PANE, "");
+        for (int index = requirementSize; index < 9; index++) {
+            inventory.setItem(index, light_gray);
+        }
+
         updateGUI();
     }
 
 
     private void updateGUI() {
-        int parts = technology.getParts();
         List<AbstractMaterialRequirement> requirements = technology.getRequirements();
-
+        int parts = technology.getParts();
         int[] partProgress = technology.getPartProgress(player);
 
-        int index = 0;
-        assert requirements.size() <= 9;
-        for (AbstractMaterialRequirement requirement : requirements) {
+        for (int i = 0; i < requirementSize; i++) {
+            AbstractMaterialRequirement requirement = requirements.get(i);
             int partSize = Math.ceilDiv(requirement.getNeeded(), parts);
-            ItemType itemType;
-            switch (requirement) {
-                case MaterialRequirement mr -> {
-                    itemType = mr.getItemType();
-                }
-                case MaterialTagRequirement tr -> {
-                    Tag<ItemType> tag = tr.getTag();
-                    // Pick one random material from the materials behind tag
-                    itemType = ItemTagHandler.getRandomItemFromItemTag(tag);
-                    assert itemType != null;
-                }
-                default -> throw new RuntimeException("Unexpected value: " + requirement);
-            }
 
-            // todo properly name item when tag is involved
-            ItemStack item = itemType.createItemStack();
+            ItemStack item = inventory.getItem(i);
+            assert item != null;
+
             ItemMeta meta = item.getItemMeta();
             meta.lore(List.of(
-                    Component.text("Part: %d / %d".formatted(partProgress[index], partSize)),
+                    Component.text("Part: %d / %d".formatted(partProgress[i], partSize)),
                     Component.text("Total: %d / %d".formatted(requirement.getGiven(), requirement.getNeeded()))
             ));
+            if (requirement.isFulfilled()) {
+                meta.addEnchant(Enchantment.LURE, 1, true);
+                meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+            }
             item.setItemMeta(meta);
-
-            inventory.setItem(index, item);
-            index++;
-
-            // todo different visualization for finished requirements
-        }
-        ItemStack light_gray = createNamedItemStack(Material.LIGHT_GRAY_STAINED_GLASS_PANE, "");
-        for (; index < 9; index++) {
-            inventory.setItem(index, light_gray);
         }
     }
 
@@ -129,6 +152,18 @@ class TechResearchMenu implements InventoryHolder, Listener {
         }
     }
 
+    void startAnimation() {
+        for (ItemTagAnimation itemTagAnimation : animations) {
+            itemTagAnimation.startAnimation();
+        }
+    }
+
+    void stopAnimation() {
+        for (ItemTagAnimation itemTagAnimation : animations) {
+            itemTagAnimation.stopAnimation();
+        }
+    }
+
     public Technology getTechnology() {
         return technology;
     }
@@ -136,5 +171,38 @@ class TechResearchMenu implements InventoryHolder, Listener {
     @Override
     public @NotNull Inventory getInventory() {
         return inventory;
+    }
+
+    private class ItemTagAnimation {
+
+        private final int itemSlotIndex;
+        private final Tag<ItemType> tag;
+
+        private int itemIndex = 0;
+        private int taskID = -1;
+
+        ItemTagAnimation(int itemSlotIndex, Tag<ItemType> tag) {
+            this.itemSlotIndex = itemSlotIndex;
+            this.tag = tag;
+        }
+
+        void startAnimation() {
+            List<ItemType> itemTypeList = ItemTagHandler.getItemTypesInItemTag(tag).stream().toList();
+            taskID = Bukkit.getScheduler().scheduleSyncRepeatingTask(SasaEnhancedProgression.plugin, () -> {
+                itemIndex = (itemIndex + 1) % itemTypeList.size();
+                ItemStack newItemStack = itemTypeList.get(itemIndex).createItemStack();
+
+                ItemStack itemStack = inventory.getItem(itemSlotIndex);
+                assert itemStack != null;
+
+                ItemMeta meta = itemStack.getItemMeta();
+                newItemStack.setItemMeta(meta);
+                inventory.setItem(itemSlotIndex, newItemStack);
+            }, 8, 20);
+        }
+
+        void stopAnimation() {
+            Bukkit.getScheduler().cancelTask(taskID);
+        }
     }
 }

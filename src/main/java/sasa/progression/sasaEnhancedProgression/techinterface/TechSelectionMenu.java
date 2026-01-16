@@ -9,6 +9,7 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
+import sasa.progression.sasaEnhancedProgression.misc.ItemTagHandler;
 import sasa.progression.sasaEnhancedProgression.techtree.Technology;
 import sasa.progression.sasaEnhancedProgression.techtree.requirements.AbstractMaterialRequirement;
 import sasa.progression.sasaEnhancedProgression.techtree.requirements.MaterialRequirement;
@@ -40,7 +41,7 @@ class TechSelectionMenu implements InventoryHolder {
             for (AbstractMaterialRequirement requirement : technology.getRequirements()) {
                 String name = switch (requirement) {
                     case MaterialRequirement mr -> mr.getItemType().translationKey();
-                    case MaterialTagRequirement tr -> "Any " + tr.getTag().tagKey().toString().split("\\s|:")[1].replace("_", " "); // does not work for non-english languages
+                    case MaterialTagRequirement tr -> "Any " + ItemTagHandler.getTagName(tr.getTag()); // does not work for non-english languages
                     default -> throw new IllegalStateException("Unexpected value: " + requirement);
                 };
 

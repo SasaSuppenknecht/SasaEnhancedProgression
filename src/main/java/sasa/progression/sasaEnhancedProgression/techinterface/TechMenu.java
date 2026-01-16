@@ -49,6 +49,7 @@ public class TechMenu implements Listener {
         }
 
         player.openInventory(activeResearch.getInventory());
+        activeResearch.startAnimation();
     }
 
 
@@ -123,6 +124,7 @@ public class TechMenu implements Listener {
     public void onInventoryOpenEvent(InventoryOpenEvent event) {
         if (event.getInventory().getHolder() instanceof TechResearchMenu techResearchMenu) {
             Bukkit.getPluginManager().registerEvents(techResearchMenu, SasaEnhancedProgression.plugin);
+            techResearchMenu.stopAnimation();
         }
     }
 }

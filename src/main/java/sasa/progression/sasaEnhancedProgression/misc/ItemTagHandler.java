@@ -40,4 +40,8 @@ public class ItemTagHandler {
         return tag.values().stream().map(Registry.ITEM::get).collect(Collectors.toSet());
     }
 
+    public static String getTagName(Tag<ItemType> tag) {
+        return tag.tagKey().toString().split("\\s|:")[1].replace("_", " ");
+    }
+
 }

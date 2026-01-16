@@ -22,7 +22,6 @@ Fixes:
 Weitere Ideen:
 - Ein Research Block (eventuell eine Variante des Crafting Tables?) -> beacon like multiblock structure
 - Sollte ein Spieler zu mehr als einer Research am Tag einen Part beitragen können?
-- Research Menü: Möglichst über Rezepte verbleibende Anzahl anzeigen
 - Scoreboard für Research Übersicht
 - Playerlist für Übersicht, wer arbeitet gerade an was
 
