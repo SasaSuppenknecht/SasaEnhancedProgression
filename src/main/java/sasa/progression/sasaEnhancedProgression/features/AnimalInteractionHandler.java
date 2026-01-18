@@ -8,7 +8,7 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import sasa.progression.sasaEnhancedProgression.events.TechnologyUnlockEvent;
 
-public class AnimalInteractionHandler implements Listener {
+public class AnimalInteractionHandler extends AbstractFeature {
 
     private boolean tamingEnabled = false;
     private boolean breedingEnabled = false;
@@ -25,8 +25,9 @@ public class AnimalInteractionHandler implements Listener {
         }
     }
 
+    @Override
     @EventHandler
-    public void onAdvancementUnlockEvent(TechnologyUnlockEvent event) {
+    public void onTechnologyUnlock(TechnologyUnlockEvent event) {
         String key = event.getAdvancementKey().getKey();
         if (key.endsWith("taming")) {
             tamingEnabled = true;
@@ -34,5 +35,4 @@ public class AnimalInteractionHandler implements Listener {
             breedingEnabled = true;
         }
     }
-
 }

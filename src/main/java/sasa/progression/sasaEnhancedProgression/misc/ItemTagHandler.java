@@ -32,10 +32,6 @@ public class ItemTagHandler {
         return tag.contains(TypedKey.create(RegistryKey.ITEM, itemType.getKey()));
     }
 
-    public static boolean isItemTypeInItemTag(Tag<ItemType> tag, ItemStack itemStack) {
-        return isItemTypeInItemTag(tag, Objects.requireNonNull(itemStack.getType().asItemType()));
-    }
-
     public static Set<ItemType> getItemTypesInItemTag(Tag<ItemType> tag) {
         return tag.values().stream().map(Registry.ITEM::get).collect(Collectors.toSet());
     }

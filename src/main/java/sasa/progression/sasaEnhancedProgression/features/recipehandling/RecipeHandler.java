@@ -8,10 +8,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Recipe;
 import sasa.progression.sasaEnhancedProgression.events.TechnologyUnlockEvent;
+import sasa.progression.sasaEnhancedProgression.features.AbstractFeature;
 
 import java.util.List;
 
-public class RecipeHandler implements Listener {
+public class RecipeHandler extends AbstractFeature {
 
     private final RecipeSorter recipeSorter;
 
@@ -22,7 +23,7 @@ public class RecipeHandler implements Listener {
 
 
     @EventHandler
-    public void onAdvancementUnlock(TechnologyUnlockEvent event) {
+    public void onTechnologyUnlock(TechnologyUnlockEvent event) {
         NamespacedKey advancementKey = event.getAdvancementKey();
         List<Recipe> recipes = recipeSorter.getRecipesForAdvancement(advancementKey);
         if (recipes.isEmpty())

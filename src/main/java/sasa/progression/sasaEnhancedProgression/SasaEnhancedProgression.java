@@ -6,7 +6,7 @@ import org.bukkit.GameRule;
 import org.bukkit.World;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import sasa.progression.sasaEnhancedProgression.features.AnimalInteractionHandler;
+import sasa.progression.sasaEnhancedProgression.features.*;
 import sasa.progression.sasaEnhancedProgression.features.recipehandling.RecipeHandler;
 import sasa.progression.sasaEnhancedProgression.io.ProgressFileManager;
 import sasa.progression.sasaEnhancedProgression.io.TechnologyConfigReader;
@@ -52,7 +52,11 @@ public final class SasaEnhancedProgression extends JavaPlugin {
 
     private void initFeatures() {
         PluginManager pluginManager = Bukkit.getPluginManager();
+
         pluginManager.registerEvents(new RecipeHandler(), this);
         pluginManager.registerEvents(new AnimalInteractionHandler(), this);
+        pluginManager.registerEvents(new FishingInteractionHandler(), this);
+        pluginManager.registerEvents(new FarmingInteractionHandler(), this);
+        pluginManager.registerEvents(new PortalCreationHandler(), this);
     }
 }
