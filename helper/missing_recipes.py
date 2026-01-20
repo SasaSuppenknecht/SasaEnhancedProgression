@@ -1,8 +1,8 @@
 import re
 import os
 
-TARGET_DIR = r"C:\Users\pramb\Documents\GitHub\SasaEnhancedProgression\src\main\resources\techtreedatapack\data\techtree\advancement"
-RECIPES = r"C:\Users\pramb\Documents\GitHub\SasaEnhancedProgression\data\minecraft\recipe"
+TARGET_DIR = r"H:\Sascha\Programmierstuff\IntelliJ IDEA\Minecraft Plugins\1.21\SasaEnhancedProgression\src\main\resources\techtreedatapack\data\techtree\advancement"
+RECIPES = r"H:\Sascha\Programmierstuff\IntelliJ IDEA\Minecraft Plugins\1.21\SasaEnhancedProgression\1.21.8\data\minecraft\recipe"
 
 def search_file(file_name, pattern):
     pass
@@ -14,7 +14,7 @@ def main():
         for file in files:
             missing_recipes.append(file.removesuffix(".json"))
     
-    pattern = re.compile("\"minecraft:([a-z_]+)\"")
+    pattern = re.compile("\"minecraft:([a-z_\d]+)\"")
     for root, _, files in os.walk(TARGET_DIR):
         #print(files)
         for file in files:
