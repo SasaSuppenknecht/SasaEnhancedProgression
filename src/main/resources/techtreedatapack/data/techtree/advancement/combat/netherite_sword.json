@@ -1,0 +1,25 @@
+{
+  "parent" : "techtree:combat/diamond_sword",
+  "display": {
+    "icon": {
+      "id": "minecraft:netherite_sword"
+    },
+    "title": "Netherite Sword",
+    "description": "Unlocks netherite swords",
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "criteria": {
+    "techtree:combat/diamond_sword": {
+      "trigger": "minecraft:impossible"
+    },
+    "techtree:tools/netherite_tools": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:netherite_sword_smithing"
+    ]
+  }
+}

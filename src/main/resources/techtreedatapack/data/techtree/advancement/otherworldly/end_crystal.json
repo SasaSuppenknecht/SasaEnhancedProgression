@@ -1,0 +1,22 @@
+{
+  "parent" : "techtree:otherworldly/the_end",
+  "display": {
+    "icon": {
+      "id": "minecraft:end_crystal"
+    },
+    "title": "End Crystal",
+    "description": "Unlocks end crystal",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:otherworldly/the_end": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+        "minecraft:end_crystal"
+    ]
+  }
+}

@@ -58,5 +58,6 @@ public final class SasaEnhancedProgression extends JavaPlugin {
         pluginManager.registerEvents(new FishingInteractionHandler(), this);
         pluginManager.registerEvents(new FarmingInteractionHandler(), this);
         pluginManager.registerEvents(new PortalCreationHandler(), this);
+        pluginManager.registerEvents(new EnderPearlHandler(), this);
     }
 }

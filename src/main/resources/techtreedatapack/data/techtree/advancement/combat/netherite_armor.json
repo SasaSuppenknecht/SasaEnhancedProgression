@@ -1,0 +1,25 @@
+{
+  "parent" : "techtree:combat/diamond_armor",
+  "display": {
+    "icon": {
+      "id": "minecraft:netherite_chestplate"
+    },
+    "title": "Netherite Armor",
+    "description": "Unlocks netherite armor",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:combat/diamond_armor": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:netherite_helmet_smithing",
+      "minecraft:netherite_chestplate_smithing",
+      "minecraft:netherite_leggings_smithing",
+      "minecraft:netherite_boots_smithing"
+    ]
+  }
+}

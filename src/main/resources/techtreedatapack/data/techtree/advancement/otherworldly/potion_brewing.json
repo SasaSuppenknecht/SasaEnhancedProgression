@@ -1,0 +1,25 @@
+{
+  "parent" : "techtree:otherworldly/otherworldly",
+  "display": {
+    "icon": {
+      "id": "minecraft:brewing_stand"
+    },
+    "title": "Potion Brewing",
+    "description": "Unlocks potion brewing & related recipes",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:otherworldly/otherworldly": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+        "minecraft:brewing_stand",
+        "minecraft:magma_cream",
+        "minecraft:glistering_melon_slice",
+        "minecraft:fermented_spider_eye"
+    ]
+  }
+}

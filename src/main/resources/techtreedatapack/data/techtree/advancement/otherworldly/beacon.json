@@ -1,0 +1,22 @@
+{
+  "parent" : "techtree:otherworldly/nether",
+  "display": {
+    "icon": {
+      "id": "minecraft:beacon"
+    },
+    "title": "Beacon",
+    "description": "Unlocks beacon",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:otherworldly/nether": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+        "minecraft:beacon"
+    ]
+  }
+}

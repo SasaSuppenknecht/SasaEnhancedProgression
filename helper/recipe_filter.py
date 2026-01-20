@@ -2,7 +2,7 @@ from pathlib import Path
 import sys
 
 # Set the directory you want to search
-TARGET_DIR = Path(r"C:\Users\pramb\Documents\GitHub\SasaEnhancedProgression\data\minecraft\recipe")
+TARGET_DIR = Path(r"H:\Sascha\Programmierstuff\IntelliJ IDEA\Minecraft Plugins\1.21\SasaEnhancedProgression\1.21.8\data\minecraft\recipe")
 
 def main():
     if not TARGET_DIR.exists() or not TARGET_DIR.is_dir():

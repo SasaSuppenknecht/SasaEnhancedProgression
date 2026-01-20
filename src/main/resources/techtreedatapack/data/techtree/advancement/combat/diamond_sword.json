@@ -1,0 +1,25 @@
+{
+  "parent" : "techtree:combat/iron_sword",
+  "display": {
+    "icon": {
+      "id": "minecraft:diamond_sword"
+    },
+    "title": "Diamond Sword",
+    "description": "Unlocks diamond swords",
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "criteria": {
+    "techtree:combat/iron_sword": {
+      "trigger": "minecraft:impossible"
+    },
+    "techtree:tools/diamond_tools": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:diamond_sword"
+    ]
+  }
+}

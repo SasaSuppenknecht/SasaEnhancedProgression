@@ -1,0 +1,27 @@
+{
+  "parent" : "techtree:processing/ore_processing",
+  "display": {
+    "icon": {
+      "id": "minecraft:netherite_ingot"
+    },
+    "title": "Netherrite Processing",
+    "description": "Unlocks netherite",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:processing/ore_processing": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:netherite_scrap",
+      "minecraft:netherite_scrap_from_blasting",
+      "minecraft:netherite_ingot",
+      "minecraft:netherite_ingot_from_netherite_block",
+      "minecraft:netherite_block",
+      "minecraft:netherite_upgrade_smithing_template"
+    ]
+  }
+}

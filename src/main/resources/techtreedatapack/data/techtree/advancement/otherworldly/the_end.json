@@ -1,0 +1,22 @@
+{
+  "parent" : "techtree:otherworldly/nether",
+  "display": {
+    "icon": {
+      "id": "minecraft:end_portal_frame"
+    },
+    "title": "The End",
+    "description": "Unlocks eye of ender",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:otherworldly/nether": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+        "minecraft:eye_of_ender"
+    ]
+  }
+}

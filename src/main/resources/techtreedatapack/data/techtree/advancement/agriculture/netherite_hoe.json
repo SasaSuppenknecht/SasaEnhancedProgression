@@ -1,0 +1,25 @@
+{
+  "parent" : "techtree:agriculture/diamond_hoe",
+  "display": {
+    "icon": {
+      "id": "minecraft:netherite_hoe"
+    },
+    "title": "Netherite Hoe",
+    "description": "Unlocks netherite hoes",
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "criteria": {
+    "techtree:agriculture/diamond_hoe": {
+      "trigger": "minecraft:impossible"
+    },
+    "techtree:tools/netherite_tools": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:netherite_hoe_smithing"
+    ]
+  }
+}

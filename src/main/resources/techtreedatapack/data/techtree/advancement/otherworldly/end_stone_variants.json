@@ -1,0 +1,44 @@
+{
+  "parent" : "techtree:otherworldly/the_end",
+  "display": {
+    "icon": {
+      "id": "minecraft:end_stone_bricks"
+    },
+    "title": "End Stone Variants",
+    "description": "Unlocks end stone, end rods & purpur block variants",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:otherworldly/the_end": {
+      "trigger": "minecraft:impossible"
+    },
+    "techtree:processing/stone_working": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:popped_chorus_fruit",
+      "minecraft:end_rod",
+      "minecraft:purpur_block",
+      "minecraft:purpur_pillar",
+      "minecraft:purpur_pillar_from_purpur_block_stonecutting",
+      "minecraft:purpur_slab",
+      "minecraft:purpur_slab_from_purpur_block_stonecutting",
+      "minecraft:purpur_stairs",
+      "minecraft:purpur_stairs_from_purpur_block_stonecutting",
+      "minecraft:end_stone_brick_slab",
+      "minecraft:end_stone_brick_slab_from_end_stone_brick_stonecutting",
+      "minecraft:end_stone_brick_slab_from_end_stone_stonecutting",
+      "minecraft:end_stone_brick_stairs",
+      "minecraft:end_stone_brick_stairs_from_end_stone_brick_stonecutting",
+      "minecraft:end_stone_brick_stairs_from_end_stone_stonecutting",
+      "minecraft:end_stone_brick_wall",
+      "minecraft:end_stone_brick_wall_from_end_stone_brick_stonecutting",
+      "minecraft:end_stone_brick_wall_from_end_stone_stonecutting",
+      "minecraft:end_stone_bricks",
+      "minecraft:end_stone_bricks_from_end_stone_stonecutting"
+    ]
+  }
+}

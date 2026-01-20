@@ -1,0 +1,32 @@
+{
+  "parent" : "techtree:technology/basic_redstone",
+  "display": {
+    "icon": {
+      "id": "minecraft:observer"
+    },
+    "title": "Sensors & Lamps",
+    "description": "Unlocks observers, daylight detector & target blocks",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:technology/basic_redstone": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:observer",
+      "minecraft:calibrated_sculk_sensor",
+      "minecraft:daylight_detector",
+      "minecraft:target",
+      "minecraft:trapped_chest",
+      "minecraft:tripwire_hook",
+      "minecraft:copper_bulb",
+      "minecraft:exposed_copper_bulb",
+      "minecraft:weathered_copper_bulb",
+      "minecraft:oxidized_copper_bulb",
+      "minecraft:redstone_lamp"
+    ]
+  }
+}

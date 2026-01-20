@@ -1,0 +1,24 @@
+{
+  "parent" : "techtree:processing/glass_smelting",
+  "display": {
+    "icon": {
+      "id": "minecraft:amethyst_shard"
+    },
+    "title": "Amethyst Products",
+    "description": "Unlocks tinted glass & spyglass",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:processing/glass_smelting": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:spyglass",
+      "minecraft:tinted_glass",
+      "minecraft:amethyst_block"
+    ]
+  }
+}

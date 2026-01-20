@@ -1,0 +1,25 @@
+{
+  "parent" : "techtree:agriculture/iron_hoe",
+  "display": {
+    "icon": {
+      "id": "minecraft:diamond_hoe"
+    },
+    "title": "Diamond Hoe",
+    "description": "Unlocks diamond hoes",
+    "announce_to_chat": false,
+    "hidden": true
+  },
+  "criteria": {
+    "techtree:agriculture/iron_hoe": {
+      "trigger": "minecraft:impossible"
+    },
+    "techtree:tools/diamond_tools": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:diamond_hoe"
+    ]
+  }
+}

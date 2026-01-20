@@ -1,0 +1,30 @@
+{
+  "parent" : "techtree:technology/basic_redstone",
+  "display": {
+    "icon": {
+      "id": "minecraft:piston"
+    },
+    "title": "Mechanics",
+    "description": "Unlocks pistons, hoppers, droppers, dispensers, note blocks & more",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:technology/basic_redstone": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:piston",
+      "minecraft:sticky_piston",
+      "minecraft:hopper",
+      "minecraft:note_block",
+      "minecraft:jukebox",
+      "minecraft:dropper",
+      "minecraft:dispenser",
+      "minecraft:crafter",
+      "minecraft:clock"
+    ]
+  }
+}

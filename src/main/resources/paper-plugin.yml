@@ -1,5 +1,5 @@
 name: SasaEnhancedProgression
-version: '0.1'
+version: '0.2'
 main: sasa.progression.sasaEnhancedProgression.SasaEnhancedProgression
 api-version: '1.21'
 authors: [SasaSuppenknecht, Maila05]
