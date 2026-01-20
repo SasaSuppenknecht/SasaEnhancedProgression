@@ -54,7 +54,8 @@
       "minecraft:purple_bed",
       "minecraft:red_bed",
       "minecraft:white_bed",
-      "minecraft:yellow_bed"
+      "minecraft:yellow_bed",
+      "minecraft:brush"
     ]
   }
 }

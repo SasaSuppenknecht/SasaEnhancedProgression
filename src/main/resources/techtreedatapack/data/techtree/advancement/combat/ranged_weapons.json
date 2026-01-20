@@ -5,9 +5,9 @@
       "id": "minecraft:bow"
     },
     "title": "Ranged Weapons",
-    "description": "Unlocks bows and crossbows",
+    "description": "Unlocks bows, crossbows & fletching table",
     "announce_to_chat": false,
-    "hidden": true
+    "hidden": false
   },
   "criteria": {
     "techtree:combat/swords": {
@@ -20,7 +20,8 @@
       "minecraft:crossbow",
       "minecraft:arrow",
       "minecraft:tripwire_hook",
-      "techtree:cheap_arrows"
+      "techtree:cheap_arrows",
+      "minecraft:fletching_table"
     ]
   }
 }

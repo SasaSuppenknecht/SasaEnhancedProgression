@@ -21,6 +21,7 @@
       "minecraft:baked_potato_from_campfire_cooking",
       "minecraft:baked_potato_from_smoking",
       "minecraft:cookie",
+      "minecraft:cake",
       "minecraft:pumpkin_pie",
       "minecraft:beetroot_soup",
       "minecraft:mushroom_stew",
@@ -40,6 +41,11 @@
       "minecraft:suspicious_stew_from_torchflower",
       "minecraft:suspicious_stew_from_white_tulip",
       "minecraft:suspicious_stew_from_wither_rose",
+      "minecraft:dried_kelp",
+      "minecraft:dried_kelp_block",
+      "minecraft:dried_kelp_from_campfire_cooking",
+      "minecraft:dried_kelp_from_smelting",        
+      "minecraft:dried_kelp_from_smoking",
       "minecraft:bowl"
     ]
   }

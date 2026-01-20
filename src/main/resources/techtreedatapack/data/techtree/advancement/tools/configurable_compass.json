@@ -2,10 +2,10 @@
   "parent" : "techtree:tools/compass",
   "display": {
     "icon": {
-      "id": "minecraft:recovery_compass"
+      "id": "minecraft:spyglass"
     },
     "title": "Configurable Compass",
-    "description": "Unlocks lodestone and recovery compass",
+    "description": "Unlocks lodestone & recovery compass",
     "announce_to_chat": false,
     "hidden": false
   },

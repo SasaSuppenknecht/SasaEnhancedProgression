@@ -5,7 +5,7 @@
       "id": "minecraft:leather_chestplate"
     },
     "title": "Leather Armor",
-    "description": "",
+    "description": "Unlocks leather armor & armor stands",
     "announce_to_chat": false,
     "hidden": false
   },
@@ -22,7 +22,8 @@
       "minecraft:leather_boots",
       "minecraft:leather_horse_armor",
       "minecraft:armor_stand",
-      "minecraft:leather"
+      "minecraft:leather",
+      "minecraft:armor_dye"
     ]
   }
 }

@@ -5,7 +5,7 @@
       "id": "minecraft:ender_pearl"
     },
     "title": "Teleportation",
-    "description": "Allows the usage of ender pearls",
+    "description": "Unlocks the usage of ender pearls",
     "announce_to_chat": false,
     "hidden": false
   },

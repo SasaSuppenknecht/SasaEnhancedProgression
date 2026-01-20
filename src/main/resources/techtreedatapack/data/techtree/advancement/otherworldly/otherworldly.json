@@ -16,5 +16,12 @@
     "join": {
       "trigger": "minecraft:tick"
     }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:music_disc_5",
+      "minecraft:conduit",
+      "minecraft:creaking_heart"
+    ]
   }
 }

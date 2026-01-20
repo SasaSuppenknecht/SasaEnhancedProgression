@@ -19,7 +19,10 @@
   },
   "rewards": {
     "recipes": [
-
+      "minecraft:bone_block",
+      "minecraft:bone_meal",
+      "minecraft:bone_meal_from_bone_block",
+      "minecraft:composter"
     ]
   }
 }

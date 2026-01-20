@@ -18,7 +18,11 @@
     "recipes": [
         "minecraft:quartz_block",
         "minecraft:glowstone",
-        "minecraft:nether_wart_block"
+        "minecraft:nether_wart_block",
+        "minecraft:magma_block",
+        "minecraft:dried_ghast",
+        "minecraft:blaze_powder",
+        "minecraft:respawn_anchor"
     ]
   }
 }

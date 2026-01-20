@@ -5,7 +5,7 @@
       "id": "minecraft:iron_hoe"
     },
     "title": "Iron Hoe",
-    "description": "Unlocks iron and golden hoes",
+    "description": "Unlocks iron & golden hoes",
     "announce_to_chat": false,
     "hidden": true
   },
@@ -22,8 +22,5 @@
       "minecraft:iron_hoe",
       "minecraft:golden_hoe"
     ]
-  },
-  "dependencies": [
-    "techtree:iron_tools"
-  ]
+  }
 }

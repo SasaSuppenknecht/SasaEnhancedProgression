@@ -287,7 +287,8 @@
       "minecraft:prismarine_stairs",
       "minecraft:prismarine_stairs_from_prismarine_stonecutting",
       "minecraft:prismarine_wall",
-      "minecraft:prismarine_wall_from_prismarine_stonecutting"
+      "minecraft:prismarine_wall_from_prismarine_stonecutting",
+      "minecraft:sea_lantern"
     ]
   }
 }

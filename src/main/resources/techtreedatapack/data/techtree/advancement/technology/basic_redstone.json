@@ -25,6 +25,7 @@
       "minecraft:redstone_torch",
       "minecraft:lever",
       "minecraft:repeater",
+      "minecraft:comparator",
       "minecraft:oak_button",
       "minecraft:birch_button",
       "minecraft:acacia_button",

@@ -19,7 +19,9 @@
   },
   "rewards": {
     "recipes": [
-        
+        "minecraft:mace",
+        "minecraft:wind_charge",
+        "minecraft:turtle_helmet"
     ]
   }
 }

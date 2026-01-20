@@ -373,14 +373,16 @@ tools:
       "minecraft:smithing_table":
         amount: [0, 0, 1]
         scaling: false
-  compass:
+  navigation:
     parts: 1
     requirements:
       "minecraft:iron_ingot":
-        amount: [4, 8, 16]
+        amount: [1, 2, 4]
       "minecraft:redstone":
+        amount: [4, 8, 16]
+      "minecraft:paper":
         amount: [8, 16, 32]
-      "minecraft:compass":
+      "minecraft:map":
         amount: [0, 0, 1]
         scaling: false
   configurable_compass:
@@ -392,32 +394,15 @@ tools:
         amount: [32, 64, 128]
       "minecraft:echo_shard":
         amount: [0, 0, 1]
-  map:
-    parts: 1
-    requirements:
-      "minecraft:paper":
-        amount: [16, 32, 64]
-      "minecraft:compass":
-        amount: [1, 2, 4]
-      "minecraft:map":
-        amount: [0, 0, 1]
-        scaling: false
   shears:
     parts: 1
     requirements:
       "minecraft:iron_ingot":
         amount: [4, 8, 16]
-      "#minecraft:wool":
-        amount: [0, 4, 8]
-  loom:
-    parts: 1
-    requirements:
       "#minecraft:planks":
-        amount: [16, 32, 64]
+        amount: [4, 8, 16]
       "#minecraft:wool":
-        amount: [8, 16, 32]
-      "minecraft:string":
-        amount: [0, 4, 8]
+        amount: [0, 2, 8]
   storage:
     parts: 2
     requirements:

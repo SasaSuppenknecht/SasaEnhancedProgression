@@ -5,7 +5,7 @@
       "id": "minecraft:chest"
     },
     "title": "Storage",
-    "description": "Unlocks chests and barrels",
+    "description": "Unlocks chests & barrels",
     "announce_to_chat": false,
     "hidden": false
   },

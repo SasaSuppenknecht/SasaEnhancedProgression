@@ -5,7 +5,7 @@
       "id": "minecraft:beehive"
     },
     "title": "Beekeeping",
-    "description": "Unlocks beehives and honey & honeycomb related items",
+    "description": "Unlocks honey and honeycomb related items & beehives",
     "announce_to_chat": false,
     "hidden": false
   },

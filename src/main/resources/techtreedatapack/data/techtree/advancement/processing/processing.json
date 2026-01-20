@@ -36,7 +36,10 @@
       "minecraft:stick_from_bamboo_item",
       "minecraft:snow",
       "minecraft:snow_block",
-      "minecraft:packed_mud"
+      "minecraft:packed_mud",
+      "minecraft:clay",
+      "minecraft:muddy_mangrove_roots",
+      "minecraft:coarse_dirt"
     ]
   }
 }

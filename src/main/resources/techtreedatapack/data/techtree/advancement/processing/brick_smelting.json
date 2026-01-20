@@ -26,7 +26,10 @@
       "minecraft:smooth_sandstone",
       "minecraft:smooth_red_sandstone",
       "minecraft:flower_pot",
-      "minecraft:terracotta"
+      "minecraft:decorated_pot",
+      "minecraft:decorated_pot_simple",
+      "minecraft:terracotta",
+      "minecraft:deepslate"
     ]
   }
 }

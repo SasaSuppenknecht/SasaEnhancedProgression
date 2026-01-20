@@ -5,7 +5,7 @@
       "id": "minecraft:wooden_hoe"
     },
     "title": "Farming",
-    "description": "Unlocks hoes to enable farming",
+    "description": "Unlocks hoes & crop planting",
     "announce_to_chat": false,
     "hidden": false
   },
