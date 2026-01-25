@@ -45,6 +45,8 @@ class TechResearchMenu implements InventoryHolder, Listener {
 
         ItemStack acceptButton = createNamedItemStack(Material.LIME_STAINED_GLASS_PANE, "Research!");
         inventory.setItem(53, acceptButton);
+        ItemStack backButton = createNamedItemStack(Material.BLUE_STAINED_GLASS_PANE, "Back to Selection.");
+        inventory.setItem(45, backButton);
 
         ItemStack gray = createNamedItemStack(Material.GRAY_STAINED_GLASS_PANE, "");
         for (int i = 9; i < 18; i++) {
@@ -130,7 +132,7 @@ class TechResearchMenu implements InventoryHolder, Listener {
             int amount = event.getAmount();
 
             int index = 18;
-            while (amount > 0 && index < 53) {
+            while (amount > 0 && index < 53 && index != 45) {
                 ItemStack itemStack = inventory.getItem(index);
                 index++;
                 if (itemStack == null || itemStack.getType().asItemType() != itemType) continue;

@@ -10,7 +10,7 @@ import java.util.UUID;
 
 class TechTimeout {
 
-    private final long TIMEOUT = 20 * 60 * 1; // 5 minutes = 300 seconds = 60 * 20 ticks
+    private final long TIMEOUT = 20 * 60 * 3; // 5 minutes = 300 seconds = 60 * 20 ticks
     private final HashMap<UUID, TechResearchMenu> activeResearch = new HashMap<>();
 
     TechResearchMenu getActiveResearchOfPlayer(Player player) {

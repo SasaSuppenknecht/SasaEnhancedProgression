@@ -72,6 +72,13 @@ public class TechMenu implements Listener {
         } else if (inventoryHolder instanceof TechResearchMenu techResearchMenu) {
             if (event.getRawSlot() < 18) { // first two rows of the research menu should not be interacted with
                 event.setCancelled(true);
+            } else if (event.getRawSlot() == 45) {
+                event.setCancelled(true);
+
+                Player player = (Player) event.getWhoClicked();
+                if (!techTimeout.playerHasActiveResearch(player)) {
+                    player.openInventory(new TechSelectionMenu(techProgress.getOpenTech()).getInventory());
+                }
             } else if (event.getRawSlot() == 53) {
                 event.setCancelled(true);
 
@@ -80,6 +87,7 @@ public class TechMenu implements Listener {
 
                 HashMap<ItemType, Integer> amountPerItemType = new HashMap<>();
                 for (int i = 18; i < 53; i++) {
+                    if (i == 45) continue;
                     ItemStack itemStack = inventory.getItem(i);
                     if (itemStack == null) continue;
                     ItemType itemType = itemStack.getType().asItemType();
@@ -106,6 +114,7 @@ public class TechMenu implements Listener {
 
             ArrayList<ItemStack> itemList = new ArrayList<>();
             for (int i = 18; i < 53; i++) {
+                if (i == 45) continue;
                 ItemStack itemStack = inventory.getItem(i);
                 if (itemStack != null) {
                     itemList.add(itemStack);

@@ -128,6 +128,16 @@ combat:
         amount: [0, 2, 4]
       "minecraft:slime_ball":
         amount: [0, 0, 4]
+  netherite_armor:
+    parts: 3
+    requirements:
+      "minecraft:netherite_ingot":
+        amount: [1, 2, 4]
+        scaling: false
+      "minecraft:blaze_rod":
+        amount: [2, 8, 16]
+      "minecraft:diamond":
+        amount: [0, 1, 4]
   shields:
     parts: 3
     requirements:
@@ -160,6 +170,17 @@ combat:
       "minecraft:bow":
         amount: [0, 0, 1]
         scaling: false
+    special_ammunition:
+      parts: 2
+      requirements:
+        "minecraft:arrow":
+          amount: [16, 32, 64]
+        "minecraft:gunpowder":
+          amount: [1, 2, 4]
+        "minecraft:redstone":
+          amount: [ 8, 16, 32 ]
+        "minecraft:glowstone_dust":
+          amount: [ 4, 8, 16 ]
   
 processing:
   brick_smelting:
@@ -178,6 +199,13 @@ processing:
         amount: [8, 16, 32]
       "minecraft:sand":
         amount: [64, 128, 256]
+  amethyst_products:
+    parts: 1
+    requirements:
+      "minecraft:glass":
+        amount: [ 16, 32, 64 ]
+      "minecraft:amethyst_shard":
+        amount: [ 4, 8, 16 ]
   ore_processing:
     parts: 3
     requirements:
@@ -187,6 +215,14 @@ processing:
         amount: [8, 16, 32]
       "minecraft:raw_copper":
         amount: [16, 32, 64]
+  netherite_processing:
+    parts: 2
+    requirements:
+      "minecraft:netherite_scrap":
+        amount: [ 1, 2, 4 ]
+        scaling: false
+      "minecraft:gold_ingot":
+        amount: [ 16, 32, 64 ]
   colors:
     parts: 1
     requirements:
@@ -224,11 +260,31 @@ technology:
       "minecraft:redstone":
         amount: [16, 32, 64]
       "minecraft:iron_ingot":
-        amount: [8, 16, 32]
+        amount: [4, 8, 16]
       "#minecraft:planks":
         amount: [16, 32, 64]
       "minecraft:slime_ball":
         amount: [0, 0, 2]
+  mechanics:
+    parts: 2
+    requirements:
+      "minecraft:redstone":
+        amount: [ 8, 16, 32 ]
+      "minecraft:iron_ingot":
+        amount: [ 8, 16, 32 ]
+      "#minecraft:stone_crafting_materials":
+        amount: [ 16, 32, 64 ]
+      "minecraft:slime_ball":
+        amount: [ 0, 2, 4 ]
+  sensors:
+    parts: 2
+    requirements:
+      "minecraft:redstone":
+        amount: [ 8, 16, 32 ]
+      "minecraft:quartz":
+        amount: [ 16, 32, 64 ]
+      "minecraft:glowstone_dust":
+        amount: [ 16, 32, 64 ]
   boat:
     parts: 1
     requirements:
@@ -334,11 +390,23 @@ tools:
         amount: [4, 8, 16]
       "minecraft:stick":
         amount: [64, 128, 256]
+  netherite_tools:
+    parts: 4
+    requirements:
+      "minecraft:netherite_ingot":
+        amount: [ 1, 2, 4 ]
+      "minecraft:lava_bucket":
+        amount: [ 2, 4, 8 ]
   furnace:
     parts: 1
     requirements:
       "#minecraft:stone_crafting_materials":
         amount: [32, 64, 128]
+  fluid_handling:
+    parts: 1
+    requirements:
+      "minecraft:iron_ingot":
+        amount: [ 8, 16, 32 ]
   furnace_upgrades:
     parts: 2
     requirements:
@@ -419,5 +487,47 @@ tools:
         amount: [4, 8, 16]
       "minecraft:string":
         amount: [4, 8, 16]
-      
-  
+  shulker_boxes:
+    parts: 2
+    requirements:
+      "minecraft:shulker_shell":
+        amount: [ 1, 2, 3 ]
+      "minecraft:chest":
+        amount: [ 2, 4, 8 ]
+
+otherworldly:
+  enchanting:
+    parts: 2
+    requirements:
+      "minecraft:book":
+        amount: [ 2, 4, 8 ]
+      "minecraft:obsidian":
+        amount: [ 2, 4, 8 ]
+      "minecraft:diamond":
+        amount: [1, 2, 4]
+    potion_brewing:
+      parts: 2
+      requirements:
+        "minecraft:nether_wart":
+          amount: [ 32, 32, 64 ]
+        "minecraft:blaze_rod":
+          amount: [ 2, 4, 8 ]
+        "minecraft:glass_bottle":
+          amount: [4, 8, 16]
+    teleportation:
+      parts: 1
+      requirements:
+        "minecraft:ender_pearl":
+          amount: [1, 2, 4]
+    nether:
+      parts: 2
+      requirements:
+        "minecraft:flint_and_steel":
+          amount: [ 2, 4, 8 ]
+          scaling: false
+        "minecraft:obsidian":
+          amount: [ 2, 4, 8 ]
+        "minecraft:netherack":
+          amount: [8, 16, 32]
+        "minecraft:lava_bucket":
+          amount: [0, 2, 4]

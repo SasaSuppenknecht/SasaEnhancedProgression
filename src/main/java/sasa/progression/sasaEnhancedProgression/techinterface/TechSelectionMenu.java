@@ -26,7 +26,7 @@ class TechSelectionMenu implements InventoryHolder {
     private final ArrayList<ButtonTechTuple> buttonTechTuples = new ArrayList<>();
 
     TechSelectionMenu(Set<Technology> openTech) {
-        this.inventory = Bukkit.createInventory(this, 4 * 9, Component.text("Technology Selection"));
+        this.inventory = Bukkit.createInventory(this, 6 * 9, Component.text("Technology Selection"));
 
         // todo sort technologies
         for (Technology technology : openTech) {
