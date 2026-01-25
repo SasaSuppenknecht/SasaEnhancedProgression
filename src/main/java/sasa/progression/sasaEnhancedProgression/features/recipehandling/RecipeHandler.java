@@ -26,8 +26,8 @@ public class RecipeHandler extends AbstractFeature {
     public void onTechnologyUnlock(TechnologyUnlockEvent event) {
         NamespacedKey advancementKey = event.getAdvancementKey();
         List<Recipe> recipes = recipeSorter.getRecipesForAdvancement(advancementKey);
-        if (recipes.isEmpty())
-            return;
+
+        recipes = recipes.stream().distinct().toList(); // todo hopefully fixes: Duplicate recipe ignored with ID ResourceKey[minecraft:recipe / minecraft:cut_sandstone_from_sandstone_stonecutting]
 
         for (Recipe recipe : recipes) {
             Bukkit.addRecipe(recipe, true);

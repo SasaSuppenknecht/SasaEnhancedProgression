@@ -14,23 +14,14 @@ Fixes:
 - Stone Hoe wird schon freigeschalten durch Stone Tools? [check]
 - Tag Names in anderen Sprachen funktionieren nicht
 
-- Teleportation und andere haben noch keine Ressourcen zugeordnet
 - Advancement command sollte auch advancement unlock triggern
 - Advancement unlock updated nicht die anderen Menüs
 - Tag Animation läuft nicht bei Wiederöffnen eines TechReserachMenus
-- Seeds und andere Pflanzen als Teil der World Generation?
 - Farming ist sehr schwierig zu erreichen -> eventuell nur Wheat, Wheat Seeds und Pumpkin
-- Fluid handling schwierig sollte schneebälle erfordern
-- Eventuell custom tag "root-vegetable"
-- Farming neusortieren: Eine Koch-Reihe und eine Bauern-Reihe
+- Farming neusortieren: Eine Koch-Reihe und eine Bauern-Reihe [check]
 - Eventuell sollte ResearchTimeout mit Spielerzahl skalieren
-- Minecarts etwas günstiger
-- Furnace Upgrade sollte weniger Eisen kostenid
-- Iron Tools günstiger?
 - Navigation könnte auch erstmal nur Karten sein
-- Beekeeping beliebige Blumen
-- Colors: Any flower + Cactus auf höherer Schwierigkeit
-- Writing: Vielleicht ohne Book für Normale Schwierigkeit?
+
 
 Weitere Ideen:
 - Ein Research Block (eventuell eine Variante des Crafting Tables?) -> beacon like multiblock structure

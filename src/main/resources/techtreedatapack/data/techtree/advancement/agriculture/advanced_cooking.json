@@ -1,5 +1,5 @@
 {
-  "parent" : "techtree:agriculture/plant_cooking",
+  "parent" : "techtree:agriculture/meat_cooking",
   "display": {
     "icon": {
       "id": "minecraft:golden_carrot"
@@ -10,7 +10,7 @@
     "hidden": false
   },
   "criteria": {
-    "techtree:agriculture/plant_cooking": {
+    "techtree:agriculture/meat_cooking": {
       "trigger": "minecraft:impossible"
     }
   },

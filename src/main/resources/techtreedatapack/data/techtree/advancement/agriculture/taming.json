@@ -1,5 +1,5 @@
 {
-  "parent" : "techtree:agriculture/agriculture",
+  "parent" : "techtree:agriculture/farming",
   "display": {
     "icon": {
       "id": "minecraft:saddle"
@@ -10,7 +10,7 @@
     "hidden": false
   },
   "criteria": {
-    "techtree:agriculture/agriculture": {
+    "techtree:agriculture/farming": {
       "trigger": "minecraft:impossible"
     }
   },

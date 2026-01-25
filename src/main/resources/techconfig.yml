@@ -3,18 +3,39 @@ agriculture:
     parts: 2
     requirements:
       "minecraft:wheat_seeds":
-        amount: [8, 16, 32]
+        amount: [4, 8, 16]
       "minecraft:dirt":
         amount: [64, 128, 256]
+      "minecraft:wheat":
+        amount: [2, 4, 8]
+      "minecraft:pumpkin":
+        amount: [0, 4, 8]
+      "#techtree:root_vegetables":
+        amount: [0, 0, 4]
+        scaling: false
+  taming:
+    parts: 1
+    requirements:
+      "minecraft:wheat":
+        amount: [ 4, 8, 16 ]
       "minecraft:carrot":
-        amount: [0, 4, 32]
-        scaling: false
+        amount: [ 8, 12, 16 ]
       "minecraft:potato":
-        amount: [0, 4, 32]
+        amount: [ 8, 12, 16 ]
+      "minecraft:saddle":
+        amount: [ 0, 0, 1 ]
         scaling: false
-      "minecraft:beetroot_seeds":
-        amount: [0, 0, 16]
-        scaling: false
+  breeding:
+    parts: 2
+    requirements:
+      "minecraft:wheat_seeds":
+        amount: [ 4, 16, 32 ]
+      "minecraft:wheat":
+        amount: [ 4, 16, 32 ]
+      "minecraft:potato":
+        amount: [ 4, 16, 32 ]
+      "minecraft:carrot":
+        amount: [ 4, 16, 32 ]
   plant_cooking:
     parts: 2
     requirements:
@@ -30,6 +51,19 @@ agriculture:
         amount: [0, 4, 8]
       "minecraft:melon":
         amount: [0, 0, 2]
+  meat_cooking:
+    parts: 2
+    "minecraft:beef":
+      amount: [ 2, 4, 8 ]
+    "minecraft:chicken":
+      amount: [ 2, 4, 8 ]
+    "minecraft:porkchop":
+      amount: [ 2, 4, 8 ]
+    "#minecraft:coals":
+      amount: [ 8, 16, 32 ]
+    "minecraft:rabbit":
+      amount: [ 0, 0, 2 ]
+      scaling: false
   advanced_cooking:
     parts: 1
     requirements:
@@ -44,49 +78,13 @@ agriculture:
       "minecraft:golden_apple": 
         amount: [0, 0, 1]
         scaling: false
-  taming:
-    parts: 1
-    requirements:
-      "minecraft:wheat":
-        amount: [4, 8, 16]
-      "minecraft:carrot":
-        amount: [8, 12, 16]
-      "minecraft:potato":
-        amount: [8, 12, 16]
-      "minecraft:saddle":
-        amount: [0, 0, 1]
-        scaling: false
-  breeding:
-    parts: 2
-    requirements: 
-      "minecraft:wheat_seeds":
-        amount: [4, 16, 32]
-      "minecraft:wheat":
-        amount: [4, 16, 32]
-      "minecraft:potato":
-        amount: [4, 16, 32]
-      "minecraft:carrot":
-        amount: [4, 16, 32]
-  meet_cooking:
-    parts: 2
-    "minecraft:beef":
-      amount: [4, 8, 16]
-    "minecraft:chicken":
-      amount: [4, 8, 16]
-    "minecraft:porkchop":
-      amount: [4, 8, 16]
-    "#minecraft:coals":
-      amount: [8, 16, 32]
-    "minecraft:rabbit":
-      amount: [0, 0, 2]
-      scaling: false
   beekeeping:
     parts: 1
     requirements:
-      "minecraft:dandelion":
-        amount: [1, 2, 4]
-      "minecraft:poppy":
-        amount: [1, 2, 4]
+      "#minecraft:small_flowers":
+        amount: [4, 8, 8]
+      "minecraft:campfire":
+        amount: [0, 1, 2]
   fishing:
     parts: 1
     requirements:
@@ -226,30 +224,30 @@ processing:
   colors:
     parts: 1
     requirements:
-      "minecraft:dandelion":
-        amount: [1, 2, 4]
-      "minecraft:poppy":
-        amount: [1, 2, 4]
+      "#minecraft:small_flowers":
+        amount: [2, 4, 8]
       "minecraft:lapis_lazuli":
-        amount: [0, 4, 8]
+        amount: [2, 4, 8]
+      "minecraft:cactus":
+        amount: [0, 2, 4]
   stone_working:
     parts: 1
     requirements:
       "minecraft:cobblestone":
-        amount: [64, 128, 256]
+        amount: [64, 128, 128]
       "minecraft:andesite":
-        amount: [16, 32, 64]
+        amount: [16, 32, 32]
       "minecraft:diorite":
-        amount: [16, 32, 64]
+        amount: [16, 32, 32]
       "minecraft:granite":
-        amount: [16, 32, 64]
+        amount: [16, 32, 32]
       "minecraft:cobbled_deepslate":
         amount: [16, 32, 64]
   wood_working:
     parts: 1
     requirements:
       "#minecraft:logs":
-        amount: [32, 64, 128]
+        amount: [32, 64, 64]
       "minecraft:wooden_axe":
         amount: [1, 2, 4]
 
@@ -316,9 +314,9 @@ technology:
     parts: 2
     requirements:
       "minecraft:iron_ingot":
-        amount: [16, 32, 64]
+        amount: [16, 16, 16]
       "minecraft:redstone":
-        amount: [16, 32, 64]
+        amount: [16, 32, 32]
       "minecraft:stick":
         amount: [32, 64, 128]
   minecarts_increased_speed_1:
@@ -373,21 +371,21 @@ tools:
     parts: 4
     requirements:
       "#minecraft:stone_tool_materials":
-        amount: [64, 128, 256]
+        amount: [64, 128, 128]
       "minecraft:stick":
         amount: [64, 128, 256]
   iron_tools:
     parts: 4
     requirements:
       "minecraft:iron_ingot":
-        amount: [32, 64, 128]
+        amount: [32, 64, 64]
       "minecraft:stick":
         amount: [64, 128, 256]
   diamond_tools:
     parts: 4
     requirements:
       "minecraft:diamond":
-        amount: [4, 8, 16]
+        amount: [4, 8, 12]
       "minecraft:stick":
         amount: [64, 128, 256]
   netherite_tools:
@@ -402,22 +400,17 @@ tools:
     requirements:
       "#minecraft:stone_crafting_materials":
         amount: [32, 64, 128]
-  fluid_handling:
-    parts: 1
-    requirements:
-      "minecraft:iron_ingot":
-        amount: [ 8, 16, 32 ]
   furnace_upgrades:
     parts: 2
     requirements:
       "minecraft:iron_ingot":
-        amount: [16, 32, 64]
+        amount: [8, 16, 16]
       "minecraft:smooth_stone":
         amount: [32, 64, 128]
       "minecraft:furnace":
-        amount: [1, 2, 4]
+        amount: [1, 4, 8]
       "minecraft:copper_ingot":
-        amount: [16, 32, 64]
+        amount: [8, 16, 32]
   furnace_speed_upgrades:
     parts: 2
     requirements:
@@ -431,11 +424,18 @@ tools:
         amount: [0, 4, 8]
       "minecraft:glass":
         amount: [16, 32, 64]
+  fluid_handling:
+    parts: 1
+    requirements:
+      "minecraft:iron_ingot":
+        amount: [ 4, 8, 16 ]
+      "minecraft:snowball":
+        amount: [ 0, 0, 32]
   smithing:
     parts: 4
     requirements:
       "minecraft:iron_ingot":
-        amount: [32, 64, 128]
+        amount: [32, 64, 64]
       "#minecraft:coals":
         amount: [16, 32, 64]
       "minecraft:smithing_table":
@@ -468,14 +468,18 @@ tools:
       "minecraft:iron_ingot":
         amount: [4, 8, 16]
       "#minecraft:planks":
-        amount: [4, 8, 16]
+        amount: [8, 16, 32]
       "#minecraft:wool":
         amount: [0, 2, 8]
+      "minecraft:loom":
+        amount: [0, 0, 1]
+        scaling: false
   storage:
     parts: 2
     requirements:
       "minecraft:chest":
         amount: [1, 2, 4]
+        scaling: false
       "#minecraft:planks":
         amount: [16, 32, 64]
       "#minecraft:wooden_slabs":
@@ -505,29 +509,29 @@ otherworldly:
         amount: [ 2, 4, 8 ]
       "minecraft:diamond":
         amount: [1, 2, 4]
-    potion_brewing:
-      parts: 2
-      requirements:
-        "minecraft:nether_wart":
-          amount: [ 32, 32, 64 ]
-        "minecraft:blaze_rod":
-          amount: [ 2, 4, 8 ]
-        "minecraft:glass_bottle":
-          amount: [4, 8, 16]
-    teleportation:
-      parts: 1
-      requirements:
-        "minecraft:ender_pearl":
-          amount: [1, 2, 4]
-    nether:
-      parts: 2
-      requirements:
-        "minecraft:flint_and_steel":
-          amount: [ 2, 4, 8 ]
-          scaling: false
-        "minecraft:obsidian":
-          amount: [ 2, 4, 8 ]
-        "minecraft:netherack":
-          amount: [8, 16, 32]
-        "minecraft:lava_bucket":
-          amount: [0, 2, 4]
+  potion_brewing:
+    parts: 2
+    requirements:
+      "minecraft:nether_wart":
+        amount: [ 32, 32, 64 ]
+      "minecraft:blaze_rod":
+        amount: [ 2, 4, 8 ]
+      "minecraft:glass_bottle":
+        amount: [4, 8, 16]
+  teleportation:
+    parts: 1
+    requirements:
+      "minecraft:ender_pearl":
+        amount: [1, 2, 4]
+  nether:
+    parts: 2
+    requirements:
+      "minecraft:flint_and_steel":
+        amount: [ 2, 4, 8 ]
+        scaling: false
+      "minecraft:obsidian":
+        amount: [ 2, 4, 8 ]
+      "minecraft:netherack":
+        amount: [8, 16, 32]
+      "minecraft:lava_bucket":
+        amount: [0, 2, 4]

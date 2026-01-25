@@ -1,5 +1,5 @@
 {
-  "parent" : "techtree:agriculture/breeding",
+  "parent" : "techtree:agriculture/plant_cooking",
   "display": {
     "icon": {
       "id": "minecraft:cooked_beef"
@@ -10,7 +10,7 @@
     "hidden": false
   },
   "criteria": {
-    "techtree:agriculture/breeding": {
+    "techtree:agriculture/plant_cooking": {
       "trigger": "minecraft:impossible"
     }
   },
