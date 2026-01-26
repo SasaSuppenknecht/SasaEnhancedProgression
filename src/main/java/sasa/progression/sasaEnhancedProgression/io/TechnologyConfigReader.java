@@ -1,5 +1,6 @@
 package sasa.progression.sasaEnhancedProgression.io;
 
+import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -15,23 +16,25 @@ import java.util.List;
 
 public class TechnologyConfigReader {
 
-    private final String CONFIG_NAME = "techconfig.yml";
-    private final YamlConfiguration config;
+    private final String TECH_CONFIG = "techconfig.yml";
+
+    private final YamlConfiguration techconfig;
+
+    private final int difficulty;
+    private final int playerCount;
 
     public TechnologyConfigReader() {
-        config = loadConfig();
-    }
-
-    // todo place techconfig in folder if not already present
-    private YamlConfiguration loadConfig() {
-        File file = new File(SasaEnhancedProgression.plugin.getDataFolder(), CONFIG_NAME);
-        YamlConfiguration config = new YamlConfiguration();
+        SasaEnhancedProgression.plugin.saveResource(TECH_CONFIG, false);
+        File techConfigFile = new File(SasaEnhancedProgression.plugin.getDataFolder(), TECH_CONFIG);
+        techconfig = new YamlConfiguration();
         try {
-            config.load(file);
+            techconfig.load(techConfigFile);
         } catch (IOException | InvalidConfigurationException e) {
             throw new RuntimeException(e);
         }
-        return config;
+
+        difficulty = SasaEnhancedProgression.configReader.getDifficulty();
+        playerCount = SasaEnhancedProgression.configReader.getPlayerCount();
     }
 
 
@@ -39,21 +42,18 @@ public class TechnologyConfigReader {
         assert namespacedKey.getNamespace().equals(DatapackSetup.DATAPACK_NAMESPACE);
         String key = namespacedKey.getKey().replace("/", ".");
 
-        // todo process difficulty
-        int difficulty = 2;
-
         String yamlPath = key + ".requirements";
-        ConfigurationSection section = config.getConfigurationSection(yamlPath);
+        ConfigurationSection section = techconfig.getConfigurationSection(yamlPath);
         if (section == null) {
             return null;
         }
 
-        int parts = config.getInt(key + ".parts");
+        int parts = techconfig.getInt(key + ".parts");
         TechnologyRequirementBundle technologyRequirement = new TechnologyRequirementBundle(parts);
         for (String sectionKey : section.getKeys(false)) {
             List<Integer> values = (List<Integer>) section.getConfigurationSection(sectionKey).getList("amount");
             assert values != null;
-            int value = values.get(difficulty);
+            int value = values.get(difficulty) * playerCount / 2;
             if (value == 0) continue;
 
             boolean scaling = section.getBoolean("scaling", true);
@@ -61,6 +61,7 @@ public class TechnologyConfigReader {
         }
         return technologyRequirement;
     }
+
 
 
 }

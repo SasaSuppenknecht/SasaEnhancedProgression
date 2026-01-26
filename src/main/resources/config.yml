@@ -1,0 +1,13 @@
+
+# The number of players expected to play on the server
+# This will scale all costs by (playercount / 2)
+# Allowed values: A number >= 0. Setting this to 0 will take the number of slots the server provides instead.
+playercount: 2
+
+# Higher difficulty requires higher quantity of items and more exploration to progress technologies
+# Allowed values: 1, 2, or 3
+difficulty: 2
+
+# The timeout determines the time in seconds between each new technology part a player may participate in.
+# Allowed values: A number >= 0 and <= 3600 (60 minutes)
+timeout: 180

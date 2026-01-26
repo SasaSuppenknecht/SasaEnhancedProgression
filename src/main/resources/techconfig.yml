@@ -531,7 +531,7 @@ otherworldly:
         scaling: false
       "minecraft:obsidian":
         amount: [ 2, 4, 8 ]
-      "minecraft:netherack":
+      "minecraft:netherrack":
         amount: [8, 16, 32]
       "minecraft:lava_bucket":
         amount: [0, 2, 4]
