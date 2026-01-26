@@ -1,0 +1,23 @@
+{
+  "parent" : "techtree:combat/swords",
+  "display": {
+    "icon": {
+      "id": "minecraft:bow"
+    },
+    "title": "Mace",
+    "description": "Unlocks the mace and wind charge",
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "techtree:combat/swords": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "minecraft:mace",
+      "minecraft:wind_charge"
+    ]
+  }
+}

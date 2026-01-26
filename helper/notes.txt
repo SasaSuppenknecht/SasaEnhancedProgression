@@ -8,28 +8,22 @@ Code TODO:
 - difficulty setting
 
 Fixes:
-- TechResearchMenu: Tag Names + Any
 - Wie wird animal taming erforscht? [check]
 - Besserer Chest loot?
 - Stone Hoe wird schon freigeschalten durch Stone Tools? [check]
 - Tag Names in anderen Sprachen funktionieren nicht
 
 - Advancement command sollte auch advancement unlock triggern
-- Advancement unlock updated nicht die anderen Menüs
-- Tag Animation läuft nicht bei Wiederöffnen eines TechReserachMenus
-- Farming ist sehr schwierig zu erreichen -> eventuell nur Wheat, Wheat Seeds und Pumpkin
-- Farming neusortieren: Eine Koch-Reihe und eine Bauern-Reihe [check]
+- Advancement unlock updated nicht die anderen Menüs [check]
 - Eventuell sollte ResearchTimeout mit Spielerzahl skalieren
-- Navigation könnte auch erstmal nur Karten sein
 
 
 Weitere Ideen:
 - Ein Research Block (eventuell eine Variante des Crafting Tables?) -> beacon like multiblock structure
-- Sollte ein Spieler zu mehr als einer Research am Tag einen Part beitragen können?
 - Scoreboard für Research Übersicht
 - Playerlist für Übersicht, wer arbeitet gerade an was
 
 Scaling:
-- 5 Minuten cooldown
+- 3 Minuten cooldown
 - Parts: Spielerzahl / 2
 - Amounts: Spielerzahl / 2

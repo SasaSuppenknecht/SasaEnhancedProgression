@@ -1,22 +1,21 @@
 {
-  "parent" : "techtree:tools/tools",
+  "parent" : "techtree:technology/writing",
   "display": {
     "icon": {
-      "id": "minecraft:compass"
+      "id": "minecraft:map"
     },
-    "title": "Navigation",
-    "description": "Unlocks compasses, maps & cartography tables",
+    "title": "Maps",
+    "description": "Unlocks maps & cartography tables",
     "announce_to_chat": false,
     "hidden": false
   },
   "criteria": {
-    "techtree:tools/tools": {
+    "techtree:technology/writing": {
       "trigger": "minecraft:impossible"
     }
   },
   "rewards": {
     "recipes": [
-      "minecraft:compass",
       "minecraft:map",
       "minecraft:map_cloning",
       "minecraft:map_extending",

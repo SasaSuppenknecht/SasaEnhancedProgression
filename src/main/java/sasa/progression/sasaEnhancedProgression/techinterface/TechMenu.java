@@ -49,7 +49,6 @@ public class TechMenu implements Listener {
         }
 
         player.openInventory(activeResearch.getInventory());
-        activeResearch.startAnimation();
     }
 
 
@@ -126,6 +125,7 @@ public class TechMenu implements Listener {
             Bukkit.getScheduler().runTaskLater(SasaEnhancedProgression.plugin, player::updateInventory, 1);
 
             HandlerList.unregisterAll(techResearchMenu);
+            techResearchMenu.stopAnimation();
         }
     }
 
@@ -133,7 +133,7 @@ public class TechMenu implements Listener {
     public void onInventoryOpenEvent(InventoryOpenEvent event) {
         if (event.getInventory().getHolder() instanceof TechResearchMenu techResearchMenu) {
             Bukkit.getPluginManager().registerEvents(techResearchMenu, SasaEnhancedProgression.plugin);
-            techResearchMenu.stopAnimation();
+            techResearchMenu.startAnimation();
         }
     }
 }

@@ -127,22 +127,23 @@ class TechResearchMenu implements InventoryHolder, Listener {
 
     @EventHandler
     public void onTechnologyProgressEvent(TechnologyProgressEvent event) {
-        if (event.getTechnology() == technology && inventory.getViewers().contains(event.getPlayer())) {
-            ItemType itemType = event.getItemType();
-            int amount = event.getAmount();
+        if (event.getTechnology() == technology) {
+            if (inventory.getViewers().contains(player)) {
+                ItemType itemType = event.getItemType();
+                int amount = event.getAmount();
 
-            int index = 18;
-            while (amount > 0 && index < 53 && index != 45) {
-                ItemStack itemStack = inventory.getItem(index);
-                index++;
-                if (itemStack == null || itemStack.getType().asItemType() != itemType) continue;
-                int itemStackAmount = itemStack.getAmount();
-                int toSubtract = Math.min(amount, itemStackAmount);
-                itemStack.subtract(toSubtract);
-                amount -= toSubtract;
+                int index = 18;
+                while (amount > 0 && index < 53 && index != 45) {
+                    ItemStack itemStack = inventory.getItem(index);
+                    index++;
+                    if (itemStack == null || itemStack.getType().asItemType() != itemType) continue;
+                    int itemStackAmount = itemStack.getAmount();
+                    int toSubtract = Math.min(amount, itemStackAmount);
+                    itemStack.subtract(toSubtract);
+                    amount -= toSubtract;
+                }
+                assert amount <= 0;
             }
-            assert amount <= 0;
-
             updateGUI();
         }
     }

@@ -1,21 +1,22 @@
 {
-  "parent" : "techtree:tools/compass",
+  "parent" : "techtree:technology/map",
   "display": {
     "icon": {
-      "id": "minecraft:spyglass"
+      "id": "minecraft:compass"
     },
-    "title": "Configurable Compass",
-    "description": "Unlocks lodestone & recovery compass",
+    "title": "Compass",
+    "description": "Unlocks compasses & lodestones",
     "announce_to_chat": false,
     "hidden": false
   },
   "criteria": {
-    "techtree:tools/compass": {
+    "techtree:technology/map": {
       "trigger": "minecraft:impossible"
     }
   },
   "rewards": {
     "recipes": [
+      "minecraft:compass",
       "minecraft:recovery_compass",
       "minecraft:lodestone"
     ]
