@@ -40,7 +40,7 @@ public class TechMenu implements Listener {
             return;
         }
 
-        player.openInventory(new TechSelectionMenu(techProgress.getOpenTech()).getInventory());
+        player.openInventory(new TechSelectionMenu(techProgress).getInventory());
     }
 
 
@@ -79,7 +79,7 @@ public class TechMenu implements Listener {
                         if (selectedTechnology == technology) {
                             openResearchMenuForPlayer(selectedTechnology, player);
                         } else {
-                            TextComponent title = (TextComponent) Bukkit.getAdvancement(technology.getAdvancementKey()).getDisplay().title();
+                            TextComponent title = (TextComponent) technology.getConnectedAdvancement().getDisplay().title();
                             String technologyName = title.content();
                             int remainingTime = techTimeout.getRemainingTimeoutInSeconds(player);
                             player.sendMessage("You are still locked into %s for another %d seconds".formatted(technologyName, remainingTime));
@@ -92,7 +92,7 @@ public class TechMenu implements Listener {
                 } else if (event.getRawSlot() == 45) {
                     event.setCancelled(true);
 
-                    player.openInventory(new TechSelectionMenu(techProgress.getOpenTech()).getInventory());
+                    player.openInventory(new TechSelectionMenu(techProgress).getInventory());
 
                 } else if (event.getRawSlot() == 53) {
                     event.setCancelled(true);

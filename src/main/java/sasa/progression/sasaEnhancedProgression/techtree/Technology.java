@@ -28,6 +28,7 @@ public class Technology implements Comparable<Technology> {
     private final HashMap<Player, int[]> partProgressMap = new HashMap<>();
 
     public final int depth;
+    public final Advancement baseAdvancement;
 
     public Technology(Advancement advancement, TechnologyRequirementBundle requirementsData) {
         this.advancementKey = advancement.getKey();
@@ -64,11 +65,14 @@ public class Technology implements Comparable<Technology> {
 
         int parentCount = 0;
         Advancement parent = advancement.getParent();
+        Advancement previousParent = advancement;
         while (parent != null) {
+            previousParent = parent;
             parent = parent.getParent();
             parentCount++;
         }
         depth = parentCount;
+        baseAdvancement = previousParent;
     }
 
     public NamespacedKey getAdvancementKey() {
@@ -152,5 +156,13 @@ public class Technology implements Comparable<Technology> {
         return this.depth - o.depth;
     }
 
+
+    public static class NameSorter implements Comparator<Technology> {
+
+        @Override
+        public int compare(Technology t1, Technology t2) {
+            return t1.getAdvancementKey().getKey().split("/")[1].compareTo(t2.getAdvancementKey().getKey().split("/")[1]);
+        }
+    }
 
 }
