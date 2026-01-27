@@ -38,7 +38,7 @@ public final class SasaEnhancedProgression extends JavaPlugin {
             commands.registrar().register(TechCommand.createCommand(techProgress), "Opens the tech tree progression interface");
         });
 
-        configReader = null;
+        //configReader = null;
     }
 
     @Override

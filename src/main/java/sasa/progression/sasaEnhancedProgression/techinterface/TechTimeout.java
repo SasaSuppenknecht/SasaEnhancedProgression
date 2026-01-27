@@ -2,7 +2,6 @@ package sasa.progression.sasaEnhancedProgression.techinterface;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitTask;
 import sasa.progression.sasaEnhancedProgression.SasaEnhancedProgression;
 import sasa.progression.sasaEnhancedProgression.events.TechnologyTimeoutEvent;
 
@@ -11,35 +10,50 @@ import java.util.UUID;
 
 class TechTimeout {
 
-    private final long TIMEOUT;
-    private final HashMap<UUID, TechResearchMenu> activeResearch = new HashMap<>();
+    private final int TIMEOUT;
+    private final HashMap<UUID, PlayerTimeoutInformation> activeResearch = new HashMap<>();
 
 
     public TechTimeout() {
-        long TICKS_PER_SECOND = 20;
+        int TICKS_PER_SECOND = 20;
         TIMEOUT = TICKS_PER_SECOND * SasaEnhancedProgression.configReader.getTimeout();
+        System.out.printf("Timeout: %d%n", TIMEOUT);
     }
 
-    TechResearchMenu getActiveResearchOfPlayer(Player player) {
-        return activeResearch.get(player.getUniqueId());
+    TechResearchMenu getActiveResearch(Player player) {
+        return activeResearch.get(player.getUniqueId()).techResearchMenu;
     }
 
-    void setActiveResearchOfPlayer(Player player, TechResearchMenu research) {
-        // todo this approach forgets about the timer on server restart
+    void setActiveResearch(Player player, TechResearchMenu research) {
+        // note: this approach forgets about the timer on server restart
         if (activeResearch.containsKey(player.getUniqueId()))
             return;
 
+        // by using the unique ID the player can re-log into the game and the timer will still track that player
         UUID playerUUID = player.getUniqueId();
-        activeResearch.put(playerUUID, research);
+        int tick = Bukkit.getCurrentTick();
+
+        activeResearch.put(playerUUID, new PlayerTimeoutInformation(research, tick + TIMEOUT));
         Bukkit.getScheduler().runTaskLater(SasaEnhancedProgression.plugin, () -> {
-            TechResearchMenu techResearchMenu = activeResearch.remove(playerUUID);
-            new TechnologyTimeoutEvent(player, techResearchMenu.getTechnology()).callEvent();
+            PlayerTimeoutInformation techResearchMenu = activeResearch.remove(playerUUID);
+            new TechnologyTimeoutEvent(player, techResearchMenu.techResearchMenu.getTechnology()).callEvent();
             player.sendMessage("You may contribute to a different research again.");
         }, TIMEOUT);
 
     }
 
-    boolean playerHasActiveResearch(Player player) {
+    boolean hasActiveResearch(Player player) {
         return activeResearch.containsKey(player.getUniqueId());
     }
+
+    int getRemainingTimeoutInSeconds(Player player) {
+        if (!activeResearch.containsKey(player.getUniqueId())) {
+            return 0;
+        } else {
+            PlayerTimeoutInformation playerTimeoutInformation = activeResearch.get(player.getUniqueId());
+            return (playerTimeoutInformation.timeoutEndTick - Bukkit.getCurrentTick()) / 20;
+        }
+    }
+
+    private record PlayerTimeoutInformation(TechResearchMenu techResearchMenu, int timeoutEndTick) {}
 }

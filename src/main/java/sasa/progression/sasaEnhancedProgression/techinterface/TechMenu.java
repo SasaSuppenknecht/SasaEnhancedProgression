@@ -1,5 +1,7 @@
 package sasa.progression.sasaEnhancedProgression.techinterface;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -32,8 +34,8 @@ public class TechMenu implements Listener {
     void openSelectionMenuForPlayer(Player player) {
         // If player has already invested in research before, the player may not choose a different one until some
         // time later
-        if (techTimeout.playerHasActiveResearch(player)) {
-            TechResearchMenu techResearchMenu = techTimeout.getActiveResearchOfPlayer(player);
+        if (techTimeout.hasActiveResearch(player)) {
+            TechResearchMenu techResearchMenu = techTimeout.getActiveResearch(player);
             player.openInventory(techResearchMenu.getInventory());
             return;
         }
@@ -43,9 +45,11 @@ public class TechMenu implements Listener {
 
 
     void openResearchMenuForPlayer(Technology technology, Player player) {
-        TechResearchMenu activeResearch = techTimeout.getActiveResearchOfPlayer(player);
-        if (activeResearch == null) {
+        TechResearchMenu activeResearch;
+        if (!techTimeout.hasActiveResearch(player)) {
             activeResearch = new TechResearchMenu(technology, player);
+        } else {
+            activeResearch = techTimeout.getActiveResearch(player);
         }
 
         player.openInventory(activeResearch.getInventory());
@@ -58,48 +62,61 @@ public class TechMenu implements Listener {
         Inventory inventory = event.getInventory();
 
         InventoryHolder inventoryHolder = inventory.getHolder(false);
-        if (inventoryHolder instanceof TechSelectionMenu techSelectionMenu) {
-            if (event.isShiftClick()) {
-                event.setCancelled(true);
-            } else if (clickedInventory == inventory) {
-                event.setCancelled(true);
-                ItemStack getClickedItem = event.getCurrentItem();
-                Technology selectedTechnology = techSelectionMenu.buttonPress(getClickedItem);
-                if (selectedTechnology == null) return;
-                openResearchMenuForPlayer(selectedTechnology, (Player) event.getWhoClicked());
-            }
-        } else if (inventoryHolder instanceof TechResearchMenu techResearchMenu) {
-            if (event.getRawSlot() < 18) { // first two rows of the research menu should not be interacted with
-                event.setCancelled(true);
-            } else if (event.getRawSlot() == 45) {
-                event.setCancelled(true);
+        if (event.getWhoClicked() instanceof Player player) {
+            if (inventoryHolder instanceof TechSelectionMenu techSelectionMenu) {
+                if (event.isShiftClick()) {
+                    event.setCancelled(true);
+                } else if (clickedInventory == inventory) {
+                    event.setCancelled(true);
+                    ItemStack getClickedItem = event.getCurrentItem();
+                    Technology selectedTechnology = techSelectionMenu.buttonPress(getClickedItem);
+                    if (selectedTechnology == null) return;
+                    if (!techTimeout.hasActiveResearch(player)) {
+                        openResearchMenuForPlayer(selectedTechnology, player);
+                    } else {
+                        TechResearchMenu techResearchMenu = techTimeout.getActiveResearch(player);
+                        Technology technology = techResearchMenu.getTechnology();
+                        if (selectedTechnology == technology) {
+                            openResearchMenuForPlayer(selectedTechnology, player);
+                        } else {
+                            TextComponent title = (TextComponent) Bukkit.getAdvancement(technology.getAdvancementKey()).getDisplay().title();
+                            String technologyName = title.content();
+                            int remainingTime = techTimeout.getRemainingTimeoutInSeconds(player);
+                            player.sendMessage("You are still locked into %s for another %d seconds".formatted(technologyName, remainingTime));
+                        }
+                    }
+                }
+            } else if (inventoryHolder instanceof TechResearchMenu techResearchMenu) {
+                if (event.getRawSlot() < 18) { // first two rows of the research menu should not be interacted with
+                    event.setCancelled(true);
+                } else if (event.getRawSlot() == 45) {
+                    event.setCancelled(true);
 
-                Player player = (Player) event.getWhoClicked();
-                if (!techTimeout.playerHasActiveResearch(player)) {
                     player.openInventory(new TechSelectionMenu(techProgress.getOpenTech()).getInventory());
-                }
-            } else if (event.getRawSlot() == 53) {
-                event.setCancelled(true);
 
-                Technology technology = techResearchMenu.getTechnology();
-                Set<ItemType> requirementsItemTypes = technology.getRemainingRequirementsItemTypes();
+                } else if (event.getRawSlot() == 53) {
+                    event.setCancelled(true);
 
-                HashMap<ItemType, Integer> amountPerItemType = new HashMap<>();
-                for (int i = 18; i < 53; i++) {
-                    if (i == 45) continue;
-                    ItemStack itemStack = inventory.getItem(i);
-                    if (itemStack == null) continue;
-                    ItemType itemType = itemStack.getType().asItemType();
-                    if (!requirementsItemTypes.contains(itemType)) continue;
+                    Technology technology = techResearchMenu.getTechnology();
+                    Set<ItemType> requirementsItemTypes = technology.getRemainingRequirementsItemTypes();
 
-                    amountPerItemType.merge(itemType, itemStack.getAmount(), Integer::sum);
-                }
+                    HashMap<ItemType, Integer> amountPerItemType = new HashMap<>();
+                    for (int i = 18; i < 53; i++) {
+                        if (i == 45) continue;
+                        ItemStack itemStack = inventory.getItem(i);
+                        if (itemStack == null) continue;
+                        ItemType itemType = itemStack.getType().asItemType();
+                        if (!requirementsItemTypes.contains(itemType)) continue;
 
-                if (amountPerItemType.isEmpty()) return;
+                        amountPerItemType.merge(itemType, itemStack.getAmount(), Integer::sum);
+                    }
 
-                boolean progressed = techProgress.progressTechnology((Player) event.getWhoClicked(), technology, amountPerItemType);
-                if (progressed) {
-                    techTimeout.setActiveResearchOfPlayer((Player) event.getWhoClicked(), techResearchMenu);
+                    if (amountPerItemType.isEmpty()) return;
+
+                    boolean progressed = techProgress.progressTechnology(player, technology, amountPerItemType);
+                    if (progressed) {
+                        techTimeout.setActiveResearch(player, techResearchMenu);
+                    }
                 }
             }
         }

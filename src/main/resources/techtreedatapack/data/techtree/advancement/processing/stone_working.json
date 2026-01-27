@@ -4,7 +4,7 @@
     "icon": {
       "id": "minecraft:cobblestone_stairs"
     },
-    "title": "Stone working",
+    "title": "Stone Working",
     "description": "Unlocks stonecutting: slabs, stairs, walls & more",
     "announce_to_chat": false,
     "hidden": false

@@ -2,7 +2,7 @@
   "parent" : "techtree:combat/swords",
   "display": {
     "icon": {
-      "id": "minecraft:bow"
+      "id": "minecraft:mace"
     },
     "title": "Mace",
     "description": "Unlocks the mace and wind charge",

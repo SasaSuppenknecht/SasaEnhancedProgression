@@ -133,7 +133,11 @@ class TechResearchMenu implements InventoryHolder, Listener {
                 int amount = event.getAmount();
 
                 int index = 18;
-                while (amount > 0 && index < 53 && index != 45) {
+                while (amount > 0 && index < 53) {
+                    if (index == 45) {
+                        index++;
+                        continue;
+                    }
                     ItemStack itemStack = inventory.getItem(index);
                     index++;
                     if (itemStack == null || itemStack.getType().asItemType() != itemType) continue;

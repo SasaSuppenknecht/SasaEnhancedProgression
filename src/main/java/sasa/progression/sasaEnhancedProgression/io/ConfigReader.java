@@ -43,12 +43,12 @@ public class ConfigReader {
         }
         playerCount = tmpPlayerCount;
 
-        int tmpTimeout = config.getInt("difficulty", 180);
+        int tmpTimeout = config.getInt("timeout", 180);
         if (tmpTimeout < 0 || tmpTimeout > 3600) {
             SasaEnhancedProgression.plugin.getLogger().config("Timeout outside of bounds. Setting timeout to 180.");
-            tmpDifficulty = 180;
+            tmpTimeout = 180;
         }
-        timeout = tmpDifficulty;
+        timeout = tmpTimeout;
     }
 
 
