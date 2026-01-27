@@ -6,9 +6,12 @@ import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
+import sasa.progression.sasaEnhancedProgression.events.TechnologyProgressEvent;
 import sasa.progression.sasaEnhancedProgression.misc.ItemTagHandler;
 import sasa.progression.sasaEnhancedProgression.techtree.TechProgress;
 import sasa.progression.sasaEnhancedProgression.techtree.Technology;
@@ -17,9 +20,8 @@ import sasa.progression.sasaEnhancedProgression.techtree.requirements.MaterialRe
 import sasa.progression.sasaEnhancedProgression.techtree.requirements.MaterialTagRequirement;
 
 import java.util.*;
-import java.util.stream.Stream;
 
-class TechSelectionMenu implements InventoryHolder {
+class TechSelectionMenu implements InventoryHolder, Listener {
 
     private final Inventory inventory;
     private final ArrayList<ButtonTechTuple> buttonTechTuples = new ArrayList<>();
@@ -141,6 +143,22 @@ class TechSelectionMenu implements InventoryHolder {
         return result.get().technology();
     }
 
+    @EventHandler
+    public void onTechnologyProgressEvent(TechnologyProgressEvent event) {
+        Technology technology = event.getTechnology();
+        ButtonTechTuple buttonTechTuple = buttonTechTuples.stream()
+                .filter(tuple -> tuple.technology == technology)
+                .findFirst()
+                .orElseThrow();
+        buttonTechTuples.remove(buttonTechTuple);
+        ItemStack newButton = createButton(technology);
+        buttonTechTuples.add(new ButtonTechTuple(newButton, technology));
+
+        ItemStack button = buttonTechTuple.button;
+        int index = inventory.first(button);
+        assert index >= 0;
+        inventory.setItem(index, newButton);
+    }
 
     private record ButtonTechTuple(ItemStack button, Technology technology) {}
 }

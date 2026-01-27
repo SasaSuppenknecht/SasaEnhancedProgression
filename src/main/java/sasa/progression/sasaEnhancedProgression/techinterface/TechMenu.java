@@ -143,14 +143,19 @@ public class TechMenu implements Listener {
 
             HandlerList.unregisterAll(techResearchMenu);
             techResearchMenu.stopAnimation();
+        } else if (inventory.getHolder() instanceof TechSelectionMenu techSelectionMenu) {
+            HandlerList.unregisterAll(techSelectionMenu);
         }
     }
 
     @EventHandler
     public void onInventoryOpenEvent(InventoryOpenEvent event) {
-        if (event.getInventory().getHolder() instanceof TechResearchMenu techResearchMenu) {
+        InventoryHolder inventoryHolder = event.getInventory().getHolder();
+        if (inventoryHolder instanceof TechResearchMenu techResearchMenu) {
             Bukkit.getPluginManager().registerEvents(techResearchMenu, SasaEnhancedProgression.plugin);
             techResearchMenu.startAnimation();
+        } else if (inventoryHolder instanceof TechSelectionMenu techSelectionMenu) {
+            Bukkit.getPluginManager().registerEvents(techSelectionMenu, SasaEnhancedProgression.plugin);
         }
     }
 }
