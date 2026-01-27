@@ -1,11 +1,8 @@
 Code TODO:
 - Faster smelting recipes
 - Faster minecarts
-- configurable compasses
 - timber
 - glass breaking
-- scaling
-- difficulty setting
 
 Fixes:
 - Wie wird animal taming erforscht? [check]

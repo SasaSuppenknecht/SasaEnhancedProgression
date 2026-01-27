@@ -36,7 +36,7 @@ public class TechProgress implements Listener {
         for (var it = Bukkit.advancementIterator(); it.hasNext();) {
             Advancement advancement = it.next();
             var requirements = technologyConfigReader.getTechnologyRequirements(advancement.getKey());
-            Technology technology = new Technology(advancement.getKey(), requirements);
+            Technology technology = new Technology(advancement, requirements);
 
             if (advancement.getCriteria().contains("join")) {
                 completedTech.add(technology);
@@ -68,6 +68,8 @@ public class TechProgress implements Listener {
     public Set<Technology> getRemainingTech() {
         return Set.copyOf(remainingTech);
     }
+
+    public Collection<Technology> getAllTechnologies() { return keyToTechnologyMap.values(); }
 
     public Technology getTechnologyFromKey(NamespacedKey key) {
         return keyToTechnologyMap.get(key);

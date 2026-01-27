@@ -53,11 +53,14 @@ public class TechnologyConfigReader {
         for (String sectionKey : section.getKeys(false)) {
             List<Integer> values = (List<Integer>) section.getConfigurationSection(sectionKey).getList("amount");
             assert values != null;
-            int value = values.get(difficulty) * playerCount / 2;
+            int value = values.get(difficulty);
+            boolean scaling = section.getBoolean("scaling", true);
+            if (!scaling) {
+                value *= playerCount / 2;
+            }
             if (value == 0) continue;
 
-            boolean scaling = section.getBoolean("scaling", true);
-            technologyRequirement.requirements.put(sectionKey, new TechnologyRequirementBundle.RequirementInformationBundle(value, scaling));
+            technologyRequirement.requirements.put(sectionKey, value);
         }
         return technologyRequirement;
     }

@@ -18,10 +18,6 @@
     "recipes": [
       "minecraft:redstone",
       "minecraft:redstone_block",
-      "minecraft:redstone_from_blasting_deepslate_redstone_ore",
-      "minecraft:redstone_from_blasting_redstone_ore",
-      "minecraft:redstone_from_smelting_deepslate_redstone_ore",
-      "minecraft:redstone_from_smelting_redstone_ore",
       "minecraft:redstone_torch",
       "minecraft:lever",
       "minecraft:repeater",

@@ -27,10 +27,8 @@ public class RecipeHandler extends AbstractFeature {
         NamespacedKey advancementKey = event.getAdvancementKey();
         List<Recipe> recipes = recipeSorter.getRecipesForAdvancement(advancementKey);
 
-        recipes = recipes.stream().distinct().toList(); // todo hopefully fixes: Duplicate recipe ignored with ID ResourceKey[minecraft:recipe / minecraft:cut_sandstone_from_sandstone_stonecutting]
-
         for (Recipe recipe : recipes) {
-            Bukkit.addRecipe(recipe, true);
+            Bukkit.addRecipe(recipe, true); // todo this can crash when a recipe is added more than once
             // todo new players joining will not get this update
             for (Player player : Bukkit.getOnlinePlayers()) {
                 player.discoverRecipe(((Keyed) recipe).getKey());

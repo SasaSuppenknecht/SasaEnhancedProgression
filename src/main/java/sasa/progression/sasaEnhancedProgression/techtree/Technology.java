@@ -9,6 +9,7 @@ import org.bukkit.*;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemType;
+import org.jetbrains.annotations.NotNull;
 import sasa.progression.sasaEnhancedProgression.misc.ItemTagHandler;
 import sasa.progression.sasaEnhancedProgression.techtree.requirements.AbstractMaterialRequirement;
 import sasa.progression.sasaEnhancedProgression.techtree.requirements.MaterialRequirement;
@@ -16,9 +17,9 @@ import sasa.progression.sasaEnhancedProgression.techtree.requirements.MaterialTa
 
 import java.util.*;
 
-public class Technology {
+public class Technology implements Comparable<Technology> {
 
-    private final NamespacedKey advancement;
+    private final NamespacedKey advancementKey;
     private final NamespacedKey primaryDependency;
     private final NamespacedKey secondaryDependency;
 
@@ -26,10 +27,12 @@ public class Technology {
     private final List<AbstractMaterialRequirement> requirements = new ArrayList<>();
     private final HashMap<Player, int[]> partProgressMap = new HashMap<>();
 
-    public Technology(NamespacedKey advancement, TechnologyRequirementBundle requirementsData) {
-        this.advancement = advancement;
+    public final int depth;
 
-        var criteriaIterator = Bukkit.getAdvancement(advancement).getCriteria().iterator();
+    public Technology(Advancement advancement, TechnologyRequirementBundle requirementsData) {
+        this.advancementKey = advancement.getKey();
+
+        var criteriaIterator = advancement.getCriteria().iterator();
         // criteria must have at least one element
         primaryDependency = NamespacedKey.fromString(criteriaIterator.next());
         if (criteriaIterator.hasNext()) {
@@ -43,30 +46,37 @@ public class Technology {
         if (requirementsData != null) {
             this.parts = requirementsData.parts;
 
-            for (Map.Entry<String, TechnologyRequirementBundle.RequirementInformationBundle> requirement : requirementsData.requirements.entrySet()) {
-                // todo use scaling flag
+            for (Map.Entry<String, Integer> requirement : requirementsData.requirements.entrySet()) {
                 String key = requirement.getKey();
                 if (!key.startsWith("#")) {
                     ItemType itemType = Registry.ITEM.get(Key.key(key));
                     assert itemType != null : "Key " + key + " does not correspond to any itemtype";
-                    requirements.add(new MaterialRequirement(itemType, requirement.getValue().amount()));
+                    requirements.add(new MaterialRequirement(itemType, requirement.getValue()));
                 } else {
                     key = key.substring(1);
                     Tag<ItemType> tag = Registry.ITEM.getTag(TagKey.create(RegistryKey.ITEM, key));
-                    requirements.add(new MaterialTagRequirement(tag, requirement.getValue().amount()));
+                    requirements.add(new MaterialTagRequirement(tag, requirement.getValue()));
                 }
             }
         } else {
             parts = 1;
         }
+
+        int parentCount = 0;
+        Advancement parent = advancement.getParent();
+        while (parent != null) {
+            parent = parent.getParent();
+            parentCount++;
+        }
+        depth = parentCount;
     }
 
     public NamespacedKey getAdvancementKey() {
-        return advancement;
+        return advancementKey;
     }
 
     public Advancement getConnectedAdvancement() {
-        return Bukkit.getAdvancement(advancement);
+        return Bukkit.getAdvancement(advancementKey);
     }
 
     public NamespacedKey getPrimaryDependency() {
@@ -127,14 +137,20 @@ public class Technology {
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Technology technology) {
-            return technology.advancement.equals(this.advancement);
+            return technology.advancementKey.equals(this.advancementKey);
         }
         return false;
     }
 
     @Override
     public String toString() {
-        return "Technology(%s)".formatted(advancement.toString());
+        return "Technology(%s)".formatted(advancementKey.toString());
     }
+
+    @Override
+    public int compareTo(@NotNull Technology o) {
+        return this.depth - o.depth;
+    }
+
 
 }
